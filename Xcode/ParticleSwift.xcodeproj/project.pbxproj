@@ -21,6 +21,34 @@
 		4FA85B051D0C89A900EC906B /* ParticleSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85ABD1D0C87FB00EC906B /* ParticleSwift.swift */; };
 		4FA85B061D0C89AA00EC906B /* ParticleSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85ABD1D0C87FB00EC906B /* ParticleSwift.swift */; };
 		4FA85B071D0C89AA00EC906B /* ParticleSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85ABD1D0C87FB00EC906B /* ParticleSwift.swift */; };
+		4FA85B091D0C9FF900EC906B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B081D0C9FF900EC906B /* Errors.swift */; };
+		4FA85B0A1D0C9FF900EC906B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B081D0C9FF900EC906B /* Errors.swift */; };
+		4FA85B0B1D0C9FF900EC906B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B081D0C9FF900EC906B /* Errors.swift */; };
+		4FA85B0C1D0C9FF900EC906B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B081D0C9FF900EC906B /* Errors.swift */; };
+		4FA85B0E1D0CA04100EC906B /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B0D1D0CA04100EC906B /* Common.swift */; };
+		4FA85B0F1D0CA04100EC906B /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B0D1D0CA04100EC906B /* Common.swift */; };
+		4FA85B101D0CA04100EC906B /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B0D1D0CA04100EC906B /* Common.swift */; };
+		4FA85B111D0CA04100EC906B /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B0D1D0CA04100EC906B /* Common.swift */; };
+		4FA85B131D0CA07B00EC906B /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B121D0CA07B00EC906B /* Authentication.swift */; };
+		4FA85B141D0CA07B00EC906B /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B121D0CA07B00EC906B /* Authentication.swift */; };
+		4FA85B151D0CA07B00EC906B /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B121D0CA07B00EC906B /* Authentication.swift */; };
+		4FA85B161D0CA07B00EC906B /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B121D0CA07B00EC906B /* Authentication.swift */; };
+		4FA85B1A1D0CA14800EC906B /* ParticleCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B171D0CA14800EC906B /* ParticleCloud.swift */; };
+		4FA85B1B1D0CA14800EC906B /* ParticleCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B171D0CA14800EC906B /* ParticleCloud.swift */; };
+		4FA85B1C1D0CA14800EC906B /* ParticleCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B171D0CA14800EC906B /* ParticleCloud.swift */; };
+		4FA85B1D1D0CA14800EC906B /* ParticleCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B171D0CA14800EC906B /* ParticleCloud.swift */; };
+		4FA85B221D0CA14800EC906B /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B191D0CA14800EC906B /* Device.swift */; };
+		4FA85B231D0CA14800EC906B /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B191D0CA14800EC906B /* Device.swift */; };
+		4FA85B241D0CA14800EC906B /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B191D0CA14800EC906B /* Device.swift */; };
+		4FA85B251D0CA14800EC906B /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B191D0CA14800EC906B /* Device.swift */; };
+		4FA85B281D0CA15900EC906B /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B261D0CA15900EC906B /* Logging.swift */; };
+		4FA85B291D0CA15900EC906B /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B261D0CA15900EC906B /* Logging.swift */; };
+		4FA85B2A1D0CA15900EC906B /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B261D0CA15900EC906B /* Logging.swift */; };
+		4FA85B2B1D0CA15900EC906B /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B261D0CA15900EC906B /* Logging.swift */; };
+		4FA85B2C1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B271D0CA15900EC906B /* Foundation+ParticleKit.swift */; };
+		4FA85B2D1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B271D0CA15900EC906B /* Foundation+ParticleKit.swift */; };
+		4FA85B2E1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B271D0CA15900EC906B /* Foundation+ParticleKit.swift */; };
+		4FA85B2F1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B271D0CA15900EC906B /* Foundation+ParticleKit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +98,13 @@
 		4FA85AF61D0C891D00EC906B /* ParticleSwift-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ParticleSwift-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA85AFB1D0C891D00EC906B /* ParticleSwift_tvOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleSwift_tvOSTests.swift; sourceTree = "<group>"; };
 		4FA85AFD1D0C891D00EC906B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FA85B081D0C9FF900EC906B /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		4FA85B0D1D0CA04100EC906B /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		4FA85B121D0CA07B00EC906B /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		4FA85B171D0CA14800EC906B /* ParticleCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleCloud.swift; sourceTree = "<group>"; };
+		4FA85B191D0CA14800EC906B /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		4FA85B261D0CA15900EC906B /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
+		4FA85B271D0CA15900EC906B /* Foundation+ParticleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Foundation+ParticleKit.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,7 +208,14 @@
 		4FA85ABC1D0C87E600EC906B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				4FA85B0D1D0CA04100EC906B /* Common.swift */,
+				4FA85B081D0C9FF900EC906B /* Errors.swift */,
 				4FA85ABD1D0C87FB00EC906B /* ParticleSwift.swift */,
+				4FA85B121D0CA07B00EC906B /* Authentication.swift */,
+				4FA85B171D0CA14800EC906B /* ParticleCloud.swift */,
+				4FA85B191D0CA14800EC906B /* Device.swift */,
+				4FA85B261D0CA15900EC906B /* Logging.swift */,
+				4FA85B271D0CA15900EC906B /* Foundation+ParticleKit.swift */,
 			);
 			name = Sources;
 			path = ../Sources;
@@ -515,7 +557,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FA85B091D0C9FF900EC906B /* Errors.swift in Sources */,
+				4FA85B0E1D0CA04100EC906B /* Common.swift in Sources */,
 				4FA85ABE1D0C87FB00EC906B /* ParticleSwift.swift in Sources */,
+				4FA85B1A1D0CA14800EC906B /* ParticleCloud.swift in Sources */,
+				4FA85B2C1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */,
+				4FA85B221D0CA14800EC906B /* Device.swift in Sources */,
+				4FA85B131D0CA07B00EC906B /* Authentication.swift in Sources */,
+				4FA85B281D0CA15900EC906B /* Logging.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,7 +580,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FA85B0A1D0C9FF900EC906B /* Errors.swift in Sources */,
+				4FA85B0F1D0CA04100EC906B /* Common.swift in Sources */,
 				4FA85B051D0C89A900EC906B /* ParticleSwift.swift in Sources */,
+				4FA85B1B1D0CA14800EC906B /* ParticleCloud.swift in Sources */,
+				4FA85B2D1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */,
+				4FA85B231D0CA14800EC906B /* Device.swift in Sources */,
+				4FA85B141D0CA07B00EC906B /* Authentication.swift in Sources */,
+				4FA85B291D0CA15900EC906B /* Logging.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,7 +603,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FA85B0B1D0C9FF900EC906B /* Errors.swift in Sources */,
+				4FA85B101D0CA04100EC906B /* Common.swift in Sources */,
 				4FA85B061D0C89AA00EC906B /* ParticleSwift.swift in Sources */,
+				4FA85B1C1D0CA14800EC906B /* ParticleCloud.swift in Sources */,
+				4FA85B2E1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */,
+				4FA85B241D0CA14800EC906B /* Device.swift in Sources */,
+				4FA85B151D0CA07B00EC906B /* Authentication.swift in Sources */,
+				4FA85B2A1D0CA15900EC906B /* Logging.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,7 +618,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FA85B0C1D0C9FF900EC906B /* Errors.swift in Sources */,
+				4FA85B111D0CA04100EC906B /* Common.swift in Sources */,
 				4FA85B071D0C89AA00EC906B /* ParticleSwift.swift in Sources */,
+				4FA85B1D1D0CA14800EC906B /* ParticleCloud.swift in Sources */,
+				4FA85B2F1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */,
+				4FA85B251D0CA14800EC906B /* Device.swift in Sources */,
+				4FA85B161D0CA07B00EC906B /* Authentication.swift in Sources */,
+				4FA85B2B1D0CA15900EC906B /* Logging.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
