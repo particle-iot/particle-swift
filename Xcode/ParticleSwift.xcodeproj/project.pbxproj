@@ -462,12 +462,14 @@
 					};
 					4FA85AC31D0C88D200EC906B = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 					4FA85ACC1D0C88D300EC906B = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
 					4FA85ADF1D0C890E00EC906B = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 					4FA85AEC1D0C891D00EC906B = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -763,6 +765,7 @@
 				PRODUCT_NAME = ParticleSwift;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -782,6 +785,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.vakoc.ParticleSwift;
 				PRODUCT_NAME = ParticleSwift;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -823,6 +827,7 @@
 				PRODUCT_NAME = ParticleSwift;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -843,6 +848,7 @@
 				PRODUCT_NAME = ParticleSwift;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -890,6 +896,7 @@
 				PRODUCT_NAME = ParticleSwift;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -910,6 +917,7 @@
 				PRODUCT_NAME = ParticleSwift;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
@@ -1017,6 +1025,7 @@
 				4FA85AD71D0C88D300EC906B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4FA85AD81D0C88D300EC906B /* Build configuration list for PBXNativeTarget "ParticleSwift-iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1025,6 +1034,7 @@
 				4FA85ADA1D0C88D300EC906B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4FA85AE51D0C890E00EC906B /* Build configuration list for PBXNativeTarget "ParticleSwift-watchOS" */ = {
 			isa = XCConfigurationList;
@@ -1033,6 +1043,7 @@
 				4FA85AE71D0C890E00EC906B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4FA85AFE1D0C891D00EC906B /* Build configuration list for PBXNativeTarget "ParticleSwift-tvOS" */ = {
 			isa = XCConfigurationList;
@@ -1041,6 +1052,7 @@
 				4FA85B001D0C891D00EC906B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4FA85B011D0C891D00EC906B /* Build configuration list for PBXNativeTarget "ParticleSwift-tvOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1049,6 +1061,7 @@
 				4FA85B031D0C891D00EC906B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

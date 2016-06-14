@@ -1,9 +1,9 @@
-// This source file is part of the ParticleSwift open source project
+// This source file is part of the vakoc.com open source project(s)
 //
 // Copyright © 2016 Mark Vakoc. All rights reserved.
 // Licensed under Apache License v2.0
 //
-// See https://github.com/vakoc/particle-swift/blob/master/LICENSE for license information
+// See http://www.vakoc.com/LICENSE.txt for license information
 
 
 import Foundation
@@ -22,21 +22,26 @@ public protocol SecureStorage: class {
 
 /// Represents an OAuthToken as returned by the oauth/token
 public struct OAuthToken: CustomStringConvertible, StringKeyedDictionaryConvertible {
+    
     /// the magical token you will use for all other requests
     public var accessToken: String
+    
     /// the token type, e.g. bearer
     public var tokenType: String
+    
     /// the number of seconds this token is valid for.  0 means forever
-    public var expiresIn: NSTimeInterval
+    public var expiresIn: TimeInterval
+    
     /// used to generate a new access token when it has expired
     public var refreshToken: String
+    
     /// the time the structure was created
-    public let creationDate: NSDate
+    public let created: Date
     
     /// Creates an OAuth token from a string keyed dictionary as returned by /oauth/token
     ///
     /// If any of the required properties are not found it returns nil
-    public init?(dictionary: [String : AnyObject]) {
+    public init?(with dictionary: [String : AnyObject]) {
         guard let accessToken = dictionary["access_token"] as? String where !accessToken.isEmpty,
             let tokenType = dictionary["token_type"] as? String where !tokenType.isEmpty,
             let expiresIn = dictionary["expires_in"] as? Int,
@@ -50,19 +55,19 @@ public struct OAuthToken: CustomStringConvertible, StringKeyedDictionaryConverti
         self.tokenType = tokenType
         self.expiresIn = Double(expiresIn)
         self.refreshToken = refreshToken
-        self.creationDate = (dictionary["created_at"] as? String)?.dateWithISO8601String ?? NSDate()
+        self.created = (dictionary["created_at"] as? String)?.dateWithISO8601String ?? Date()
     }
     
-    public var expirationDate: NSDate {
-        return self.creationDate.addingTimeInterval(expiresIn)
+    public var expirationDate: Date {
+        return self.created.addingTimeInterval(expiresIn)
     }
     
     public var description: String {
         return "OAuthToken[accessToken=\(accessToken), expires=\(self.expirationDate.description)]"
     }
     
-    public var dictionaryRepresentation: [String : AnyObject] {
-        return ["access_token" : accessToken, "token_type" : self.tokenType, "expires_in" : self.expiresIn, "refresh_token" : self.refreshToken, "created_at" : self.creationDate.ISO8601String]
+    public var dictionary: [String : AnyObject] {
+        return ["access_token" : accessToken, "token_type" : self.tokenType, "expires_in" : self.expiresIn, "refresh_token" : self.refreshToken, "created_at" : self.created.ISO8601String]
     }
     
 }
@@ -74,7 +79,7 @@ public struct OAuthTokenListEntry: CustomStringConvertible {
     public var accessToken: String
     
     /// The date the token expires
-    public var expires: NSDate
+    public var expires: Date
     
     /// the client string
     public var client: String
@@ -143,7 +148,7 @@ public protocol OAuthAuthenticatable: class, WebServiceCallable {
     /// - parameter expiresIn: how many seconds the token will be valid for.  0 means forever.  short lived tokens are better for security
     /// - parameter expiresAt: the date at which the token should expire.
     /// - parameter completion: completion handler.  Contains a Result enum with the OAuthToken or error encountered
-    func createOAuthToken(expiresIn: NSTimeInterval, expiresAt: NSDate?, completion: (Result<OAuthToken>) -> Void )
+    func createOAuthToken(expiresIn: TimeInterval, expiresAt: Date?, completion: (Result<OAuthToken>) -> Void )
 }
 
 
@@ -152,31 +157,31 @@ extension OAuthAuthenticatable {
     
     public func authenticate(validateToken: Bool, completion: (Result<String>) -> Void) {
         
-        if let token = secureStorage?.oauthToken(realm: self.realm) where NSDate().compare(token.expirationDate) == NSComparisonResult.orderedAscending {
+        if let token = secureStorage?.oauthToken(realm: self.realm) where Date().compare(token.expirationDate as Date) == ComparisonResult.orderedAscending {
             if !validateToken {
-                return dispatch_async(dispatchQueue) { completion(.Success(token.accessToken)) }
+                return dispatchQueue.async { completion(.success(token.accessToken)) }
             }
             
             /// TODO validate the token to ensure it doesn't suck
-            return dispatch_async(dispatchQueue) { completion(.Success(token.accessToken)) }
+            return dispatchQueue.async { completion(.success(token.accessToken)) }
         }
         
         /// TODO:  parameterize the expiresIn
         self.createOAuthToken(expiresIn: 60*60*7, expiresAt: nil) { (createOAuthTokenResult) in
             switch (createOAuthTokenResult) {
-            case .Failure(let error):
-                return completion(.Failure(error))
-            case .Success(let token):
+            case .failure(let error):
+                return completion(.failure(error))
+            case .success(let token):
                 self.secureStorage?.updateOAuthToken(token: token, forRealm: self.realm)
-                completion(.Success(token.accessToken))
+                completion(.success(token.accessToken))
             }
         }
     }
     
-    public func createOAuthToken(expiresIn: NSTimeInterval = 60*60*2*7, expiresAt: NSDate? = nil, completion: (Result<OAuthToken>) -> Void ) {
+    public func createOAuthToken(expiresIn: TimeInterval = 60*60*2*7, expiresAt: Date? = nil, completion: (Result<OAuthToken>) -> Void ) {
         
         guard let username = secureStorage?.username(realm: self.realm), password = secureStorage?.password(realm: self.realm), OAuthClientID = secureStorage?.oauthClientId(realm: self.realm), OAuthClientSecret = secureStorage?.oauthClientSecret(realm: self.realm) else {
-            return dispatch_async(dispatchQueue) { completion(.Failure(ParticleError.MissingCredentials)) }
+            return dispatchQueue.async { completion(.failure(ParticleError.MissingCredentials)) }
         }
         
         var urlParams: [String : String] = ["grant_type" : "password", "username" : username, "password" : password, "expires_in" : "\(Int(expiresIn))"]
@@ -186,17 +191,17 @@ extension OAuthAuthenticatable {
         }
         
         let basicAuthCredentials = "\(OAuthClientID):\(OAuthClientSecret)"
-        guard let data = basicAuthCredentials.data(using: NSUTF8StringEncoding) else {
+        guard let data = basicAuthCredentials.data(using: String.Encoding.utf8) else {
             return
         }
         
         let base64AuthCredentials = data.base64EncodedString([])
         
-        let request = NSURLRequest(url: self.baseURL.appendingPathComponent("oauth/token")).mutableCopy() as! NSMutableURLRequest
+        var request = URLRequest(url: try! self.baseURL.appendingPathComponent("oauth/token"))
         
         request.setValue("Basic \(base64AuthCredentials)", forHTTPHeaderField: "Authorization")
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        request.httpBody = urlParams.URLEncodedParameters?.data(using: NSUTF8StringEncoding)
+        request.httpBody = urlParams.URLEncodedParameters?.data(using: String.Encoding.utf8)
         request.httpMethod = "POST"
         
         let task = self.urlSession.dataTask(with: request) { (data, response, error) in
@@ -204,16 +209,16 @@ extension OAuthAuthenticatable {
             trace(description: "Creating an OAuth token", request: request, data: data, response: response, error: error)
             
             if let error = error {
-                return completion(.Failure(ParticleError.OAuthTokenCreationFailed(error)))
+                return completion(.failure(ParticleError.OAuthTokenCreationFailed(error)))
             }
             
-            if let data = data, json = try? NSJSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json,
-                token = OAuthToken(dictionary: j) {
+            if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json,
+                token = OAuthToken(with: j) {
                 
-                completion(.Success(token))
+                completion(.success(token))
             } else {
-                let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain an OAuth token", tableName: nil, bundle: NSBundle(for: self.dynamicType), comment: "The http request to create an OAuthToken failed")])
-                return completion(.Failure(ParticleError.OAuthTokenCreationFailed(error)))
+                let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain an OAuth token", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The http request to create an OAuthToken failed")])
+                return completion(.failure(ParticleError.OAuthTokenCreationFailed(error)))
             }
         }        
         task.resume()

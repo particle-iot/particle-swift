@@ -1,9 +1,9 @@
-// This source file is part of the ParticleSwift open source project
+// This source file is part of the vakoc.com open source project(s)
 //
 // Copyright © 2016 Mark Vakoc. All rights reserved.
 // Licensed under Apache License v2.0
 //
-// See https://github.com/vakoc/particle-swift/blob/master/LICENSE for license information
+// See http://www.vakoc.com/LICENSE.txt for license information
 
 import Foundation
 
@@ -12,7 +12,8 @@ public enum ParticleError: ErrorProtocol {
     ListAccessTokensFailed(ErrorProtocol),
     DeviceListFailed(ErrorProtocol),
     DeviceInformationFailed(String, ErrorProtocol),
-    OAuthTokenCreationFailed(ErrorProtocol)
+    OAuthTokenCreationFailed(ErrorProtocol),
+    InvalidURLRequest(ErrorProtocol)
 }
 
 extension ParticleError: CustomStringConvertible {
@@ -28,7 +29,9 @@ extension ParticleError: CustomStringConvertible {
         case .DeviceInformationFailed(let deviceID, let error):
             return String.localizedStringWithFormat("The request to obtain device information for device ID %1@ failed with error %2@", deviceID, "\(error)")
         case .OAuthTokenCreationFailed(let error):
-            return String.localizedStringWithFormat("Faield to create an OAuth token with error %1@", "\(error)")
+            return String.localizedStringWithFormat("Failed to create an OAuth token with error %1@", "\(error)")
+        case .InvalidURLRequest(let error):
+            return String.localizedStringWithFormat("Unable to create a valid URL request with error %1@", "\(error)")
         }
     }
 }

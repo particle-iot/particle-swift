@@ -1,9 +1,9 @@
-// This source file is part of the ParticleSwift open source project
+// This source file is part of the vakoc.com open source project(s)
 //
 // Copyright © 2016 Mark Vakoc. All rights reserved.
 // Licensed under Apache License v2.0
 //
-// See https://github.com/vakoc/particle-swift/blob/master/LICENSE for license information
+// See http://www.vakoc.com/LICENSE.txt for license information
 
 
 import Foundation
@@ -161,7 +161,7 @@ public func trace( message: @autoclosure () -> String, function: String = #funct
  logs a http request and reponse
  */
 @inline(__always)
-public func trace(description: String, request: NSURLRequest, data: NSData?, response: NSURLResponse?, error: NSError?, function: String = #function, file: String = #file, line: Int = #line) -> Void  {
+public func trace(description: String, request: URLRequest, data: NSData?, response: URLResponse?, error: NSError?, function: String = #function, file: String = #file, line: Int = #line) -> Void  {
     guard globalLogLevel.rawValue <= LogLevel.Trace.rawValue else {
         return
     }
@@ -173,7 +173,7 @@ public func trace(description: String, request: NSURLRequest, data: NSData?, res
         components.append("\(headers)")
     }
     
-    if let body = request.httpBody, bodyString = String(data: body, encoding: NSUTF8StringEncoding) {
+    if let body = request.httpBody, bodyString = String(data: body, encoding: String.Encoding.utf8) {
         components.append("request body")
         components.append(bodyString)
     }
@@ -185,11 +185,11 @@ public func trace(description: String, request: NSURLRequest, data: NSData?, res
     
     
     
-    if let response = response as? NSHTTPURLResponse, contentType = response.allHeaderFields["Content-Type"] as? String  where contentType.contains("application/json"), let data = data, json = try? NSJSONSerialization.jsonObject(with: data, options: []) {
+    if let response = response as? HTTPURLResponse, contentType = response.allHeaderFields["Content-Type"] as? String  where contentType.contains("application/json"), let data = data, json = try? JSONSerialization.jsonObject(with: data as Data, options: []) {
         components.append("with response")
         components.append("\(json)")
         
-    } else if let data = data, let body = String(data: data, encoding: NSUTF8StringEncoding) {
+    } else if let data = data, let body = String(data: data as Data, encoding: String.Encoding.utf8) {
         components.append("with response")
         components.append(body)
     }

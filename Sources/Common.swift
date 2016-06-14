@@ -1,9 +1,9 @@
-// This source file is part of the ParticleSwift open source project
+// This source file is part of the vakoc.com open source project(s)
 //
 // Copyright © 2016 Mark Vakoc. All rights reserved.
 // Licensed under Apache License v2.0
 //
-// See https://github.com/vakoc/particle-swift/blob/master/LICENSE for license information
+// See http://www.vakoc.com/LICENSE.txt for license information
 
 import Foundation
 
@@ -11,16 +11,16 @@ public let errorDomain = "com.vakoc.ParticleSwift"
 
 /// Enum for a result of something that can fail, particularly network requests
 public enum Result<T> {
-    case Success(T)
-    case Failure(ErrorProtocol)
+    case success(T)
+    case failure(ErrorProtocol)
 }
 
 
 public protocol StringKeyedDictionaryConvertible {
     
-    init? (dictionary: [String : AnyObject])
+    init? (with dictionary: [String : AnyObject])
     
-    var dictionaryRepresentation: [String : AnyObject] { get }
+    var dictionary: [String : AnyObject] { get }
 }
 
 /**
@@ -30,13 +30,13 @@ public protocol StringKeyedDictionaryConvertible {
 public protocol WebServiceCallable {
    
     /// The base URL to use to create the web service call */
-    var baseURL: NSURL { get }
+    var baseURL: URL { get }
     
     /// The URL session to use to perform the web service request, typically with a data task */
-    var urlSession: NSURLSession { get }
+    var urlSession: URLSession { get }
     
     /// the queue to use for invoking callbacks
-    var dispatchQueue: dispatch_queue_t { get }
+    var dispatchQueue: DispatchQueue { get }
     
 }
 

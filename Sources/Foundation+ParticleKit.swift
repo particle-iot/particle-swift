@@ -1,30 +1,30 @@
-// This source file is part of the ParticleSwift open source project
+// This source file is part of the vakoc.com open source project(s)
 //
 // Copyright © 2016 Mark Vakoc. All rights reserved.
 // Licensed under Apache License v2.0
 //
-// See https://github.com/vakoc/particle-swift/blob/master/LICENSE for license information
+// See http://www.vakoc.com/LICENSE.txt for license information
 
 
 import Foundation
 
-extension NSDate {
+extension Date {
     
     /// Returns self as an ISO8601 formatted string
     var ISO8601String: String {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(localeIdentifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        return dateFormatter.string(from: self)
+        return dateFormatter.string(from: self as Date)
     }
 }
 
 extension String {
     
-    var dateWithISO8601String: NSDate? {
+    var dateWithISO8601String: Date? {
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(localeIdentifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         return dateFormatter.date(from: self)
     }
@@ -46,9 +46,9 @@ extension Dictionary where Key: StringLiteralConvertible, Value: StringLiteralCo
     
     var URLEncodedParameters: String? {
         
-        let comps = NSURLComponents(string: "http://www.vakoc.com/")
+        var comps = URLComponents(string: "http://www.vakoc.com/")
         
-        comps?.queryItems = self.map( { (key, value) -> NSURLQueryItem  in return NSURLQueryItem(name: "\(key)", value: "\(value)") })
+        comps?.queryItems = self.map( { (key, value) -> URLQueryItem  in return URLQueryItem(name: "\(key)", value: "\(value)") })
         return comps?.percentEncodedQuery
     }
 }
@@ -58,8 +58,8 @@ extension Dictionary where Key: StringLiteralConvertible, Value: Any {
     var jsonString: String?  {
         if let dict = (self as? AnyObject) as? Dictionary<String, AnyObject> {
             do {
-                let data = try NSJSONSerialization.data(withJSONObject: dict, options: [.prettyPrinted])
-                if let string = String(data: data, encoding: NSUTF8StringEncoding) {
+                let data = try JSONSerialization.data(withJSONObject: dict, options: [.prettyPrinted])
+                if let string = String(data: data, encoding: String.Encoding.utf8) {
                     return string
                 }
             } catch {
@@ -75,8 +75,8 @@ extension Array where Element: AnyObject {
     var jsonString: String?  {
 
         do {
-            let data = try NSJSONSerialization.data(withJSONObject: self, options: [.prettyPrinted])
-            if let string = String(data: data, encoding: NSUTF8StringEncoding) {
+            let data = try JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted])
+            if let string = String(data: data, encoding: String.Encoding.utf8) {
                 return string
             }
         } catch {

@@ -1,9 +1,9 @@
-// This source file is part of the ParticleSwift open source project
+// This source file is part of the vakoc.com open source project(s)
 //
 // Copyright © 2016 Mark Vakoc. All rights reserved.
 // Licensed under Apache License v2.0
 //
-// See https://github.com/vakoc/particle-swift/blob/master/LICENSE for license information
+// See http://www.vakoc.com/LICENSE.txt for license information
 
 
 import Foundation
@@ -11,7 +11,7 @@ import Foundation
 public let ParticleCloudRealm = "ParticleCloud"
 
 /// The base for the particle URLs
-public let kParticleDefaultURL = NSURL(string: "https://api.particle.io/")!
+public let kParticleDefaultURL = URL(string: "https://api.particle.io/")!
 
 ///
 ///
@@ -21,20 +21,20 @@ public let kParticleDefaultURL = NSURL(string: "https://api.particle.io/")!
 public class ParticleCloud: WebServiceCallable {
     
     /// The base URL used to interact with particle.  Set during initialization
-    public let baseURL: NSURL
+    public let baseURL: URL
     
     /// The OAuth realm    
     public var realm = ParticleCloudRealm
     
     /// the networking stack used for this particle instance
-    public lazy var urlSession: NSURLSession = {
-        let configuration = NSURLSessionConfiguration.default()
-        let urlSession = NSURLSession(configuration: configuration)
+    public lazy var urlSession: URLSession = {
+        let configuration = URLSessionConfiguration.default()
+        let urlSession = URLSession(configuration: configuration)
         return urlSession
     }()
     
     /// the dispatch queue used to perform all opeartions for this cloud instance
-    public var dispatchQueue: dispatch_queue_t = dispatch_queue_create("Particle", DISPATCH_QUEUE_CONCURRENT)
+    public var dispatchQueue = DispatchQueue(label: "Particle", attributes: [.concurrent])
     
     /// provider for secure credentials
     public private(set) weak var secureStorage: SecureStorage?
@@ -47,7 +47,7 @@ public class ParticleCloud: WebServiceCallable {
     ///
     /// - parameter baseURL: the base url to use, defaults to kParticleDefaultURL
     /// - parameter secureStorage: provider of credentials
-    public init(baseURL:NSURL = kParticleDefaultURL, secureStorage: SecureStorage?) {
+    public init(baseURL:URL = kParticleDefaultURL, secureStorage: SecureStorage?) {
         self.baseURL = baseURL
         self.secureStorage = secureStorage
     }
@@ -58,37 +58,37 @@ public class ParticleCloud: WebServiceCallable {
     /// - parameter completion: completion handler. Contains a list of oauth tokens
     public func accessTokens(completion: (Result<[OAuthTokenListEntry]>) -> Void ) {
         
-        let request = NSURLRequest(url: self.baseURL.appendingPathComponent("v1/access_tokens")).mutableCopy() as! NSMutableURLRequest
+        var request = URLRequest(url: try! baseURL.appendingPathComponent("v1/access_tokens"))
+        
         
         guard let username = self.secureStorage?.username(realm: self.realm), let password = self.secureStorage?.password(realm: self.realm) else {
-            dispatch_async(self.dispatchQueue) {
-                completion(.Failure(ParticleError.MissingCredentials))
+            self.dispatchQueue.async  {
+                completion(.failure(ParticleError.MissingCredentials))
             }
             return
         }
         
-        guard let data = "\(username):\(password)".data(using: NSUTF8StringEncoding) else {
-            return dispatch_async(dispatchQueue) { completion(.Failure(ParticleError.MissingCredentials)) }
+        guard let data = "\(username):\(password)".data(using: String.Encoding.utf8) else {
+            return dispatchQueue.async  { completion(.failure(ParticleError.MissingCredentials)) }
         }
         
         let base64AuthCredentials = data.base64EncodedString([])
         request.setValue("Basic \(base64AuthCredentials)", forHTTPHeaderField: "Authorization")
-
-        let task = self.urlSession.dataTask(with: request) { (data, response, error) in
+        let task = urlSession.dataTask(with: request, completionHandler:  { (data, response, error) in
             
             trace(description: "Get access tokens", request: request, data: data, response: response, error: error)
             
             if let error = error {
-                return completion(.Failure(ParticleError.ListAccessTokensFailed(error)))
+                return completion(.failure(ParticleError.ListAccessTokensFailed(error)))
             }
             
-            if let data = data, json = try? NSJSONSerialization.jsonObject(with: data, options: []) as? [[String : AnyObject]],  j = json {
-                return completion(.Success(j.flatMap() { return OAuthTokenListEntry(dictionary: $0)} ))
+            if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String : AnyObject]],  j = json {
+                return completion(.success(j.flatMap() { return OAuthTokenListEntry(dictionary: $0)} ))
             } else {
-                let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain access token lists", tableName: nil, bundle: NSBundle(for: self.dynamicType), comment: "The http request to create an OAuthToken failed")])
-                return completion(.Failure(ParticleError.ListAccessTokensFailed(error)))
+                let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain access token lists", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The http request to create an OAuthToken failed")])
+                return completion(.failure(ParticleError.ListAccessTokensFailed(error)))
             }
-        }
+        })
         task.resume()
     }
 }

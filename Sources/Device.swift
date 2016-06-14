@@ -1,9 +1,9 @@
-// This source file is part of the ParticleSwift open source project
+// This source file is part of the vakoc.com open source project(s)
 //
 // Copyright © 2016 Mark Vakoc. All rights reserved.
 // Licensed under Apache License v2.0
 //
-// See https://github.com/vakoc/particle-swift/blob/master/LICENSE for license information
+// See http://www.vakoc.com/LICENSE.txt for license information
 
 import Foundation
 
@@ -48,7 +48,7 @@ public struct DeviceInformation {
     public var lastIPAddress: String?
     
     /// Date the cloud last heard from the device
-    public var lastHeard: NSDate?
+    public var lastHeard: Date?
     
     /// Indicates whether the device is currently connected to the cloud
     public var connected: Bool = false
@@ -91,7 +91,7 @@ public struct DeviceInformation {
         self.status = dictionary["status"] as? String
     }
     
-    mutating func update(deviceDetailInformation: DeviceDetailInformation) {
+    public mutating func update(deviceDetailInformation: DeviceDetailInformation) {
         self.name = deviceDetailInformation.name
         self.lastApp = deviceDetailInformation.lastApp
         self.connected = deviceDetailInformation.connected
@@ -150,7 +150,7 @@ public struct DeviceDetailInformation {
     public let product: Product
     
     /// Date the cloud last heard from the device
-    public var lastHeard: NSDate?
+    public var lastHeard: Date?
     
     /// Whether this device requires the "Deep Update". Only applies to Cores.
     public var requiresDeepUpdate: Bool = false
@@ -220,11 +220,11 @@ extension ParticleCloud {
         
         self.authenticate(validateToken: false) { (result) in
             switch (result) {
-            case .Failure(let error):
-                return completion(.Failure(error))
-            case .Success(let accessToken):
+            case .failure(let error):
+                return completion(.failure(error))
+            case .success(let accessToken):
                 
-                let request = NSURLRequest(url: self.baseURL.appendingPathComponent("v1/devices")).mutableCopy() as! NSMutableURLRequest
+                var request = URLRequest(url: try! self.baseURL.appendingPathComponent("v1/devices"))
                 
                 request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
                 
@@ -234,23 +234,23 @@ extension ParticleCloud {
                     
                     
                     if let error = error {
-                        return completion(.Failure(ParticleError.DeviceListFailed(error)))
+                        return completion(.failure(ParticleError.DeviceListFailed(error)))
                     }
                     
-                    if let data = data, json = try? NSJSONSerialization.jsonObject(with: data, options: []) as? [[String : AnyObject]],  j = json {
+                    if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String : AnyObject]],  j = json {
                         
                         
-                        return completion(.Success(j.flatMap({ return DeviceInformation(dictionary: $0)})))
+                        return completion(.success(j.flatMap({ return DeviceInformation(dictionary: $0)})))
                     } else {
                         
-                        let message = data != nil ? String(data: data!, encoding: NSUTF8StringEncoding) ?? "" : ""
+                        let message = data != nil ? String(data: data!, encoding: String.Encoding.utf8) ?? "" : ""
                         
                         warn(message: "failed to obtain devices with response: \(response) and message body \(message)")
                         
                         /// todo: this error is wrong
-                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain active devices: \(message)", tableName: nil, bundle: NSBundle(for: self.dynamicType), comment: "The http request obtain the devices failed with message: \(message)")])
+                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain active devices: \(message)", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The http request obtain the devices failed with message: \(message)")])
                         
-                        return completion(.Failure(ParticleError.DeviceListFailed(error)))
+                        return completion(.failure(ParticleError.DeviceListFailed(error)))
                     }
                 }
                 task.resume()
@@ -262,26 +262,26 @@ extension ParticleCloud {
         
         authenticate(validateToken: false) { (result) in
             switch (result) {
-            case .Failure(let error):
-                return completion(.Failure(error))
+            case .failure(let error):
+                return completion(.failure(error))
                 
-            case .Success(let accessToken):
+            case .success(let accessToken):
                 
-                let request = NSURLRequest(url: self.baseURL.appendingPathComponent("v1/devices/\(device.deviceID)")).mutableCopy() as! NSMutableURLRequest
+                var request = URLRequest(url: try! self.baseURL.appendingPathComponent("v1/devices/\(device.deviceID)"))
                 request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
                 let task = self.urlSession.dataTask(with: request) { (data, response, error) in
                     
                     trace(description: "Get device detail information", request: request, data: data, response: response, error: error)
                     if let error = error {
-                        return completion(.Failure(ParticleError.ListAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.ListAccessTokensFailed(error)))
                     }
                     
-                    if let data = data, json = try? NSJSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json, deviceDetailInformation = DeviceDetailInformation(dictionary: j) {
-                        return completion(.Success(deviceDetailInformation))
+                    if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json, deviceDetailInformation = DeviceDetailInformation(dictionary: j) {
+                        return completion(.success(deviceDetailInformation))
                     } else {
-                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain detail device information", tableName: nil, bundle: NSBundle(for: self.dynamicType), comment: "The http request to create an OAuthToken failed")])
+                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain detail device information", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The http request to create an OAuthToken failed")])
                         
-                        return completion(.Failure(ParticleError.ListAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.ListAccessTokensFailed(error)))
                     }
                 }
                 task.resume()
@@ -293,17 +293,17 @@ extension ParticleCloud {
         
         authenticate(validateToken: false) { (result) in
             switch (result) {
-            case .Failure(let error):
-                return completion(.Failure(error))
+            case .failure(let error):
+                return completion(.failure(error))
                 
-            case .Success(let accessToken):
+            case .success(let accessToken):
                 
-                let request = NSURLRequest(url: self.baseURL.appendingPathComponent("v1/devices/\(deviceID)/\(functionName)")).mutableCopy() as! NSMutableURLRequest
+                var request = URLRequest(url: try! self.baseURL.appendingPathComponent("v1/devices/\(deviceID)/\(functionName)"))
                 request.httpMethod = "POST"
                 request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
                 if let argument = argument {
-                    request.httpBody = ["arg" : argument].jsonString?.data(using: NSUTF8StringEncoding)
+                    request.httpBody = ["arg" : argument].jsonString?.data(using: String.Encoding.utf8)
                 }
                 
                 let task = self.urlSession.dataTask(with: request) { (data, response, error) in
@@ -312,15 +312,15 @@ extension ParticleCloud {
                     
                     
                     if let error = error {
-                        return completion(.Failure(ParticleError.ListAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.ListAccessTokensFailed(error)))
                     }
                     
-                    if let data = data, json = try? NSJSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json {
-                        return completion(.Success(j))
+                    if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json {
+                        return completion(.success(j))
                     } else {
-                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to invoke function \(functionName)", tableName: nil, bundle: NSBundle(for: self.dynamicType), comment: "The request failed")])
+                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to invoke function \(functionName)", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The request failed")])
                         
-                        return completion(.Failure(ParticleError.ListAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.ListAccessTokensFailed(error)))
                     }
                 }
                 task.resume()
@@ -332,12 +332,12 @@ extension ParticleCloud {
         
         authenticate(validateToken: false) { (result) in
             switch (result) {
-            case .Failure(let error):
-                return completion(.Failure(error))
+            case .failure(let error):
+                return completion(.failure(error))
                 
-            case .Success(let accessToken):
+            case .success(let accessToken):
                 
-                let request = NSURLRequest(url: self.baseURL.appendingPathComponent("v1/devices/\(deviceID)/\(variableName)")).mutableCopy() as! NSMutableURLRequest
+                var request = URLRequest(url: try! self.baseURL.appendingPathComponent("v1/devices/\(deviceID)/\(variableName)"))
                 request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
                 
                 let task = self.urlSession.dataTask(with: request) { (data, response, error) in
@@ -345,14 +345,14 @@ extension ParticleCloud {
                     trace(description: "Get variable value", request: request, data: data, response: response, error: error)
                     
                     if let error = error {
-                        return completion(.Failure(ParticleError.ListAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.ListAccessTokensFailed(error)))
                     }
                     
-                    if let data = data, json = try? NSJSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json {
-                        return completion(.Success(j))
+                    if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json {
+                        return completion(.success(j))
                     } else {
-                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain variable \(variableName)", tableName: nil, bundle: NSBundle(for: self.dynamicType), comment: "The request failed")])                        
-                        return completion(.Failure(ParticleError.ListAccessTokensFailed(error)))
+                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain variable \(variableName)", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The request failed")])                        
+                        return completion(.failure(ParticleError.ListAccessTokensFailed(error)))
                     }
                 }
                 task.resume()
