@@ -7,7 +7,7 @@
 
 
 import Foundation
-
+import VakocLogging
 
 /// Delegate protocol used to provide ParticleSwift with credentials storage
 public protocol SecureStorage: class {
@@ -206,7 +206,7 @@ extension OAuthAuthenticatable {
         
         let task = self.urlSession.dataTask(with: request) { (data, response, error) in
             
-            trace(description: "Creating an OAuth token", request: request, data: data, response: response, error: error)
+            trace( "Creating an OAuth token", request: request, data: data, response: response, error: error)
             
             if let error = error {
                 return completion(.failure(ParticleError.OAuthTokenCreationFailed(error)))

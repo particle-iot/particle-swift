@@ -6,6 +6,7 @@
 // See http://www.vakoc.com/LICENSE.txt for license information
 
 import Foundation
+import VakocLogging
 
 /// Represents the particle product
 public enum Product: Int {
@@ -77,7 +78,7 @@ public struct DeviceInformation {
             let name = dictionary["name"] as? String where !name.isEmpty,
             let productId = dictionary["product_id"] as? Int,
             let product = Product(rawValue: productId) else {
-                warn(message: "Failed to create a Device using the dictionary \(dictionary);  the required properties were not found")
+                warn("Failed to create a Device using the dictionary \(dictionary);  the required properties were not found")
                 return nil;
         }
         self.init(deviceID: deviceID, name: name, product: product)
@@ -179,7 +180,7 @@ public struct DeviceDetailInformation {
             let name = dictionary["name"] as? String where !name.isEmpty,
             let productId = dictionary["product_id"] as? Int,
             let product = Product(rawValue: productId) else {
-                warn(message: "Failed to create a Device using the dictionary \(dictionary);  the required properties were not found")
+                warn("Failed to create a Device using the dictionary \(dictionary);  the required properties were not found")
                 return nil;
         }
         
@@ -230,7 +231,7 @@ extension ParticleCloud {
                 
                 let task = self.urlSession.dataTask(with: request) { (data, response, error) in
                     
-                    trace(description: "Creating particle devices", request: request, data: data, response: response, error: error)
+                    trace( "Creating particle devices", request: request, data: data, response: response, error: error)
                     
                     
                     if let error = error {
@@ -245,7 +246,7 @@ extension ParticleCloud {
                         
                         let message = data != nil ? String(data: data!, encoding: String.Encoding.utf8) ?? "" : ""
                         
-                        warn(message: "failed to obtain devices with response: \(response) and message body \(message)")
+                        warn("failed to obtain devices with response: \(response) and message body \(message)")
                         
                         /// todo: this error is wrong
                         let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain active devices: \(message)", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The http request obtain the devices failed with message: \(message)")])
@@ -271,7 +272,7 @@ extension ParticleCloud {
                 request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
                 let task = self.urlSession.dataTask(with: request) { (data, response, error) in
                     
-                    trace(description: "Get device detail information", request: request, data: data, response: response, error: error)
+                    trace( "Get device detail information", request: request, data: data, response: response, error: error)
                     if let error = error {
                         return completion(.failure(ParticleError.ListAccessTokensFailed(error)))
                     }
@@ -308,7 +309,7 @@ extension ParticleCloud {
                 
                 let task = self.urlSession.dataTask(with: request) { (data, response, error) in
                     
-                    trace(description: "Call function", request: request, data: data, response: response, error: error)
+                    trace( "Call function", request: request, data: data, response: response, error: error)
                     
                     
                     if let error = error {
@@ -342,7 +343,7 @@ extension ParticleCloud {
                 
                 let task = self.urlSession.dataTask(with: request) { (data, response, error) in
                     
-                    trace(description: "Get variable value", request: request, data: data, response: response, error: error)
+                    trace( "Get variable value", request: request, data: data, response: response, error: error)
                     
                     if let error = error {
                         return completion(.failure(ParticleError.ListAccessTokensFailed(error)))

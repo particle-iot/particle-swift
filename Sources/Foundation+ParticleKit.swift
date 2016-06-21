@@ -7,6 +7,7 @@
 
 
 import Foundation
+import VakocLogging
 
 extension Date {
     
@@ -63,7 +64,7 @@ extension Dictionary where Key: StringLiteralConvertible, Value: Any {
                     return string
                 }
             } catch {
-                warn(message: "Failed to convert \(self) to JSON with error \(error)")
+                warn("Failed to convert \(self) to JSON with error \(error)")
             }
         }
         return nil
@@ -80,7 +81,7 @@ extension Array where Element: AnyObject {
                 return string
             }
         } catch {
-            warn(message: "Failed to convert \(self) to JSON with error \(error)")
+            warn("Failed to convert \(self) to JSON with error \(error)")
         }
         return nil
     }

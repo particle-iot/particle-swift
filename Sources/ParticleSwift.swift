@@ -7,4 +7,4 @@
 
 /// The public facing version of the library
 public let ParticleSwiftVersion = "0.1"
-
+import VakocLogging

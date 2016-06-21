@@ -7,6 +7,7 @@
 
 
 import Foundation
+import VakocLogging
 
 public let ParticleCloudRealm = "ParticleCloud"
 
@@ -76,7 +77,7 @@ public class ParticleCloud: WebServiceCallable {
         request.setValue("Basic \(base64AuthCredentials)", forHTTPHeaderField: "Authorization")
         let task = urlSession.dataTask(with: request, completionHandler:  { (data, response, error) in
             
-            trace(description: "Get access tokens", request: request, data: data, response: response, error: error)
+            trace( "Get access tokens", request: request, data: data, response: response, error: error)
             
             if let error = error {
                 return completion(.failure(ParticleError.ListAccessTokensFailed(error)))
