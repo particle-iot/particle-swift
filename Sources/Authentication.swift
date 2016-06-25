@@ -181,7 +181,7 @@ extension OAuthAuthenticatable {
     public func createOAuthToken(expiresIn: TimeInterval = 60*60*2*7, expiresAt: Date? = nil, completion: (Result<OAuthToken>) -> Void ) {
         
         guard let username = secureStorage?.username(realm: self.realm), password = secureStorage?.password(realm: self.realm), OAuthClientID = secureStorage?.oauthClientId(realm: self.realm), OAuthClientSecret = secureStorage?.oauthClientSecret(realm: self.realm) else {
-            return dispatchQueue.async { completion(.failure(ParticleError.MissingCredentials)) }
+            return dispatchQueue.async { completion(.failure(ParticleError.missingCredentials)) }
         }
         
         var urlParams: [String : String] = ["grant_type" : "password", "username" : username, "password" : password, "expires_in" : "\(Int(expiresIn))"]
@@ -209,7 +209,7 @@ extension OAuthAuthenticatable {
             trace( "Creating an OAuth token", request: request, data: data, response: response, error: error)
             
             if let error = error {
-                return completion(.failure(ParticleError.OAuthTokenCreationFailed(error)))
+                return completion(.failure(ParticleError.oauthTokenCreationFailed(error)))
             }
             
             if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json,
@@ -218,7 +218,7 @@ extension OAuthAuthenticatable {
                 completion(.success(token))
             } else {
                 let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain an OAuth token", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The http request to create an OAuthToken failed")])
-                return completion(.failure(ParticleError.OAuthTokenCreationFailed(error)))
+                return completion(.failure(ParticleError.oauthTokenCreationFailed(error)))
             }
         }        
         task.resume()

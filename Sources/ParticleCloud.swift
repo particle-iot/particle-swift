@@ -64,13 +64,13 @@ public class ParticleCloud: WebServiceCallable {
         
         guard let username = self.secureStorage?.username(realm: self.realm), let password = self.secureStorage?.password(realm: self.realm) else {
             self.dispatchQueue.async  {
-                completion(.failure(ParticleError.MissingCredentials))
+                completion(.failure(ParticleError.missingCredentials))
             }
             return
         }
         
         guard let data = "\(username):\(password)".data(using: String.Encoding.utf8) else {
-            return dispatchQueue.async  { completion(.failure(ParticleError.MissingCredentials)) }
+            return dispatchQueue.async  { completion(.failure(ParticleError.missingCredentials)) }
         }
         
         let base64AuthCredentials = data.base64EncodedString([])
@@ -80,14 +80,14 @@ public class ParticleCloud: WebServiceCallable {
             trace( "Get access tokens", request: request, data: data, response: response, error: error)
             
             if let error = error {
-                return completion(.failure(ParticleError.ListAccessTokensFailed(error)))
+                return completion(.failure(ParticleError.listAccessTokensFailed(error)))
             }
             
             if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String : AnyObject]],  j = json {
                 return completion(.success(j.flatMap() { return OAuthTokenListEntry(dictionary: $0)} ))
             } else {
                 let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain access token lists", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The http request to create an OAuthToken failed")])
-                return completion(.failure(ParticleError.ListAccessTokensFailed(error)))
+                return completion(.failure(ParticleError.listAccessTokensFailed(error)))
             }
         })
         task.resume()

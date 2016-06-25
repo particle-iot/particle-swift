@@ -235,7 +235,7 @@ extension ParticleCloud {
                     
                     
                     if let error = error {
-                        return completion(.failure(ParticleError.DeviceListFailed(error)))
+                        return completion(.failure(ParticleError.deviceListFailed(error)))
                     }
                     
                     if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String : AnyObject]],  j = json {
@@ -251,7 +251,7 @@ extension ParticleCloud {
                         /// todo: this error is wrong
                         let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain active devices: \(message)", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The http request obtain the devices failed with message: \(message)")])
                         
-                        return completion(.failure(ParticleError.DeviceListFailed(error)))
+                        return completion(.failure(ParticleError.deviceListFailed(error)))
                     }
                 }
                 task.resume()
@@ -274,7 +274,7 @@ extension ParticleCloud {
                     
                     trace( "Get device detail information", request: request, data: data, response: response, error: error)
                     if let error = error {
-                        return completion(.failure(ParticleError.ListAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.listAccessTokensFailed(error)))
                     }
                     
                     if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json, deviceDetailInformation = DeviceDetailInformation(dictionary: j) {
@@ -282,7 +282,7 @@ extension ParticleCloud {
                     } else {
                         let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain detail device information", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The http request to create an OAuthToken failed")])
                         
-                        return completion(.failure(ParticleError.ListAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.listAccessTokensFailed(error)))
                     }
                 }
                 task.resume()
@@ -313,7 +313,7 @@ extension ParticleCloud {
                     
                     
                     if let error = error {
-                        return completion(.failure(ParticleError.ListAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.listAccessTokensFailed(error)))
                     }
                     
                     if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json {
@@ -321,7 +321,7 @@ extension ParticleCloud {
                     } else {
                         let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to invoke function \(functionName)", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The request failed")])
                         
-                        return completion(.failure(ParticleError.ListAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.listAccessTokensFailed(error)))
                     }
                 }
                 task.resume()
@@ -346,14 +346,14 @@ extension ParticleCloud {
                     trace( "Get variable value", request: request, data: data, response: response, error: error)
                     
                     if let error = error {
-                        return completion(.failure(ParticleError.ListAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.listAccessTokensFailed(error)))
                     }
                     
                     if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json {
                         return completion(.success(j))
                     } else {
                         let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain variable \(variableName)", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The request failed")])                        
-                        return completion(.failure(ParticleError.ListAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.listAccessTokensFailed(error)))
                     }
                 }
                 task.resume()

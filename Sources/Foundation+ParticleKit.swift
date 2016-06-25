@@ -20,6 +20,10 @@ extension Date {
     }
 }
 
+extension UUID {
+    public static let allZeros = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
+}
+
 extension String {
     
     var dateWithISO8601String: Date? {
