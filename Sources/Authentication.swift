@@ -178,7 +178,7 @@ extension OAuthAuthenticatable {
         }
     }
     
-    public func createOAuthToken(expiresIn: TimeInterval = 60*60*2*7, expiresAt: Date? = nil, completion: (Result<OAuthToken>) -> Void ) {
+    public func createOAuthToken(expiresIn: TimeInterval = 60*60*24*365, expiresAt: Date? = nil, completion: (Result<OAuthToken>) -> Void ) {
         
         guard let username = secureStorage?.username(realm: self.realm), password = secureStorage?.password(realm: self.realm), OAuthClientID = secureStorage?.oauthClientId(realm: self.realm), OAuthClientSecret = secureStorage?.oauthClientSecret(realm: self.realm) else {
             return dispatchQueue.async { completion(.failure(ParticleError.missingCredentials)) }

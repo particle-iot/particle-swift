@@ -5,6 +5,7 @@
 // 
 // See http://www.vakoc.com/LICENSE.txt for license information
 
-/// The public facing version of the library
-public let ParticleSwiftVersion = "0.1"
-
+public struct ParticleSwift {
+    public static let realm = "particle"
+    public static let version = "0.1"
+}
