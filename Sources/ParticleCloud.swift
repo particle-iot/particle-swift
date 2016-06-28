@@ -9,7 +9,7 @@
 import Foundation
 import VakocLogging
 
-public let ParticleCloudRealm = "ParticleCloud"
+
 
 /// The base for the particle URLs
 public let kParticleDefaultURL = URL(string: "https://api.particle.io/")!
@@ -25,7 +25,7 @@ public class ParticleCloud: WebServiceCallable {
     public let baseURL: URL
     
     /// The OAuth realm    
-    public var realm = ParticleCloudRealm
+    public var realm = ParticleSwift.realm
     
     /// the networking stack used for this particle instance
     public lazy var urlSession: URLSession = {

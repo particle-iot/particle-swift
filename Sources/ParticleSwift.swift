@@ -6,6 +6,6 @@
 // See http://www.vakoc.com/LICENSE.txt for license information
 
 public struct ParticleSwift {
-    public static let realm = "particle"
+    public static let realm = "ParticleCloud"
     public static let version = "0.1"
 }
