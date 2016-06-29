@@ -178,7 +178,7 @@ extension OAuthAuthenticatable {
         }
     }
     
-    public func createOAuthToken(expiresIn: TimeInterval = 60*60*2*7, expiresAt: Date? = nil, completion: (Result<OAuthToken>) -> Void ) {
+    public func createOAuthToken(expiresIn: TimeInterval = 60*60*24*365, expiresAt: Date? = nil, completion: (Result<OAuthToken>) -> Void ) {
         
         guard let username = secureStorage?.username(realm: self.realm), password = secureStorage?.password(realm: self.realm), OAuthClientID = secureStorage?.oauthClientId(realm: self.realm), OAuthClientSecret = secureStorage?.oauthClientSecret(realm: self.realm) else {
             return dispatchQueue.async { completion(.failure(ParticleError.missingCredentials)) }
@@ -213,8 +213,7 @@ extension OAuthAuthenticatable {
             }
             
             if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json,
-                token = OAuthToken(with: j) {
-                
+                token = OAuthToken(with: j) {                
                 completion(.success(token))
             } else {
                 let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain an OAuth token", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The http request to create an OAuthToken failed")])

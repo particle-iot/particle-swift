@@ -12,7 +12,7 @@ import VakocLogging
 extension Date {
     
     /// Returns self as an ISO8601 formatted string
-    var ISO8601String: String {
+    public var ISO8601String: String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(localeIdentifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
