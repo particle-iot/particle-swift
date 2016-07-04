@@ -435,7 +435,6 @@ extension ParticleCloud {
             switch (result) {
             case .failure(let error):
                 return completion(.failure(error))
-                
             case .success(let accessToken):
                 
                 var request = URLRequest(url: try! self.baseURL.appendingPathComponent("v1/devices/\(deviceID)/\(variableName)"))
@@ -460,6 +459,70 @@ extension ParticleCloud {
             }
         }
     }
+    
+    public func claim(deviceID: String, completion: (Result<Int>) -> Void ) {
+        trace("attempting to claim device \(deviceID)")
+        authenticate(validateToken: false) { (result) in
+            switch (result) {
+            case .failure(let error):
+                return completion(.failure(error))
+            case .success(let accessToken):
+                
+                var request = URLRequest(url: try! self.baseURL.appendingPathComponent("v1/devices"))
+                request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+                request.httpMethod = "POST"
+                request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+                request.httpBody = ["id" : deviceID].URLEncodedParameters?.data(using: String.Encoding.utf8)
+
+                let task = self.urlSession.dataTask(with: request) { (data, response, error) in
+                    
+                    trace( "Claim device", request: request, data: data, response: response, error: error)
+                    
+                    if let error = error {
+                        return completion(.failure(ParticleError.listAccessTokensFailed(error)))
+                    }
+                    // TODO: what does this actually return?
+                    completion(.success((response as! HTTPURLResponse).statusCode))
+                }
+                task.resume()
+            }
+        }
+    }
+    
+    public func transfer(deviceID: String, completion: (Result<String>) -> Void ) {
+        trace("attempting to transfer device \(deviceID)")
+        authenticate(validateToken: false) { (result) in
+            switch (result) {
+            case .failure(let error):
+                return completion(.failure(error))
+            case .success(let accessToken):
+                
+                var request = URLRequest(url: try! self.baseURL.appendingPathComponent("v1/devices"))
+                request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+                request.httpMethod = "POST"
+                request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+                request.httpBody = ["id" : deviceID, "request_transfer" : "true"].URLEncodedParameters?.data(using: String.Encoding.utf8)
+                
+                let task = self.urlSession.dataTask(with: request) { (data, response, error) in
+                    
+                    trace( "Transfer device", request: request, data: data, response: response, error: error)
+                    
+                    if let error = error {
+                        return completion(.failure(ParticleError.listAccessTokensFailed(error)))
+                    }
+                    
+                    if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json, transferid = j["transfer_id"] as? String {
+                        return completion(.success(transferid))
+                    } else {
+                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to transfer", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The request failed")])
+                        return completion(.failure(ParticleError.listAccessTokensFailed(error)))
+                    }
+                }
+                task.resume()
+            }
+        }
+    }
+    
     
 }
 

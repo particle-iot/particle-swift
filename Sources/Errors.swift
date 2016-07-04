@@ -14,7 +14,9 @@ public enum ParticleError: ErrorProtocol {
     deviceListFailed(ErrorProtocol),
     deviceInformationFailed(String, ErrorProtocol),
     oauthTokenCreationFailed(ErrorProtocol),
-    invalidURLRequest(ErrorProtocol)
+    invalidURLRequest(ErrorProtocol),
+    claimDeviceFailed(ErrorProtocol),
+    transferDeviceFailed(ErrorProtocol)
 }
 
 extension ParticleError: CustomStringConvertible {
@@ -33,6 +35,10 @@ extension ParticleError: CustomStringConvertible {
             return String.localizedStringWithFormat("Failed to create an OAuth token with error %1@", "\(error)")
         case .invalidURLRequest(let error):
             return String.localizedStringWithFormat("Unable to create a valid URL request with error %1@", "\(error)")
+        case .claimDeviceFailed(let error):
+            return String.localizedStringWithFormat("Unable to claim device with error %1@", "\(error)")
+        case .transferDeviceFailed(let error):
+            return String.localizedStringWithFormat("Unable to transfer device with error %1@", "\(error)")
         }
     }
 }
