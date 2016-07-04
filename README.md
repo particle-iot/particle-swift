@@ -20,6 +20,8 @@ Some general design guidelines are
 
 Intended usages for this library would include server side Swift, iOS/tvOS/macOS/watchOS applications that utilize particle cloud service, or any other Swift based product that wants to use the awesome Particle Cloud.
 
+A swift package manager compatible executable project is available [here](https://github.com/vakoc/particle-swift-cli)
+
 Roadmap
 -------
 
