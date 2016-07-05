@@ -275,8 +275,42 @@ extension DeviceDetailInformation: StringKeyedDictionaryConvertible {
             return ret
         }
     }
-
 }
+
+public struct ClaimResult {
+    
+    struct DictionaryConstants {
+        static let claimCode = "claim_code"
+        static let deviceIDs = "device_ids"
+    }
+    
+    public var claimCode: String
+    
+    public var deviceIDs: [String]
+}
+
+extension ClaimResult: Equatable {}
+
+public func ==(lhs: ClaimResult, rhs: ClaimResult) -> Bool {
+    return lhs.claimCode == rhs.claimCode && lhs.deviceIDs == rhs.deviceIDs
+}
+
+extension ClaimResult: StringKeyedDictionaryConvertible {
+    
+    public init? (with dictionary: [String : AnyObject]) {
+        guard let claimCode = dictionary[DictionaryConstants.claimCode] as? String,
+            deviceIDs = dictionary[DictionaryConstants.deviceIDs] as? [String] else {
+                return nil
+        }
+        self.claimCode = claimCode
+        self.deviceIDs = deviceIDs
+    }
+    
+    public var dictionary: [String : AnyObject] {
+        return [DictionaryConstants.claimCode : claimCode, DictionaryConstants.deviceIDs: deviceIDs]
+    }
+}
+
 // MARK: Devices
 extension ParticleCloud {
     
@@ -522,8 +556,51 @@ extension ParticleCloud {
             }
         }
     }
-    
-    
+
+    public func createClaimCode(imei: String? = nil, iccid: String? = nil, completion: (Result<ClaimResult>) -> Void ) {
+        trace("attempting to create a claim code")
+
+        authenticate(validateToken: false) { (result) in
+            switch (result) {
+            case .failure(let error):
+                return completion(.failure(error))
+            case .success(let accessToken):
+                
+                var request = URLRequest(url: try! self.baseURL.appendingPathComponent("v1/device_claims"))
+                request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+                request.httpMethod = "POST"
+                
+                var args = [String : String]()
+                if let imei = imei {
+                    args["imei"] = imei
+                }
+                if let iccid = iccid {
+                    args["iccid"] = iccid
+                }
+                if !args.isEmpty {
+                    request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+                    request.httpBody = args.URLEncodedParameters?.data(using: String.Encoding.utf8)
+                }
+                
+                let task = self.urlSession.dataTask(with: request) { (data, response, error) in
+                    
+                    trace("Create claim code", request: request, data: data, response: response, error: error)
+                    
+                    if let error = error {
+                        return completion(.failure(ParticleError.createClaimCode(error)))
+                    }
+                    
+                    if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json, claimCode = ClaimResult(with: j) {
+                        return completion(.success(claimCode))
+                    } else {
+                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to create a claim code", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The request failed")])
+                        return completion(.failure(ParticleError.createClaimCode(error)))
+                    }
+                }
+                task.resume()
+            }
+        }
+    }
 }
 
 
