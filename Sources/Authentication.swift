@@ -195,7 +195,7 @@ extension OAuthAuthenticatable {
             return
         }
         
-        let base64AuthCredentials = data.base64EncodedString([])
+        let base64AuthCredentials = data.base64EncodedString(options: [])
         
         var request = URLRequest(url: try! self.baseURL.appendingPathComponent("oauth/token"))
         

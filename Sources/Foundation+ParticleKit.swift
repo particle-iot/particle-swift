@@ -40,7 +40,7 @@ extension String {
     /// slash or self if it does not contain a forward slash
     var lastPathComponent: String {
         
-        guard let lastRange = self.range(of: "/", options: [.backwardsSearch]) else {
+        guard let lastRange = self.range(of: "/", options: [.backwards]) else {
             return self
         }
         return self.substring(with: lastRange.upperBound..<self.endIndex)

@@ -29,7 +29,7 @@ public class ParticleCloud: WebServiceCallable {
     
     /// the networking stack used for this particle instance
     public lazy var urlSession: URLSession = {
-        let configuration = URLSessionConfiguration.default()
+        let configuration = URLSessionConfiguration.default
         let urlSession = URLSession(configuration: configuration)
         return urlSession
     }()
@@ -73,7 +73,7 @@ public class ParticleCloud: WebServiceCallable {
             return dispatchQueue.async  { completion(.failure(ParticleError.missingCredentials)) }
         }
         
-        let base64AuthCredentials = data.base64EncodedString([])
+        let base64AuthCredentials = data.base64EncodedString(options: [])
         request.setValue("Basic \(base64AuthCredentials)", forHTTPHeaderField: "Authorization")
         let task = urlSession.dataTask(with: request, completionHandler:  { (data, response, error) in
             
