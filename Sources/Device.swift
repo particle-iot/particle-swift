@@ -11,19 +11,19 @@ import VakocLogging
 /// Represents the particle product
 public enum Product: Int {
     /// Particle Core
-    case Core = 0,
+    case core = 0,
     /// Particle Photon
-    Photon = 6,
+    photon = 6,
     /// Particle Electron
-    Electron = 10
+    electron = 10
     
     public func productString() -> String {
         switch (self) {
-        case .Core:
+        case .core:
             return "Core"
-        case .Photon:
+        case .photon:
             return "Photon"
-        case .Electron:
+        case .electron:
             return "Electron"
         }
     }
@@ -86,7 +86,7 @@ public struct DeviceInformation {
         self.product = product
     }
     
-    public mutating func update(deviceDetailInformation: DeviceDetailInformation) {
+    public mutating func update(_ deviceDetailInformation: DeviceDetailInformation) {
         self.name = deviceDetailInformation.name
         self.lastApp = deviceDetailInformation.lastApp
         self.connected = deviceDetailInformation.connected
@@ -320,9 +320,9 @@ extension ParticleCloud {
     /// if not successful
     ///
     /// - parameter completion: completion handler. Contains the DeviceInformation array or failure result
-    public func devices(completion: (Result<[DeviceInformation]>) -> Void ) {
+    public func devices(_ completion: (Result<[DeviceInformation]>) -> Void ) {
         
-        self.authenticate(validateToken: false) { (result) in
+        self.authenticate(false) { (result) in
             switch (result) {
             case .failure(let error):
                 return completion(.failure(error))
@@ -362,9 +362,9 @@ extension ParticleCloud {
         }
     }
     
-    public func deviceDetailInformation(device: DeviceInformation, completion: (Result<DeviceDetailInformation>) -> Void ) {
+    public func deviceDetailInformation(_ device: DeviceInformation, completion: (Result<DeviceDetailInformation>) -> Void ) {
         
-        authenticate(validateToken: false) { (result) in
+        authenticate(false) { (result) in
             switch (result) {
             case .failure(let error):
                 return completion(.failure(error))
@@ -393,9 +393,9 @@ extension ParticleCloud {
         }
     }
     
-    public func deviceDetailInformation(deviceID: String, completion: (Result<DeviceDetailInformation>) -> Void ) {
+    public func deviceDetailInformation(_ deviceID: String, completion: (Result<DeviceDetailInformation>) -> Void ) {
         
-        authenticate(validateToken: false) { (result) in
+        authenticate( false) { (result) in
             switch (result) {
             case .failure(let error):
                 return completion(.failure(error))
@@ -424,9 +424,9 @@ extension ParticleCloud {
         }
     }
     
-    public func callFunction(functionName: String, deviceID: String, argument: String?, completion: (Result<[String : AnyObject]>) -> Void ) {
+    public func callFunction(_ functionName: String, deviceID: String, argument: String?, completion: (Result<[String : AnyObject]>) -> Void ) {
         
-        authenticate(validateToken: false) { (result) in
+        authenticate(false) { (result) in
             switch (result) {
             case .failure(let error):
                 return completion(.failure(error))
@@ -447,7 +447,7 @@ extension ParticleCloud {
                     
                     
                     if let error = error {
-                        return completion(.failure(ParticleError.listAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.callFunctionFailed(error)))
                     }
                     
                     if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json {
@@ -455,7 +455,7 @@ extension ParticleCloud {
                     } else {
                         let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to invoke function \(functionName)", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The request failed")])
                         
-                        return completion(.failure(ParticleError.listAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.callFunctionFailed(error)))
                     }
                 }
                 task.resume()
@@ -463,9 +463,9 @@ extension ParticleCloud {
         }
     }
     
-    public func variableValue(variableName: String, deviceID: String, completion: (Result<[String : AnyObject]>) -> Void ) {
+    public func variableValue(_ variableName: String, deviceID: String, completion: (Result<[String : AnyObject]>) -> Void ) {
         
-        authenticate(validateToken: false) { (result) in
+        authenticate( false) { (result) in
             switch (result) {
             case .failure(let error):
                 return completion(.failure(error))
@@ -494,9 +494,9 @@ extension ParticleCloud {
         }
     }
     
-    public func claim(deviceID: String, completion: (Result<Int>) -> Void ) {
+    public func claim(_ deviceID: String, completion: (Result<Int>) -> Void ) {
         trace("attempting to claim device \(deviceID)")
-        authenticate(validateToken: false) { (result) in
+        authenticate(false) { (result) in
             switch (result) {
             case .failure(let error):
                 return completion(.failure(error))
@@ -523,9 +523,9 @@ extension ParticleCloud {
         }
     }
     
-    public func transfer(deviceID: String, completion: (Result<String>) -> Void ) {
+    public func transfer(_ deviceID: String, completion: (Result<String>) -> Void ) {
         trace("attempting to transfer device \(deviceID)")
-        authenticate(validateToken: false) { (result) in
+        authenticate(false) { (result) in
             switch (result) {
             case .failure(let error):
                 return completion(.failure(error))
@@ -557,10 +557,10 @@ extension ParticleCloud {
         }
     }
 
-    public func createClaimCode(imei: String? = nil, iccid: String? = nil, completion: (Result<ClaimResult>) -> Void ) {
+    public func createClaimCode(_ imei: String? = nil, iccid: String? = nil, completion: (Result<ClaimResult>) -> Void ) {
         trace("attempting to create a claim code")
 
-        authenticate(validateToken: false) { (result) in
+        authenticate(false) { (result) in
             switch (result) {
             case .failure(let error):
                 return completion(.failure(error))

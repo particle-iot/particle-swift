@@ -11,6 +11,7 @@ import VakocLogging
 public enum ParticleError: ErrorProtocol {
     case missingCredentials,
     listAccessTokensFailed(ErrorProtocol),
+    callFunctionFailed(ErrorProtocol),
     deviceListFailed(ErrorProtocol),
     deviceInformationFailed(String, ErrorProtocol),
     oauthTokenCreationFailed(ErrorProtocol),
@@ -27,7 +28,9 @@ extension ParticleError: CustomStringConvertible {
         case .missingCredentials:
             return String.localizedStringWithFormat("Missing username or password credentials")
         case .listAccessTokensFailed(let error):
-            return String.localizedStringWithFormat("The request to list available access tokens failed with %1@", "\(error)")
+            return String.localizedStringWithFormat("The request to list available access tokens failed with error %1@", "\(error)")
+        case .callFunctionFailed(let error):
+            return String.localizedStringWithFormat("The request to call the function afiled with error %1@", "\(error)");
         case .deviceListFailed(let error):
             return String.localizedStringWithFormat("The request to obtain available devices failled with error %1@", "\(error)")
         case .deviceInformationFailed(let deviceID, let error):
@@ -42,6 +45,7 @@ extension ParticleError: CustomStringConvertible {
             return String.localizedStringWithFormat("Unable to transfer device with error %1@", "\(error)")
         case .createClaimCode(let error):
             return String.localizedStringWithFormat("Unable to create a claim code with error %1@", "\(error)")
+        
         }
     }
 }

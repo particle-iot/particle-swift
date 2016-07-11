@@ -57,12 +57,12 @@ public class ParticleCloud: WebServiceCallable {
     ///
     /// This mmethod will invoke authenticate with validateToken = false.  Any authentication error will be returned    
     /// - parameter completion: completion handler. Contains a list of oauth tokens
-    public func accessTokens(completion: (Result<[OAuthTokenListEntry]>) -> Void ) {
+    public func accessTokens(_ completion: (Result<[OAuthTokenListEntry]>) -> Void ) {
         
         var request = URLRequest(url: try! baseURL.appendingPathComponent("v1/access_tokens"))
         
         
-        guard let username = self.secureStorage?.username(realm: self.realm), let password = self.secureStorage?.password(realm: self.realm) else {
+        guard let username = self.secureStorage?.username(self.realm), let password = self.secureStorage?.password(self.realm) else {
             self.dispatchQueue.async  {
                 completion(.failure(ParticleError.missingCredentials))
             }

@@ -12,12 +12,12 @@ import VakocLogging
 /// Delegate protocol used to provide ParticleSwift with credentials storage
 public protocol SecureStorage: class {
     
-    func username(realm: String) -> String?
-    func password(realm: String) -> String?
-    func oauthClientId(realm: String) -> String?
-    func oauthClientSecret(realm: String) -> String?
-    func oauthToken(realm: String) -> OAuthToken?
-    func updateOAuthToken(token: OAuthToken?, forRealm realm: String)
+    func username(_ realm: String) -> String?
+    func password(_ realm: String) -> String?
+    func oauthClientId(_ realm: String) -> String?
+    func oauthClientSecret(_ realm: String) -> String?
+    func oauthToken(_ realm: String) -> OAuthToken?
+    func updateOAuthToken(_ token: OAuthToken?, forRealm realm: String)
 }
 
 /// Represents an OAuthToken as returned by the oauth/token
@@ -138,7 +138,7 @@ public protocol OAuthAuthenticatable: class, WebServiceCallable {
     ///
     /// - parameter validateToken: if true perform an online validation of any token obtained from secure storage
     /// - parameter completion: the completion block to be called.  will always be asynchronous and on a background thread
-    func authenticate(validateToken: Bool, completion: (Result<String>) -> Void)
+    func authenticate(_ validateToken: Bool, completion: (Result<String>) -> Void)
     
     /// Asynchronously creates an access token.  Credentials and OAuth keys are obtained from the secureStorage used to create the
     /// instance
@@ -148,16 +148,16 @@ public protocol OAuthAuthenticatable: class, WebServiceCallable {
     /// - parameter expiresIn: how many seconds the token will be valid for.  0 means forever.  short lived tokens are better for security
     /// - parameter expiresAt: the date at which the token should expire.
     /// - parameter completion: completion handler.  Contains a Result enum with the OAuthToken or error encountered
-    func createOAuthToken(expiresIn: TimeInterval, expiresAt: Date?, completion: (Result<OAuthToken>) -> Void )
+    func createOAuthToken(_ expiresIn: TimeInterval, expiresAt: Date?, completion: (Result<OAuthToken>) -> Void )
 }
 
 
 
 extension OAuthAuthenticatable {
     
-    public func authenticate(validateToken: Bool, completion: (Result<String>) -> Void) {
+    public func authenticate(_ validateToken: Bool, completion: (Result<String>) -> Void) {
         
-        if let token = secureStorage?.oauthToken(realm: self.realm) where Date().compare(token.expirationDate as Date) == ComparisonResult.orderedAscending {
+        if let token = secureStorage?.oauthToken(self.realm) where Date().compare(token.expirationDate as Date) == ComparisonResult.orderedAscending {
             if !validateToken {
                 return dispatchQueue.async { completion(.success(token.accessToken)) }
             }
@@ -167,20 +167,20 @@ extension OAuthAuthenticatable {
         }
         
         /// TODO:  parameterize the expiresIn
-        self.createOAuthToken(expiresIn: 60*60*7, expiresAt: nil) { (createOAuthTokenResult) in
+        self.createOAuthToken(60*60*7, expiresAt: nil) { (createOAuthTokenResult) in
             switch (createOAuthTokenResult) {
             case .failure(let error):
                 return completion(.failure(error))
             case .success(let token):
-                self.secureStorage?.updateOAuthToken(token: token, forRealm: self.realm)
+                self.secureStorage?.updateOAuthToken(token, forRealm: self.realm)
                 completion(.success(token.accessToken))
             }
         }
     }
     
-    public func createOAuthToken(expiresIn: TimeInterval = 60*60*24*365, expiresAt: Date? = nil, completion: (Result<OAuthToken>) -> Void ) {
+    public func createOAuthToken(_ expiresIn: TimeInterval = 60*60*24*365, expiresAt: Date? = nil, completion: (Result<OAuthToken>) -> Void ) {
         
-        guard let username = secureStorage?.username(realm: self.realm), password = secureStorage?.password(realm: self.realm), OAuthClientID = secureStorage?.oauthClientId(realm: self.realm), OAuthClientSecret = secureStorage?.oauthClientSecret(realm: self.realm) else {
+        guard let username = secureStorage?.username(self.realm), password = secureStorage?.password(self.realm), OAuthClientID = secureStorage?.oauthClientId(self.realm), OAuthClientSecret = secureStorage?.oauthClientSecret(self.realm) else {
             return dispatchQueue.async { completion(.failure(ParticleError.missingCredentials)) }
         }
         
