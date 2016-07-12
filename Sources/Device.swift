@@ -523,6 +523,38 @@ extension ParticleCloud {
         }
     }
     
+    public func unclaim(_ deviceID: String, completion: (Result<[String: AnyObject]>) -> Void ) {
+        trace("attempting to unclaim device \(deviceID)")
+        authenticate(false) { (result) in
+            switch (result) {
+            case .failure(let error):
+                return completion(.failure(error))
+            case .success(let accessToken):
+                
+                var request = URLRequest(url: try! self.baseURL.appendingPathComponent("v1/devices/\(deviceID)"))
+                request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+                request.httpMethod = "DELETE"
+                
+                let task = self.urlSession.dataTask(with: request) { (data, response, error) in
+                    
+                    trace( "Unclaim device", request: request, data: data, response: response, error: error)
+                    
+                    if let error = error {
+                        return completion(.failure(ParticleError.unclaimDeviceFailed(error)))
+                    }
+                    
+                    if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json {
+                        return completion(.success(j))
+                    } else {
+                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to unclaim device \(deviceID)", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The request failed")])
+                        return completion(.failure(ParticleError.unclaimDeviceFailed(error)))
+                    }
+                }
+                task.resume()
+            }
+        }
+    }
+    
     public func transfer(_ deviceID: String, completion: (Result<String>) -> Void ) {
         trace("attempting to transfer device \(deviceID)")
         authenticate(false) { (result) in

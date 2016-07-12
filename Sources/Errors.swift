@@ -18,7 +18,8 @@ public enum ParticleError: ErrorProtocol {
     invalidURLRequest(ErrorProtocol),
     claimDeviceFailed(ErrorProtocol),
     transferDeviceFailed(ErrorProtocol),
-    createClaimCode(ErrorProtocol)
+    createClaimCode(ErrorProtocol),
+    unclaimDeviceFailed(ErrorProtocol)
 }
 
 extension ParticleError: CustomStringConvertible {
@@ -45,7 +46,8 @@ extension ParticleError: CustomStringConvertible {
             return String.localizedStringWithFormat("Unable to transfer device with error %1@", "\(error)")
         case .createClaimCode(let error):
             return String.localizedStringWithFormat("Unable to create a claim code with error %1@", "\(error)")
-        
+        case .unclaimDeviceFailed(let error):
+            return String.localizedStringWithFormat("Unable to unclaim a device with error %1@", "\(error)")
         }
     }
 }
