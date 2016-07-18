@@ -83,7 +83,7 @@ public class ParticleCloud: WebServiceCallable {
                 return completion(.failure(ParticleError.listAccessTokensFailed(error)))
             }
             
-            if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String : AnyObject]],  j = json {
+            if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String : AnyObject]],  let j = json {
                 return completion(.success(j.flatMap() { return OAuthTokenListEntry(dictionary: $0)} ))
             } else {
                 let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain access token lists", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The http request to create an OAuthToken failed")])

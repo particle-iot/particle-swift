@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F34DF281D19F43B00F3B068 /* VakocLogging_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F34DF211D19F3E600F3B068 /* VakocLogging_macOS.framework */; };
-		4F34DF291D19F44400F3B068 /* VakocLogging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F34DF231D19F3E600F3B068 /* VakocLogging.framework */; };
+		4F16507E1D3D707A0088FE47 /* VakocLogging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F34DF211D19F3E600F3B068 /* VakocLogging.framework */; };
+		4F1650811D3D70FE0088FE47 /* VakocLogging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F34DF211D19F3E600F3B068 /* VakocLogging.framework */; };
+		4F34DF281D19F43B00F3B068 /* VakocLogging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F34DF211D19F3E600F3B068 /* VakocLogging.framework */; };
 		4F34DF2A1D19F44D00F3B068 /* VakocLogging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F34DF271D19F3E600F3B068 /* VakocLogging.framework */; };
-		4F34DF2B1D19F45300F3B068 /* VakocLogging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F34DF251D19F3E600F3B068 /* VakocLogging.framework */; };
 		4FA85AA61D0C866C00EC906B /* ParticleSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FA85AA51D0C866C00EC906B /* ParticleSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4FA85AAD1D0C866C00EC906B /* ParticleSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA85AA21D0C866C00EC906B /* ParticleSwift.framework */; };
 		4FA85AB21D0C866C00EC906B /* ParticleSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85AB11D0C866C00EC906B /* ParticleSwiftTests.swift */; };
@@ -52,6 +52,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4F16507F1D3D70830088FE47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F34DF191D19F3E600F3B068 /* VakocLogging.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F34DF031D19EC9500F3B068;
+			remoteInfo = "VakocLogging-tvOS";
+		};
+		4F1650821D3D71060088FE47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F34DF191D19F3E600F3B068 /* VakocLogging.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F34DEE71D19EC7D00F3B068;
+			remoteInfo = "VakocLogging-iOS";
+		};
 		4F34DF201D19F3E600F3B068 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4F34DF191D19F3E600F3B068 /* VakocLogging.xcodeproj */;
@@ -80,33 +94,19 @@
 			remoteGlobalIDString = 4F34DF111D19ECA300F3B068;
 			remoteInfo = "VakocLogging-watchOS";
 		};
-		4F34DF2C1D19F46700F3B068 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4F34DF191D19F3E600F3B068 /* VakocLogging.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4F34DF031D19EC9500F3B068;
-			remoteInfo = "VakocLogging-tvOS";
-		};
-		4F34DF2E1D19F47000F3B068 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4F34DF191D19F3E600F3B068 /* VakocLogging.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4F34DF101D19ECA300F3B068;
-			remoteInfo = "VakocLogging-watchOS";
-		};
-		4F34DF301D19F47500F3B068 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4F34DF191D19F3E600F3B068 /* VakocLogging.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4F34DEE71D19EC7D00F3B068;
-			remoteInfo = "VakocLogging-iOS";
-		};
 		4F34DF321D19F47900F3B068 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4F34DF191D19F3E600F3B068 /* VakocLogging.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = "______Target_VakocLogging";
 			remoteInfo = "VakocLogging-macOS";
+		};
+		4F3EB5B61D3D6EE7008AEB39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F34DF191D19F3E600F3B068 /* VakocLogging.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F34DF101D19ECA300F3B068;
+			remoteInfo = "VakocLogging-watchOS";
 		};
 		4FA85AAE1D0C866C00EC906B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -136,7 +136,7 @@
 		4FA85AA21D0C866C00EC906B /* ParticleSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParticleSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA85AA51D0C866C00EC906B /* ParticleSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParticleSwift.h; sourceTree = "<group>"; };
 		4FA85AA71D0C866C00EC906B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4FA85AAC1D0C866C00EC906B /* ParticleSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParticleSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FA85AAC1D0C866C00EC906B /* ParticleSwift-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ParticleSwift-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA85AB11D0C866C00EC906B /* ParticleSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleSwiftTests.swift; sourceTree = "<group>"; };
 		4FA85AB31D0C866C00EC906B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FA85ABD1D0C87FB00EC906B /* ParticleSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleSwift.swift; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F34DF281D19F43B00F3B068 /* VakocLogging_macOS.framework in Frameworks */,
+				4F34DF281D19F43B00F3B068 /* VakocLogging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,7 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F34DF291D19F44400F3B068 /* VakocLogging.framework in Frameworks */,
+				4F1650811D3D70FE0088FE47 /* VakocLogging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F34DF2B1D19F45300F3B068 /* VakocLogging.framework in Frameworks */,
+				4F16507E1D3D707A0088FE47 /* VakocLogging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,7 +226,7 @@
 		4F34DF1A1D19F3E600F3B068 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4F34DF211D19F3E600F3B068 /* VakocLogging_macOS.framework */,
+				4F34DF211D19F3E600F3B068 /* VakocLogging.framework */,
 				4F34DF231D19F3E600F3B068 /* VakocLogging.framework */,
 				4F34DF251D19F3E600F3B068 /* VakocLogging.framework */,
 				4F34DF271D19F3E600F3B068 /* VakocLogging.framework */,
@@ -248,7 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				4FA85AA21D0C866C00EC906B /* ParticleSwift.framework */,
-				4FA85AAC1D0C866C00EC906B /* ParticleSwiftTests.xctest */,
+				4FA85AAC1D0C866C00EC906B /* ParticleSwift-macOSTests.xctest */,
 				4FA85AC41D0C88D200EC906B /* ParticleSwift.framework */,
 				4FA85ACD1D0C88D300EC906B /* ParticleSwift-iOSTests.xctest */,
 				4FA85AE01D0C890E00EC906B /* ParticleSwift.framework */,
@@ -408,9 +408,9 @@
 			productReference = 4FA85AA21D0C866C00EC906B /* ParticleSwift.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		4FA85AAB1D0C866C00EC906B /* ParticleSwiftTests */ = {
+		4FA85AAB1D0C866C00EC906B /* ParticleSwift-macOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FA85AB91D0C866C00EC906B /* Build configuration list for PBXNativeTarget "ParticleSwiftTests" */;
+			buildConfigurationList = 4FA85AB91D0C866C00EC906B /* Build configuration list for PBXNativeTarget "ParticleSwift-macOSTests" */;
 			buildPhases = (
 				4FA85AA81D0C866C00EC906B /* Sources */,
 				4FA85AA91D0C866C00EC906B /* Frameworks */,
@@ -421,9 +421,9 @@
 			dependencies = (
 				4FA85AAF1D0C866C00EC906B /* PBXTargetDependency */,
 			);
-			name = ParticleSwiftTests;
+			name = "ParticleSwift-macOSTests";
 			productName = ParticleSwiftTests;
-			productReference = 4FA85AAC1D0C866C00EC906B /* ParticleSwiftTests.xctest */;
+			productReference = 4FA85AAC1D0C866C00EC906B /* ParticleSwift-macOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		4FA85AC31D0C88D200EC906B /* ParticleSwift-iOS */ = {
@@ -438,7 +438,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				4F34DF311D19F47500F3B068 /* PBXTargetDependency */,
+				4F1650831D3D71060088FE47 /* PBXTargetDependency */,
 			);
 			name = "ParticleSwift-iOS";
 			productName = "ParticleSwift-iOS";
@@ -475,7 +475,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				4F34DF2F1D19F47000F3B068 /* PBXTargetDependency */,
+				4F3EB5B71D3D6EE7008AEB39 /* PBXTargetDependency */,
 			);
 			name = "ParticleSwift-watchOS";
 			productName = "ParticleSwift-watchOS";
@@ -494,7 +494,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				4F34DF2D1D19F46700F3B068 /* PBXTargetDependency */,
+				4F1650801D3D70830088FE47 /* PBXTargetDependency */,
 			);
 			name = "ParticleSwift-tvOS";
 			productName = "ParticleSwift-tvOS";
@@ -535,20 +535,26 @@
 					};
 					4FA85AAB1D0C866C00EC906B = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 					4FA85AC31D0C88D200EC906B = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = DGT85KE5VX;
+						DevelopmentTeamName = "Mark Vakoc";
 						LastSwiftMigration = 0800;
 					};
 					4FA85ACC1D0C88D300EC906B = {
 						CreatedOnToolsVersion = 7.3.1;
+						ProvisioningStyle = Automatic;
 					};
 					4FA85ADF1D0C890E00EC906B = {
 						CreatedOnToolsVersion = 7.3.1;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 					4FA85AEC1D0C891D00EC906B = {
 						CreatedOnToolsVersion = 7.3.1;
+						ProvisioningStyle = Automatic;
 					};
 					4FA85AF51D0C891D00EC906B = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -574,7 +580,7 @@
 			projectRoot = "";
 			targets = (
 				4FA85AA11D0C866C00EC906B /* ParticleSwift-macOS */,
-				4FA85AAB1D0C866C00EC906B /* ParticleSwiftTests */,
+				4FA85AAB1D0C866C00EC906B /* ParticleSwift-macOSTests */,
 				4FA85AC31D0C88D200EC906B /* ParticleSwift-iOS */,
 				4FA85ACC1D0C88D300EC906B /* ParticleSwift-iOSTests */,
 				4FA85ADF1D0C890E00EC906B /* ParticleSwift-watchOS */,
@@ -585,10 +591,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		4F34DF211D19F3E600F3B068 /* VakocLogging_macOS.framework */ = {
+		4F34DF211D19F3E600F3B068 /* VakocLogging.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = VakocLogging_macOS.framework;
+			path = VakocLogging.framework;
 			remoteRef = 4F34DF201D19F3E600F3B068 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -751,25 +757,25 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4F34DF2D1D19F46700F3B068 /* PBXTargetDependency */ = {
+		4F1650801D3D70830088FE47 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "VakocLogging-tvOS";
-			targetProxy = 4F34DF2C1D19F46700F3B068 /* PBXContainerItemProxy */;
+			targetProxy = 4F16507F1D3D70830088FE47 /* PBXContainerItemProxy */;
 		};
-		4F34DF2F1D19F47000F3B068 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "VakocLogging-watchOS";
-			targetProxy = 4F34DF2E1D19F47000F3B068 /* PBXContainerItemProxy */;
-		};
-		4F34DF311D19F47500F3B068 /* PBXTargetDependency */ = {
+		4F1650831D3D71060088FE47 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "VakocLogging-iOS";
-			targetProxy = 4F34DF301D19F47500F3B068 /* PBXContainerItemProxy */;
+			targetProxy = 4F1650821D3D71060088FE47 /* PBXContainerItemProxy */;
 		};
 		4F34DF331D19F47900F3B068 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "VakocLogging-macOS";
 			targetProxy = 4F34DF321D19F47900F3B068 /* PBXContainerItemProxy */;
+		};
+		4F3EB5B71D3D6EE7008AEB39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "VakocLogging-watchOS";
+			targetProxy = 4F3EB5B61D3D6EE7008AEB39 /* PBXContainerItemProxy */;
 		};
 		4FA85AAF1D0C866C00EC906B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -832,6 +838,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -872,6 +879,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -927,6 +935,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vakoc.ParticleSwiftTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -939,6 +948,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.vakoc.ParticleSwiftTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -952,7 +962,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "ParticleSwift-iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vakoc.ParticleSwift-iOS";
 				PRODUCT_NAME = ParticleSwift;
@@ -973,7 +983,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "ParticleSwift-iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vakoc.ParticleSwift-iOS";
 				PRODUCT_NAME = ParticleSwift;
@@ -1018,6 +1028,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1039,6 +1050,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1061,6 +1073,7 @@
 		4FA85AFF1D0C891D00EC906B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1080,6 +1093,7 @@
 		4FA85B001D0C891D00EC906B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1145,7 +1159,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FA85AB91D0C866C00EC906B /* Build configuration list for PBXNativeTarget "ParticleSwiftTests" */ = {
+		4FA85AB91D0C866C00EC906B /* Build configuration list for PBXNativeTarget "ParticleSwift-macOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FA85ABA1D0C866C00EC906B /* Debug */,

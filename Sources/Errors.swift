@@ -6,7 +6,6 @@
 // See http://www.vakoc.com/LICENSE.txt for license information
 
 import Foundation
-import VakocLogging
 
 public enum ParticleError: ErrorProtocol {
     case missingCredentials,

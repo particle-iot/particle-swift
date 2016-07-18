@@ -42,10 +42,10 @@ public struct OAuthToken: CustomStringConvertible, StringKeyedDictionaryConverti
     ///
     /// If any of the required properties are not found it returns nil
     public init?(with dictionary: [String : AnyObject]) {
-        guard let accessToken = dictionary["access_token"] as? String where !accessToken.isEmpty,
-            let tokenType = dictionary["token_type"] as? String where !tokenType.isEmpty,
+        guard let accessToken = dictionary["access_token"] as? String , !accessToken.isEmpty,
+            let tokenType = dictionary["token_type"] as? String , !tokenType.isEmpty,
             let expiresIn = dictionary["expires_in"] as? Int,
-            let refreshToken = dictionary["refresh_token"] as? String where !tokenType.isEmpty
+            let refreshToken = dictionary["refresh_token"] as? String , !tokenType.isEmpty
         
         else {
             return nil
@@ -85,8 +85,8 @@ public struct OAuthTokenListEntry: CustomStringConvertible {
     public var client: String
     
     public init?(dictionary: [String : AnyObject]) {
-        guard let accessToken = dictionary["token"] as? String where !accessToken.isEmpty,
-            let client = dictionary["client"] as? String where !client.isEmpty,
+        guard let accessToken = dictionary["token"] as? String , !accessToken.isEmpty,
+            let client = dictionary["client"] as? String , !client.isEmpty,
             let expires = dictionary["expires_at"] as? String,
             let expiresAt = expires.dateWithISO8601String
             else {
@@ -157,7 +157,7 @@ extension OAuthAuthenticatable {
     
     public func authenticate(_ validateToken: Bool, completion: (Result<String>) -> Void) {
         
-        if let token = secureStorage?.oauthToken(self.realm) where Date().compare(token.expirationDate as Date) == ComparisonResult.orderedAscending {
+        if let token = secureStorage?.oauthToken(self.realm) , Date().compare(token.expirationDate as Date) == ComparisonResult.orderedAscending {
             if !validateToken {
                 return dispatchQueue.async { completion(.success(token.accessToken)) }
             }
@@ -180,7 +180,7 @@ extension OAuthAuthenticatable {
     
     public func createOAuthToken(_ expiresIn: TimeInterval = 60*60*24*365, expiresAt: Date? = nil, completion: (Result<OAuthToken>) -> Void ) {
         
-        guard let username = secureStorage?.username(self.realm), password = secureStorage?.password(self.realm), OAuthClientID = secureStorage?.oauthClientId(self.realm), OAuthClientSecret = secureStorage?.oauthClientSecret(self.realm) else {
+        guard let username = secureStorage?.username(self.realm), let password = secureStorage?.password(self.realm), let OAuthClientID = secureStorage?.oauthClientId(self.realm), let OAuthClientSecret = secureStorage?.oauthClientSecret(self.realm) else {
             return dispatchQueue.async { completion(.failure(ParticleError.missingCredentials)) }
         }
         
@@ -212,8 +212,8 @@ extension OAuthAuthenticatable {
                 return completion(.failure(ParticleError.oauthTokenCreationFailed(error)))
             }
             
-            if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json,
-                token = OAuthToken(with: j) {                
+            if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json,
+                let token = OAuthToken(with: j) {
                 completion(.success(token))
             } else {
                 let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain an OAuth token", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The http request to create an OAuthToken failed")])

@@ -100,8 +100,8 @@ public struct DeviceInformation {
 
 extension DeviceInformation: StringKeyedDictionaryConvertible {
     public init?(with dictionary: [String : AnyObject]) {
-        guard let deviceID = dictionary[DictionaryConstants.id] as? String where !deviceID.isEmpty,
-            let name = dictionary[DictionaryConstants.name] as? String where !name.isEmpty,
+        guard let deviceID = dictionary[DictionaryConstants.id] as? String , !deviceID.isEmpty,
+            let name = dictionary[DictionaryConstants.name] as? String , !name.isEmpty,
             let productId = dictionary[DictionaryConstants.product] as? Int,
             let product = Product(rawValue: productId) else {
                 warn("Failed to create a Device using the dictionary \(dictionary);  the required properties were not found")
@@ -226,8 +226,8 @@ public struct DeviceDetailInformation {
 extension DeviceDetailInformation: StringKeyedDictionaryConvertible {
     
     public init?(with dictionary: [String : AnyObject]) {
-        guard let deviceID = dictionary[DictionaryConstants.id] as? String where !deviceID.isEmpty,
-            let name = dictionary[DictionaryConstants.name] as? String where !name.isEmpty,
+        guard let deviceID = dictionary[DictionaryConstants.id] as? String , !deviceID.isEmpty,
+            let name = dictionary[DictionaryConstants.name] as? String , !name.isEmpty,
             let productId = dictionary[DictionaryConstants.product] as? Int,
             let product = Product(rawValue: productId) else {
                 warn("Failed to create a Device using the dictionary \(dictionary);  the required properties were not found")
@@ -299,7 +299,7 @@ extension ClaimResult: StringKeyedDictionaryConvertible {
     
     public init? (with dictionary: [String : AnyObject]) {
         guard let claimCode = dictionary[DictionaryConstants.claimCode] as? String,
-            deviceIDs = dictionary[DictionaryConstants.deviceIDs] as? [String] else {
+            let deviceIDs = dictionary[DictionaryConstants.deviceIDs] as? [String] else {
                 return nil
         }
         self.claimCode = claimCode
@@ -341,7 +341,7 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.deviceListFailed(error)))
                     }
                     
-                    if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String : AnyObject]],  j = json {
+                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String : AnyObject]],  let j = json {
                         
                         
                         return completion(.success(j.flatMap({ return DeviceInformation(with: $0)})))
@@ -380,7 +380,7 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.listAccessTokensFailed(error)))
                     }
                     
-                    if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json, deviceDetailInformation = DeviceDetailInformation(with: j) {
+                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json, let deviceDetailInformation = DeviceDetailInformation(with: j) {
                         return completion(.success(deviceDetailInformation))
                     } else {
                         let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain detail device information", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The http request to create an OAuthToken failed")])
@@ -411,7 +411,7 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.listAccessTokensFailed(error)))
                     }
                     
-                    if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json, deviceDetailInformation = DeviceDetailInformation(with: j) {
+                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json, let deviceDetailInformation = DeviceDetailInformation(with: j) {
                         return completion(.success(deviceDetailInformation))
                     } else {
                         let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain detail device information", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The http request to create an OAuthToken failed")])
@@ -450,7 +450,7 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.callFunctionFailed(error)))
                     }
                     
-                    if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json {
+                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json {
                         return completion(.success(j))
                     } else {
                         let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to invoke function \(functionName)", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The request failed")])
@@ -482,7 +482,7 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.listAccessTokensFailed(error)))
                     }
                     
-                    if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json {
+                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json {
                         return completion(.success(j))
                     } else {
                         let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain variable \(variableName)", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The request failed")])                        
@@ -543,7 +543,7 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.unclaimDeviceFailed(error)))
                     }
                     
-                    if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json {
+                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json {
                         return completion(.success(j))
                     } else {
                         let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to unclaim device \(deviceID)", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The request failed")])
@@ -577,7 +577,7 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.listAccessTokensFailed(error)))
                     }
                     
-                    if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json, transferid = j["transfer_id"] as? String {
+                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json, let transferid = j["transfer_id"] as? String {
                         return completion(.success(transferid))
                     } else {
                         let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to transfer", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The request failed")])
@@ -622,7 +622,7 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.createClaimCode(error)))
                     }
                     
-                    if let data = data, json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  j = json, claimCode = ClaimResult(with: j) {
+                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json, let claimCode = ClaimResult(with: j) {
                         return completion(.success(claimCode))
                     } else {
                         let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to create a claim code", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The request failed")])
