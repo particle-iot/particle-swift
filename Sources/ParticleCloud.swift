@@ -25,7 +25,7 @@ public class ParticleCloud: WebServiceCallable {
     public let baseURL: URL
     
     /// The OAuth realm    
-    public var realm = ParticleSwift.realm
+    public var realm = ParticleSwiftInfo.realm
     
     /// the networking stack used for this particle instance
     public lazy var urlSession: URLSession = {
