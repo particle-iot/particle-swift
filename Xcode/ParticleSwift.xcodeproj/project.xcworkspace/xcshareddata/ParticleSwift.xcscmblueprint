@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "0C0ACE24255E4A49790F4061BB8948C365A57EBA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C15141FF3B39C4CA370830E51891A1EC7417CCBC" : 0,
+    "0C0ACE24255E4A49790F4061BB8948C365A57EBA" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "783B29B1-427B-44D9-86A2-8A641B8A2854",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C15141FF3B39C4CA370830E51891A1EC7417CCBC" : "logging\/",
+    "0C0ACE24255E4A49790F4061BB8948C365A57EBA" : "particle-swift\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ParticleSwift",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Xcode\/ParticleSwift.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/vakoc\/particle-swift.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0C0ACE24255E4A49790F4061BB8948C365A57EBA"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/vakoc\/logging.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C15141FF3B39C4CA370830E51891A1EC7417CCBC"
+    }
+  ]
+}

@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F16507E1D3D707A0088FE47 /* VakocLogging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F34DF211D19F3E600F3B068 /* VakocLogging.framework */; };
-		4F1650811D3D70FE0088FE47 /* VakocLogging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F34DF211D19F3E600F3B068 /* VakocLogging.framework */; };
-		4F34DF281D19F43B00F3B068 /* VakocLogging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F34DF211D19F3E600F3B068 /* VakocLogging.framework */; };
-		4F34DF2A1D19F44D00F3B068 /* VakocLogging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F34DF271D19F3E600F3B068 /* VakocLogging.framework */; };
 		4FA85AA61D0C866C00EC906B /* ParticleSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FA85AA51D0C866C00EC906B /* ParticleSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4FA85AAD1D0C866C00EC906B /* ParticleSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA85AA21D0C866C00EC906B /* ParticleSwift.framework */; };
 		4FA85AB21D0C866C00EC906B /* ParticleSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85AB11D0C866C00EC906B /* ParticleSwiftTests.swift */; };
@@ -49,65 +45,13 @@
 		4FA85B2D1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B271D0CA15900EC906B /* Foundation+ParticleKit.swift */; };
 		4FA85B2E1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B271D0CA15900EC906B /* Foundation+ParticleKit.swift */; };
 		4FA85B2F1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B271D0CA15900EC906B /* Foundation+ParticleKit.swift */; };
+		4FFCEE891D43B07200FBECDE /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCEE881D43B07200FBECDE /* Logging.swift */; };
+		4FFCEE8A1D43B07200FBECDE /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCEE881D43B07200FBECDE /* Logging.swift */; };
+		4FFCEE8B1D43B07200FBECDE /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCEE881D43B07200FBECDE /* Logging.swift */; };
+		4FFCEE8C1D43B07200FBECDE /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCEE881D43B07200FBECDE /* Logging.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4F16507F1D3D70830088FE47 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4F34DF191D19F3E600F3B068 /* VakocLogging.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4F34DF031D19EC9500F3B068;
-			remoteInfo = "VakocLogging-tvOS";
-		};
-		4F1650821D3D71060088FE47 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4F34DF191D19F3E600F3B068 /* VakocLogging.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4F34DEE71D19EC7D00F3B068;
-			remoteInfo = "VakocLogging-iOS";
-		};
-		4F34DF201D19F3E600F3B068 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4F34DF191D19F3E600F3B068 /* VakocLogging.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "_____Product_VakocLogging";
-			remoteInfo = "VakocLogging-macOS";
-		};
-		4F34DF221D19F3E600F3B068 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4F34DF191D19F3E600F3B068 /* VakocLogging.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4F34DEE81D19EC7D00F3B068;
-			remoteInfo = "VakocLogging-iOS";
-		};
-		4F34DF241D19F3E600F3B068 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4F34DF191D19F3E600F3B068 /* VakocLogging.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4F34DF041D19EC9500F3B068;
-			remoteInfo = "VakocLogging-tvOS";
-		};
-		4F34DF261D19F3E600F3B068 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4F34DF191D19F3E600F3B068 /* VakocLogging.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4F34DF111D19ECA300F3B068;
-			remoteInfo = "VakocLogging-watchOS";
-		};
-		4F34DF321D19F47900F3B068 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4F34DF191D19F3E600F3B068 /* VakocLogging.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = "______Target_VakocLogging";
-			remoteInfo = "VakocLogging-macOS";
-		};
-		4F3EB5B61D3D6EE7008AEB39 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4F34DF191D19F3E600F3B068 /* VakocLogging.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4F34DF101D19ECA300F3B068;
-			remoteInfo = "VakocLogging-watchOS";
-		};
 		4FA85AAE1D0C866C00EC906B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4FA85A991D0C866C00EC906B /* Project object */;
@@ -132,7 +76,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4F34DF191D19F3E600F3B068 /* VakocLogging.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VakocLogging.xcodeproj; path = ../../logging/Xcode/VakocLogging.xcodeproj; sourceTree = "<group>"; };
 		4FA85AA21D0C866C00EC906B /* ParticleSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParticleSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA85AA51D0C866C00EC906B /* ParticleSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParticleSwift.h; sourceTree = "<group>"; };
 		4FA85AA71D0C866C00EC906B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -161,6 +104,7 @@
 		4FA85B171D0CA14800EC906B /* ParticleCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleCloud.swift; sourceTree = "<group>"; };
 		4FA85B191D0CA14800EC906B /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		4FA85B271D0CA15900EC906B /* Foundation+ParticleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Foundation+ParticleKit.swift"; sourceTree = "<group>"; };
+		4FFCEE881D43B07200FBECDE /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,7 +112,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F34DF281D19F43B00F3B068 /* VakocLogging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,7 +127,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F1650811D3D70FE0088FE47 /* VakocLogging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,7 +142,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F34DF2A1D19F44D00F3B068 /* VakocLogging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +149,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F16507E1D3D707A0088FE47 /* VakocLogging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,21 +163,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4F34DF1A1D19F3E600F3B068 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4F34DF211D19F3E600F3B068 /* VakocLogging.framework */,
-				4F34DF231D19F3E600F3B068 /* VakocLogging.framework */,
-				4F34DF251D19F3E600F3B068 /* VakocLogging.framework */,
-				4F34DF271D19F3E600F3B068 /* VakocLogging.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		4FA85A981D0C866C00EC906B = {
 			isa = PBXGroup;
 			children = (
-				4F34DF191D19F3E600F3B068 /* VakocLogging.xcodeproj */,
 				4FA85ABC1D0C87E600EC906B /* Sources */,
 				4FA85B041D0C892C00EC906B /* Targets */,
 				4FA85AA31D0C866C00EC906B /* Products */,
@@ -280,6 +208,7 @@
 		4FA85ABC1D0C87E600EC906B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				4FFCEE881D43B07200FBECDE /* Logging.swift */,
 				4FA85B0D1D0CA04100EC906B /* Common.swift */,
 				4FA85B081D0C9FF900EC906B /* Errors.swift */,
 				4FA85ABD1D0C87FB00EC906B /* ParticleSwift.swift */,
@@ -401,7 +330,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4F34DF331D19F47900F3B068 /* PBXTargetDependency */,
 			);
 			name = "ParticleSwift-macOS";
 			productName = ParticleSwift;
@@ -438,7 +366,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4F1650831D3D71060088FE47 /* PBXTargetDependency */,
 			);
 			name = "ParticleSwift-iOS";
 			productName = "ParticleSwift-iOS";
@@ -475,7 +402,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4F3EB5B71D3D6EE7008AEB39 /* PBXTargetDependency */,
 			);
 			name = "ParticleSwift-watchOS";
 			productName = "ParticleSwift-watchOS";
@@ -494,7 +420,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4F1650801D3D70830088FE47 /* PBXTargetDependency */,
 			);
 			name = "ParticleSwift-tvOS";
 			productName = "ParticleSwift-tvOS";
@@ -571,12 +496,6 @@
 			mainGroup = 4FA85A981D0C866C00EC906B;
 			productRefGroup = 4FA85AA31D0C866C00EC906B /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 4F34DF1A1D19F3E600F3B068 /* Products */;
-					ProjectRef = 4F34DF191D19F3E600F3B068 /* VakocLogging.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				4FA85AA11D0C866C00EC906B /* ParticleSwift-macOS */,
@@ -589,37 +508,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		4F34DF211D19F3E600F3B068 /* VakocLogging.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = VakocLogging.framework;
-			remoteRef = 4F34DF201D19F3E600F3B068 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4F34DF231D19F3E600F3B068 /* VakocLogging.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = VakocLogging.framework;
-			remoteRef = 4F34DF221D19F3E600F3B068 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4F34DF251D19F3E600F3B068 /* VakocLogging.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = VakocLogging.framework;
-			remoteRef = 4F34DF241D19F3E600F3B068 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4F34DF271D19F3E600F3B068 /* VakocLogging.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = VakocLogging.framework;
-			remoteRef = 4F34DF261D19F3E600F3B068 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4FA85AA01D0C866C00EC906B /* Resources */ = {
@@ -685,6 +573,7 @@
 				4FA85B2C1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */,
 				4FA85B221D0CA14800EC906B /* Device.swift in Sources */,
 				4FA85B131D0CA07B00EC906B /* Authentication.swift in Sources */,
+				4FFCEE891D43B07200FBECDE /* Logging.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,6 +596,7 @@
 				4FA85B2D1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */,
 				4FA85B231D0CA14800EC906B /* Device.swift in Sources */,
 				4FA85B141D0CA07B00EC906B /* Authentication.swift in Sources */,
+				4FFCEE8A1D43B07200FBECDE /* Logging.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,6 +619,7 @@
 				4FA85B2E1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */,
 				4FA85B241D0CA14800EC906B /* Device.swift in Sources */,
 				4FA85B151D0CA07B00EC906B /* Authentication.swift in Sources */,
+				4FFCEE8B1D43B07200FBECDE /* Logging.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -743,6 +634,7 @@
 				4FA85B2F1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */,
 				4FA85B251D0CA14800EC906B /* Device.swift in Sources */,
 				4FA85B161D0CA07B00EC906B /* Authentication.swift in Sources */,
+				4FFCEE8C1D43B07200FBECDE /* Logging.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -757,26 +649,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4F1650801D3D70830088FE47 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "VakocLogging-tvOS";
-			targetProxy = 4F16507F1D3D70830088FE47 /* PBXContainerItemProxy */;
-		};
-		4F1650831D3D71060088FE47 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "VakocLogging-iOS";
-			targetProxy = 4F1650821D3D71060088FE47 /* PBXContainerItemProxy */;
-		};
-		4F34DF331D19F47900F3B068 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "VakocLogging-macOS";
-			targetProxy = 4F34DF321D19F47900F3B068 /* PBXContainerItemProxy */;
-		};
-		4F3EB5B71D3D6EE7008AEB39 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "VakocLogging-watchOS";
-			targetProxy = 4F3EB5B61D3D6EE7008AEB39 /* PBXContainerItemProxy */;
-		};
 		4FA85AAF1D0C866C00EC906B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4FA85AA11D0C866C00EC906B /* ParticleSwift-macOS */;

@@ -7,7 +7,6 @@
 
 
 import Foundation
-import VakocLogging
 
 /// Delegate protocol used to provide ParticleSwift with credentials storage
 public protocol SecureStorage: class {
