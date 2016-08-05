@@ -59,7 +59,7 @@ public class ParticleCloud: WebServiceCallable {
     /// - parameter completion: completion handler. Contains a list of oauth tokens
     public func accessTokens(_ completion: (Result<[OAuthTokenListEntry]>) -> Void ) {
         
-        var request = URLRequest(url: try! baseURL.appendingPathComponent("v1/access_tokens"))
+        var request = URLRequest(url: baseURL.appendingPathComponent("v1/access_tokens"))
         
         
         guard let username = self.secureStorage?.username(self.realm), let password = self.secureStorage?.password(self.realm) else {

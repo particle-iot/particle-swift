@@ -3,14 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		4FA85AA61D0C866C00EC906B /* ParticleSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FA85AA51D0C866C00EC906B /* ParticleSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4FA85AAD1D0C866C00EC906B /* ParticleSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA85AA21D0C866C00EC906B /* ParticleSwift.framework */; };
 		4FA85AB21D0C866C00EC906B /* ParticleSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85AB11D0C866C00EC906B /* ParticleSwiftTests.swift */; };
-		4FA85ABE1D0C87FB00EC906B /* ParticleSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85ABD1D0C87FB00EC906B /* ParticleSwift.swift */; };
 		4FA85AC71D0C88D300EC906B /* ParticleSwift-iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FA85AC61D0C88D300EC906B /* ParticleSwift-iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4FA85ACE1D0C88D300EC906B /* ParticleSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA85AC41D0C88D200EC906B /* ParticleSwift.framework */; };
 		4FA85AD31D0C88D300EC906B /* ParticleSwift_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85AD21D0C88D300EC906B /* ParticleSwift_iOSTests.swift */; };
@@ -18,9 +17,6 @@
 		4FA85AF01D0C891D00EC906B /* ParticleSwift-tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FA85AEF1D0C891D00EC906B /* ParticleSwift-tvOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4FA85AF71D0C891D00EC906B /* ParticleSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA85AED1D0C891D00EC906B /* ParticleSwift.framework */; };
 		4FA85AFC1D0C891D00EC906B /* ParticleSwift_tvOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85AFB1D0C891D00EC906B /* ParticleSwift_tvOSTests.swift */; };
-		4FA85B051D0C89A900EC906B /* ParticleSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85ABD1D0C87FB00EC906B /* ParticleSwift.swift */; };
-		4FA85B061D0C89AA00EC906B /* ParticleSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85ABD1D0C87FB00EC906B /* ParticleSwift.swift */; };
-		4FA85B071D0C89AA00EC906B /* ParticleSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85ABD1D0C87FB00EC906B /* ParticleSwift.swift */; };
 		4FA85B091D0C9FF900EC906B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B081D0C9FF900EC906B /* Errors.swift */; };
 		4FA85B0A1D0C9FF900EC906B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B081D0C9FF900EC906B /* Errors.swift */; };
 		4FA85B0B1D0C9FF900EC906B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B081D0C9FF900EC906B /* Errors.swift */; };
@@ -41,14 +37,18 @@
 		4FA85B231D0CA14800EC906B /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B191D0CA14800EC906B /* Device.swift */; };
 		4FA85B241D0CA14800EC906B /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B191D0CA14800EC906B /* Device.swift */; };
 		4FA85B251D0CA14800EC906B /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B191D0CA14800EC906B /* Device.swift */; };
-		4FA85B2C1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B271D0CA15900EC906B /* Foundation+ParticleKit.swift */; };
-		4FA85B2D1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B271D0CA15900EC906B /* Foundation+ParticleKit.swift */; };
-		4FA85B2E1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B271D0CA15900EC906B /* Foundation+ParticleKit.swift */; };
-		4FA85B2F1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B271D0CA15900EC906B /* Foundation+ParticleKit.swift */; };
+		4FA85B2C1D0CA15900EC906B /* Foundation+ParticleSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B271D0CA15900EC906B /* Foundation+ParticleSwift.swift */; };
+		4FA85B2D1D0CA15900EC906B /* Foundation+ParticleSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B271D0CA15900EC906B /* Foundation+ParticleSwift.swift */; };
+		4FA85B2E1D0CA15900EC906B /* Foundation+ParticleSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B271D0CA15900EC906B /* Foundation+ParticleSwift.swift */; };
+		4FA85B2F1D0CA15900EC906B /* Foundation+ParticleSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B271D0CA15900EC906B /* Foundation+ParticleSwift.swift */; };
 		4FFCEE891D43B07200FBECDE /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCEE881D43B07200FBECDE /* Logging.swift */; };
 		4FFCEE8A1D43B07200FBECDE /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCEE881D43B07200FBECDE /* Logging.swift */; };
 		4FFCEE8B1D43B07200FBECDE /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCEE881D43B07200FBECDE /* Logging.swift */; };
 		4FFCEE8C1D43B07200FBECDE /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCEE881D43B07200FBECDE /* Logging.swift */; };
+		4FFCEF101D443C6E00FBECDE /* ParticleSwiftInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCEF0F1D443C6E00FBECDE /* ParticleSwiftInfo.swift */; };
+		4FFCEF111D443C7800FBECDE /* ParticleSwiftInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCEF0F1D443C6E00FBECDE /* ParticleSwiftInfo.swift */; };
+		4FFCEF121D443C7800FBECDE /* ParticleSwiftInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCEF0F1D443C6E00FBECDE /* ParticleSwiftInfo.swift */; };
+		4FFCEF131D443C7900FBECDE /* ParticleSwiftInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCEF0F1D443C6E00FBECDE /* ParticleSwiftInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +82,6 @@
 		4FA85AAC1D0C866C00EC906B /* ParticleSwift-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ParticleSwift-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA85AB11D0C866C00EC906B /* ParticleSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleSwiftTests.swift; sourceTree = "<group>"; };
 		4FA85AB31D0C866C00EC906B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4FA85ABD1D0C87FB00EC906B /* ParticleSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleSwift.swift; sourceTree = "<group>"; };
 		4FA85AC41D0C88D200EC906B /* ParticleSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParticleSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA85AC61D0C88D300EC906B /* ParticleSwift-iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParticleSwift-iOS.h"; sourceTree = "<group>"; };
 		4FA85AC81D0C88D300EC906B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -103,8 +102,9 @@
 		4FA85B121D0CA07B00EC906B /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		4FA85B171D0CA14800EC906B /* ParticleCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleCloud.swift; sourceTree = "<group>"; };
 		4FA85B191D0CA14800EC906B /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
-		4FA85B271D0CA15900EC906B /* Foundation+ParticleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Foundation+ParticleKit.swift"; sourceTree = "<group>"; };
+		4FA85B271D0CA15900EC906B /* Foundation+ParticleSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Foundation+ParticleSwift.swift"; sourceTree = "<group>"; };
 		4FFCEE881D43B07200FBECDE /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
+		4FFCEF0F1D443C6E00FBECDE /* ParticleSwiftInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleSwiftInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,14 +208,14 @@
 		4FA85ABC1D0C87E600EC906B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				4FFCEF0F1D443C6E00FBECDE /* ParticleSwiftInfo.swift */,
 				4FFCEE881D43B07200FBECDE /* Logging.swift */,
 				4FA85B0D1D0CA04100EC906B /* Common.swift */,
 				4FA85B081D0C9FF900EC906B /* Errors.swift */,
-				4FA85ABD1D0C87FB00EC906B /* ParticleSwift.swift */,
 				4FA85B121D0CA07B00EC906B /* Authentication.swift */,
 				4FA85B171D0CA14800EC906B /* ParticleCloud.swift */,
 				4FA85B191D0CA14800EC906B /* Device.swift */,
-				4FA85B271D0CA15900EC906B /* Foundation+ParticleKit.swift */,
+				4FA85B271D0CA15900EC906B /* Foundation+ParticleSwift.swift */,
 			);
 			name = Sources;
 			path = ../Sources;
@@ -464,9 +464,9 @@
 					};
 					4FA85AC31D0C88D200EC906B = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = DGT85KE5VX;
 						DevelopmentTeamName = "Mark Vakoc";
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 					4FA85ACC1D0C88D300EC906B = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -475,11 +475,11 @@
 					4FA85ADF1D0C890E00EC906B = {
 						CreatedOnToolsVersion = 7.3.1;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					4FA85AEC1D0C891D00EC906B = {
 						CreatedOnToolsVersion = 7.3.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					4FA85AF51D0C891D00EC906B = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -487,7 +487,7 @@
 				};
 			};
 			buildConfigurationList = 4FA85A9C1D0C866C00EC906B /* Build configuration list for PBXProject "ParticleSwift" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -568,12 +568,12 @@
 			files = (
 				4FA85B091D0C9FF900EC906B /* Errors.swift in Sources */,
 				4FA85B0E1D0CA04100EC906B /* Common.swift in Sources */,
-				4FA85ABE1D0C87FB00EC906B /* ParticleSwift.swift in Sources */,
 				4FA85B1A1D0CA14800EC906B /* ParticleCloud.swift in Sources */,
-				4FA85B2C1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */,
+				4FA85B2C1D0CA15900EC906B /* Foundation+ParticleSwift.swift in Sources */,
 				4FA85B221D0CA14800EC906B /* Device.swift in Sources */,
 				4FA85B131D0CA07B00EC906B /* Authentication.swift in Sources */,
 				4FFCEE891D43B07200FBECDE /* Logging.swift in Sources */,
+				4FFCEF101D443C6E00FBECDE /* ParticleSwiftInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,12 +591,12 @@
 			files = (
 				4FA85B0A1D0C9FF900EC906B /* Errors.swift in Sources */,
 				4FA85B0F1D0CA04100EC906B /* Common.swift in Sources */,
-				4FA85B051D0C89A900EC906B /* ParticleSwift.swift in Sources */,
 				4FA85B1B1D0CA14800EC906B /* ParticleCloud.swift in Sources */,
-				4FA85B2D1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */,
+				4FA85B2D1D0CA15900EC906B /* Foundation+ParticleSwift.swift in Sources */,
 				4FA85B231D0CA14800EC906B /* Device.swift in Sources */,
 				4FA85B141D0CA07B00EC906B /* Authentication.swift in Sources */,
 				4FFCEE8A1D43B07200FBECDE /* Logging.swift in Sources */,
+				4FFCEF111D443C7800FBECDE /* ParticleSwiftInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,12 +614,12 @@
 			files = (
 				4FA85B0B1D0C9FF900EC906B /* Errors.swift in Sources */,
 				4FA85B101D0CA04100EC906B /* Common.swift in Sources */,
-				4FA85B061D0C89AA00EC906B /* ParticleSwift.swift in Sources */,
 				4FA85B1C1D0CA14800EC906B /* ParticleCloud.swift in Sources */,
-				4FA85B2E1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */,
+				4FA85B2E1D0CA15900EC906B /* Foundation+ParticleSwift.swift in Sources */,
 				4FA85B241D0CA14800EC906B /* Device.swift in Sources */,
 				4FA85B151D0CA07B00EC906B /* Authentication.swift in Sources */,
 				4FFCEE8B1D43B07200FBECDE /* Logging.swift in Sources */,
+				4FFCEF121D443C7800FBECDE /* ParticleSwiftInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,12 +629,12 @@
 			files = (
 				4FA85B0C1D0C9FF900EC906B /* Errors.swift in Sources */,
 				4FA85B111D0CA04100EC906B /* Common.swift in Sources */,
-				4FA85B071D0C89AA00EC906B /* ParticleSwift.swift in Sources */,
 				4FA85B1D1D0CA14800EC906B /* ParticleCloud.swift in Sources */,
-				4FA85B2F1D0CA15900EC906B /* Foundation+ParticleKit.swift in Sources */,
+				4FA85B2F1D0CA15900EC906B /* Foundation+ParticleSwift.swift in Sources */,
 				4FA85B251D0CA14800EC906B /* Device.swift in Sources */,
 				4FA85B161D0CA07B00EC906B /* Authentication.swift in Sources */,
 				4FFCEE8C1D43B07200FBECDE /* Logging.swift in Sources */,
+				4FFCEF131D443C7900FBECDE /* ParticleSwiftInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -831,6 +831,7 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -851,6 +852,7 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -902,6 +904,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -924,6 +927,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -947,6 +951,7 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -967,6 +972,7 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

@@ -12,7 +12,7 @@ public let errorDomain = "com.vakoc.ParticleSwift"
 /// Enum for a result of something that can fail, particularly network requests
 public enum Result<T> {
     case success(T)
-    case failure(ErrorProtocol)
+    case failure(Error)
 }
 
 

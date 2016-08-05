@@ -196,7 +196,7 @@ extension OAuthAuthenticatable {
         
         let base64AuthCredentials = data.base64EncodedString(options: [])
         
-        var request = URLRequest(url: try! self.baseURL.appendingPathComponent("oauth/token"))
+        var request = URLRequest(url: self.baseURL.appendingPathComponent("oauth/token"))
         
         request.setValue("Basic \(base64AuthCredentials)", forHTTPHeaderField: "Authorization")
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")

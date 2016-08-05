@@ -2,6 +2,8 @@
 
 Swift 3.0 Package for interacting with Particle Cloud services 
 
+*Compatibility:* Xcode 8 beta 4 or the equivalent open source variant of Swift is required.
+
 This is a very early stage of porting a non-public (but entirely written by me) Swift based particle
 framework.  The particle relaated bits will be separated from more derivative type functionality which 
 may or may not become open source.

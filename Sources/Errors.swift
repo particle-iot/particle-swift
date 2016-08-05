@@ -7,18 +7,18 @@
 
 import Foundation
 
-public enum ParticleError: ErrorProtocol {
+public enum ParticleError: Error {
     case missingCredentials,
-    listAccessTokensFailed(ErrorProtocol),
-    callFunctionFailed(ErrorProtocol),
-    deviceListFailed(ErrorProtocol),
-    deviceInformationFailed(String, ErrorProtocol),
-    oauthTokenCreationFailed(ErrorProtocol),
-    invalidURLRequest(ErrorProtocol),
-    claimDeviceFailed(ErrorProtocol),
-    transferDeviceFailed(ErrorProtocol),
-    createClaimCode(ErrorProtocol),
-    unclaimDeviceFailed(ErrorProtocol)
+    listAccessTokensFailed(Error),
+    callFunctionFailed(Error),
+    deviceListFailed(Error),
+    deviceInformationFailed(String, Error),
+    oauthTokenCreationFailed(Error),
+    invalidURLRequest(Error),
+    claimDeviceFailed(Error),
+    transferDeviceFailed(Error),
+    createClaimCode(Error),
+    unclaimDeviceFailed(Error)
 }
 
 extension ParticleError: CustomStringConvertible {

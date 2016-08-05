@@ -7,10 +7,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-//! Project version number for ParticleSwift.
+//! Project version number for ParticleSwiftInfo.
 FOUNDATION_EXPORT double ParticleSwiftVersionNumber;
 
-//! Project version string for ParticleSwift.
+//! Project version string for ParticleSwiftInfo.
 FOUNDATION_EXPORT const unsigned char ParticleSwiftVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <ParticleSwift/PublicHeader.h>

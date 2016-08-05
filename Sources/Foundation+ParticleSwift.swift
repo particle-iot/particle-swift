@@ -14,7 +14,7 @@ extension Date {
     /// Returns self as an ISO8601 formatted string
     public var ISO8601String: String {
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(localeIdentifier: "en_US_POSIX")
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         return dateFormatter.string(from: self as Date)
     }
@@ -29,7 +29,7 @@ extension String {
     var dateWithISO8601String: Date? {
         
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(localeIdentifier: "en_US_POSIX")
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         return dateFormatter.date(from: self)
     }
@@ -47,7 +47,7 @@ extension String {
     }
 }
 
-extension Dictionary where Key: StringLiteralConvertible, Value: StringLiteralConvertible {
+extension Dictionary where Key: ExpressibleByStringLiteral, Value: ExpressibleByStringLiteral {
     
     var URLEncodedParameters: String? {
         
@@ -58,7 +58,7 @@ extension Dictionary where Key: StringLiteralConvertible, Value: StringLiteralCo
     }
 }
 
-extension Dictionary where Key: StringLiteralConvertible, Value: Any {
+extension Dictionary where Key: ExpressibleByStringLiteral, Value: Any {
     
     var jsonString: String?  {
         if let dict = (self as? AnyObject) as? Dictionary<String, AnyObject> {

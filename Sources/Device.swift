@@ -327,7 +327,7 @@ extension ParticleCloud {
                 return completion(.failure(error))
             case .success(let accessToken):
                 
-                var request = URLRequest(url: try! self.baseURL.appendingPathComponent("v1/devices"))
+                var request = URLRequest(url: self.baseURL.appendingPathComponent("v1/devices"))
                 
                 request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
                 
@@ -370,7 +370,7 @@ extension ParticleCloud {
                 
             case .success(let accessToken):
                 
-                var request = URLRequest(url: try! self.baseURL.appendingPathComponent("v1/devices/\(device.deviceID)"))
+                var request = URLRequest(url: self.baseURL.appendingPathComponent("v1/devices/\(device.deviceID)"))
                 request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
                 let task = self.urlSession.dataTask(with: request) { (data, response, error) in
                     
@@ -401,7 +401,7 @@ extension ParticleCloud {
                 
             case .success(let accessToken):
                 
-                var request = URLRequest(url: try! self.baseURL.appendingPathComponent("v1/devices/\(deviceID)"))
+                var request = URLRequest(url: self.baseURL.appendingPathComponent("v1/devices/\(deviceID)"))
                 request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
                 let task = self.urlSession.dataTask(with: request) { (data, response, error) in
                     
@@ -432,7 +432,7 @@ extension ParticleCloud {
                 
             case .success(let accessToken):
                 
-                var request = URLRequest(url: try! self.baseURL.appendingPathComponent("v1/devices/\(deviceID)/\(functionName)"))
+                var request = URLRequest(url: self.baseURL.appendingPathComponent("v1/devices/\(deviceID)/\(functionName)"))
                 request.httpMethod = "POST"
                 request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -470,7 +470,7 @@ extension ParticleCloud {
                 return completion(.failure(error))
             case .success(let accessToken):
                 
-                var request = URLRequest(url: try! self.baseURL.appendingPathComponent("v1/devices/\(deviceID)/\(variableName)"))
+                var request = URLRequest(url: self.baseURL.appendingPathComponent("v1/devices/\(deviceID)/\(variableName)"))
                 request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
                 
                 let task = self.urlSession.dataTask(with: request) { (data, response, error) in
@@ -501,7 +501,7 @@ extension ParticleCloud {
                 return completion(.failure(error))
             case .success(let accessToken):
                 
-                var request = URLRequest(url: try! self.baseURL.appendingPathComponent("v1/devices"))
+                var request = URLRequest(url: self.baseURL.appendingPathComponent("v1/devices"))
                 request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
                 request.httpMethod = "POST"
                 request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
@@ -530,7 +530,7 @@ extension ParticleCloud {
                 return completion(.failure(error))
             case .success(let accessToken):
                 
-                var request = URLRequest(url: try! self.baseURL.appendingPathComponent("v1/devices/\(deviceID)"))
+                var request = URLRequest(url: self.baseURL.appendingPathComponent("v1/devices/\(deviceID)"))
                 request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
                 request.httpMethod = "DELETE"
                 
@@ -562,7 +562,7 @@ extension ParticleCloud {
                 return completion(.failure(error))
             case .success(let accessToken):
                 
-                var request = URLRequest(url: try! self.baseURL.appendingPathComponent("v1/devices"))
+                var request = URLRequest(url: self.baseURL.appendingPathComponent("v1/devices"))
                 request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
                 request.httpMethod = "POST"
                 request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
@@ -597,7 +597,7 @@ extension ParticleCloud {
                 return completion(.failure(error))
             case .success(let accessToken):
                 
-                var request = URLRequest(url: try! self.baseURL.appendingPathComponent("v1/device_claims"))
+                var request = URLRequest(url: self.baseURL.appendingPathComponent("v1/device_claims"))
                 request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
                 request.httpMethod = "POST"
                 
