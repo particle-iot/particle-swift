@@ -92,7 +92,7 @@ func log( _ message: @autoclosure() -> String, level: LogLevel = .debug, functio
     
     if level.rawValue >= globalLogLevel.rawValue {
         let message = message()
-        let f = URL(fileURLWithPath: file).lastPathComponent ?? "unknown"
+        let f = URL(fileURLWithPath: file).lastPathComponent
         if callstack {
             print("[\(level.paddedDescription)] \(f):\(line) • \(function) - \(message)\nCallstack:\n\(Thread.indentedCallStackSymbols())")
         } else {
@@ -180,7 +180,7 @@ func trace( _ message: @autoclosure() -> String, function: String = #function, f
  logs a http request and reponse
  */
 @inline(__always)
-func trace(_ description: String, request: URLRequest, data: Data?, response: URLResponse?, error: NSError?, function: String = #function, file: String = #file, line: Int = #line) -> Void  {
+func trace(_ description: String, request: URLRequest, data: Data?, response: URLResponse?, error: Error?, function: String = #function, file: String = #file, line: Int = #line) -> Void  {
     guard globalLogLevel.rawValue <= LogLevel.trace.rawValue else {
         return
     }

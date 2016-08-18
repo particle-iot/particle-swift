@@ -18,9 +18,9 @@ public enum Result<T> {
 
 public protocol StringKeyedDictionaryConvertible {
     
-    init? (with dictionary: [String : AnyObject])
+    init? (with dictionary: [String : Any])
     
-    var dictionary: [String : AnyObject] { get }
+    var dictionary: [String : Any] { get }
 }
 
 /**

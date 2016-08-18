@@ -57,7 +57,7 @@ public class ParticleCloud: WebServiceCallable {
     ///
     /// This mmethod will invoke authenticate with validateToken = false.  Any authentication error will be returned    
     /// - parameter completion: completion handler. Contains a list of oauth tokens
-    public func accessTokens(_ completion: (Result<[OAuthTokenListEntry]>) -> Void ) {
+    public func accessTokens(_ completion: @escaping (Result<[OAuthTokenListEntry]>) -> Void ) {
         
         var request = URLRequest(url: baseURL.appendingPathComponent("v1/access_tokens"))
         
@@ -77,7 +77,7 @@ public class ParticleCloud: WebServiceCallable {
         request.setValue("Basic \(base64AuthCredentials)", forHTTPHeaderField: "Authorization")
         let task = urlSession.dataTask(with: request, completionHandler:  { (data, response, error) in
             
-            trace( "Get access tokens", request: request, data: data, response: response, error: error)
+            trace( "Get access tokens", request: request, data: data, response: response, error: error as NSError? )
             
             if let error = error {
                 return completion(.failure(ParticleError.listAccessTokensFailed(error)))
@@ -86,7 +86,7 @@ public class ParticleCloud: WebServiceCallable {
             if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String : AnyObject]],  let j = json {
                 return completion(.success(j.flatMap() { return OAuthTokenListEntry(dictionary: $0)} ))
             } else {
-                let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain access token lists", tableName: nil, bundle: Bundle(for: self.dynamicType), comment: "The http request to create an OAuthToken failed")])
+                let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain access token lists", tableName: nil, bundle: Bundle(for: type(of: self)), comment: "The http request to create an OAuthToken failed")])
                 return completion(.failure(ParticleError.listAccessTokensFailed(error)))
             }
         })
@@ -95,9 +95,7 @@ public class ParticleCloud: WebServiceCallable {
 }
 
 extension ParticleCloud: OAuthAuthenticatable {
-
-    
-
+   
 }
 
 extension ParticleCloud: CustomStringConvertible {
