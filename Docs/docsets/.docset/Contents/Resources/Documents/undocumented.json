@@ -1,0 +1,474 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Authentication.swift",
+      "line": null,
+      "symbol": "OAuthAuthenticatable",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Authentication.swift",
+      "line": 14,
+      "symbol": "SecureStorage.username(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Authentication.swift",
+      "line": 15,
+      "symbol": "SecureStorage.password(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Authentication.swift",
+      "line": 16,
+      "symbol": "SecureStorage.oauthClientId(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Authentication.swift",
+      "line": 17,
+      "symbol": "SecureStorage.oauthClientSecret(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Authentication.swift",
+      "line": 18,
+      "symbol": "SecureStorage.oauthToken(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Authentication.swift",
+      "line": 19,
+      "symbol": "SecureStorage.updateOAuthToken(_:forRealm:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Authentication.swift",
+      "line": 60,
+      "symbol": "OAuthToken.expirationDate",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Authentication.swift",
+      "line": 68,
+      "symbol": "OAuthToken.dictionary",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Authentication.swift",
+      "line": 86,
+      "symbol": "OAuthTokenListEntry.init(dictionary:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Authentication.swift",
+      "line": 106,
+      "symbol": "OAuthAuthenticatable",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Authentication.swift",
+      "line": 108,
+      "symbol": "OAuthAuthenticatable.realm",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Authentication.swift",
+      "line": 110,
+      "symbol": "OAuthAuthenticatable.secureStorage",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Common.swift",
+      "line": 10,
+      "symbol": "errorDomain",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Common.swift",
+      "line": 14,
+      "symbol": "Result.success",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Common.swift",
+      "line": 15,
+      "symbol": "Result.failure",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Common.swift",
+      "line": 19,
+      "symbol": "StringKeyedDictionaryConvertible",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Common.swift",
+      "line": 21,
+      "symbol": "StringKeyedDictionaryConvertible.init(with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Common.swift",
+      "line": 23,
+      "symbol": "StringKeyedDictionaryConvertible.dictionary",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": null,
+      "symbol": "ClaimResult",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 19,
+      "symbol": "Product.productString()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 88,
+      "symbol": "DeviceInformation.update(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 101,
+      "symbol": "DeviceInformation.init(with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 120,
+      "symbol": "DeviceInformation.dictionary",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 140,
+      "symbol": "==(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 227,
+      "symbol": "DeviceDetailInformation.init(with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 258,
+      "symbol": "DeviceDetailInformation.dictionary",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 279,
+      "symbol": "ClaimResult",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 286,
+      "symbol": "ClaimResult.claimCode",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 288,
+      "symbol": "ClaimResult.deviceIDs",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 293,
+      "symbol": "==(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 299,
+      "symbol": "ClaimResult.init(with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 308,
+      "symbol": "ClaimResult.dictionary",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 364,
+      "symbol": "ParticleCloud.deviceDetailInformation(_:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 394,
+      "symbol": "ParticleCloud.deviceDetailInformation(_:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 425,
+      "symbol": "ParticleCloud.callFunction(_:deviceID:argument:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 464,
+      "symbol": "ParticleCloud.variableValue(_:deviceID:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 495,
+      "symbol": "ParticleCloud.claim(_:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 524,
+      "symbol": "ParticleCloud.unclaim(_:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 556,
+      "symbol": "ParticleCloud.transfer(_:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Device.swift",
+      "line": 590,
+      "symbol": "ParticleCloud.createClaimCode(_:iccid:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
+      "line": null,
+      "symbol": "ParticleError",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
+      "line": 10,
+      "symbol": "ParticleError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
+      "line": 11,
+      "symbol": "ParticleError.missingCredentials",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
+      "line": 12,
+      "symbol": "ParticleError.listAccessTokensFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
+      "line": 13,
+      "symbol": "ParticleError.callFunctionFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
+      "line": 14,
+      "symbol": "ParticleError.deviceListFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
+      "line": 15,
+      "symbol": "ParticleError.deviceInformationFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
+      "line": 16,
+      "symbol": "ParticleError.oauthTokenCreationFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
+      "line": 17,
+      "symbol": "ParticleError.invalidURLRequest",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
+      "line": 18,
+      "symbol": "ParticleError.claimDeviceFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
+      "line": 19,
+      "symbol": "ParticleError.transferDeviceFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
+      "line": 20,
+      "symbol": "ParticleError.createClaimCode",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
+      "line": 21,
+      "symbol": "ParticleError.unclaimDeviceFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Foundation+ParticleSwift.swift",
+      "line": 24,
+      "symbol": "UUID.allZeros",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Logging.swift",
+      "line": null,
+      "symbol": "LogLevel",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Logging.swift",
+      "line": 10,
+      "symbol": "globalLogLevel",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Logging.swift",
+      "line": 12,
+      "symbol": "LogLevel",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Logging.swift",
+      "line": 13,
+      "symbol": "LogLevel.trace",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Logging.swift",
+      "line": 14,
+      "symbol": "LogLevel.debug",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Logging.swift",
+      "line": 15,
+      "symbol": "LogLevel.info",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Logging.swift",
+      "line": 16,
+      "symbol": "LogLevel.warning",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Logging.swift",
+      "line": 17,
+      "symbol": "LogLevel.error",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Logging.swift",
+      "line": 18,
+      "symbol": "LogLevel.off",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/ParticleSwiftInfo.swift",
+      "line": 8,
+      "symbol": "ParticleSwiftInfo",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/ParticleSwiftInfo.swift",
+      "line": 9,
+      "symbol": "ParticleSwiftInfo.realm",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/ParticleSwiftInfo.swift",
+      "line": 10,
+      "symbol": "ParticleSwiftInfo.version",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/mvakoc/Documents/particle-swift"
+}

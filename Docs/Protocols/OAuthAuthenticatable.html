@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>OAuthAuthenticatable Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/OAuthAuthenticatable" class="dashAnchor"></a>
+    <a title="OAuthAuthenticatable Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (53% documented)</p>
+        <p class="header-right"><a href="https://github.com/vakoc/particle-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        OAuthAuthenticatable Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ParticleCloud.html">ParticleCloud</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v13ParticleSwift11errorDomainSS">errorDomain</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v13ParticleSwift14globalLogLevelOS_8LogLevel">globalLogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v13ParticleSwift19kParticleDefaultURLV10Foundation3URL">kParticleDefaultURL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/LogLevel.html">LogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ParticleError.html">ParticleError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Product.html">Product</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Result.html">Result</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Date.html">Date</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UUID.html">UUID</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F13ParticleSwiftoi2eeFTVS_11ClaimResultS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F13ParticleSwiftoi2eeFTVS_17DeviceInformationS0__Sb">==(_:_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/OAuthAuthenticatable.html">OAuthAuthenticatable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SecureStorage.html">SecureStorage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/StringKeyedDictionaryConvertible.html">StringKeyedDictionaryConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/WebServiceCallable.html">WebServiceCallable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/ClaimResult.html">ClaimResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DeviceDetailInformation.html">DeviceDetailInformation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DeviceInformation.html">DeviceInformation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OAuthToken.html">OAuthToken</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OAuthTokenListEntry.html">OAuthTokenListEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ParticleSwiftInfo.html">ParticleSwiftInfo</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>OAuthAuthenticatable</h1>
+            <p>Undocumented</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP13ParticleSwift20OAuthAuthenticatable5realmSS"></a>
+                    <a name="//apple_ref/swift/Property/realm" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP13ParticleSwift20OAuthAuthenticatable5realmSS">realm</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP13ParticleSwift20OAuthAuthenticatable13secureStorageGSqPS_13SecureStorage__"></a>
+                    <a name="//apple_ref/swift/Property/secureStorage" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP13ParticleSwift20OAuthAuthenticatable13secureStorageGSqPS_13SecureStorage__">secureStorage</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP13ParticleSwift20OAuthAuthenticatable12authenticateFTSb10completionFGOS_6ResultSS_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/authenticate(_:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP13ParticleSwift20OAuthAuthenticatable12authenticateFTSb10completionFGOS_6ResultSS_T__T_">authenticate(_:completion:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Performs authentication asynchronously returning the access token to utilize</p>
+
+<p>Authentication is not necessarily an online endeavor.  The flow will ask the secure storage
+delegate for an OAuthToken.  If found and the expiration date is greater than now
+the accessToken will be returned unless the validate option is true (see below)</p>
+
+<p>If the secure storage returned an OAuthToken and validate is true the access_tokens method
+will be invoked using that access token to validate.  If the request is denied or the token
+isn&rsquo;t in the list (which shouldn&rsquo;t ever be the case) the logic will fall into the username/password
+logic below</p>
+
+<p>If secure storage returned valid appearing token and validate is true but the authentication failed
+for some reason other than auth failure (such as no network) the UnableToValidateToken(accessToken)
+failure result will be returned.  The token may (and probably is) valid and the caller may choose to use it.</p>
+
+<p>If no OAuthToken is provided by the secure storage or valdiation is enabled but validation failed
+the logic will invoke createOAuthToken to attempt to create a no oauth token.  If unsuccessful the
+failure returned by createOAuthToken will be returned.  If this call succeeds the OAuthToken setter on
+the secure storage delegate will be called to store the result for future calls.</p>
+
+<p>If successful based on all the above the result the accessToken to use will be returned</p>
+
+<p>The completion callback will be on a background thread</p>
+
+<div class="aside aside-todo">
+    <p class="aside-title">Todo</p>
+    <p>handle refresh_token for non particle oauth tokens (See <a href="https://community.particle.io/t/how-to-use-the-refresh-token/15889/6">https://community.particle.io/t/how-to-use-the-refresh-token/15889/6</a>)</p>
+
+</div>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Asynchronously creates an access token.  Credentials and OAuth keys are obtained from the secureStorage used to create the
+instance</p>
+
+<p>The completion callback will be on a background thread</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">authenticate</span><span class="p">(</span><span class="n">_</span> <span class="nv">validateToken</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/Result.html">Result</a></span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>validateToken</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>if true perform an online validation of any token obtained from secure storage</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the completion block to be called.  will always be asynchronous and on a background thread</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP13ParticleSwift20OAuthAuthenticatable16createOAuthTokenFTSd9expiresAtGSqV10Foundation4Date_10completionFGOS_6ResultVS_10OAuthToken_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/createOAuthToken(_:expiresAt:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP13ParticleSwift20OAuthAuthenticatable16createOAuthTokenFTSd9expiresAtGSqV10Foundation4Date_10completionFGOS_6ResultVS_10OAuthToken_T__T_">createOAuthToken(_:expiresAt:completion:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asynchronously creates an access token.  Credentials and OAuth keys are obtained from the secureStorage used to create the
+instance</p>
+
+<p>The completion callback will be on a background thread</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>TODO:  parameterize the expiresIn</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">createOAuthToken</span><span class="p">(</span><span class="n">_</span> <span class="nv">expiresIn</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="nv">expiresAt</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/Result.html">Result</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/OAuthToken.html">OAuthToken</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>expiresIn</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>how many seconds the token will be valid for.  0 means forever.  short lived tokens are better for security</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>expiresAt</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the date at which the token should expire.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>completion handler.  Contains a Result enum with the OAuthToken or error encountered</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Mark Vakoc</a>. All rights reserved. (Last updated: 2016-11-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

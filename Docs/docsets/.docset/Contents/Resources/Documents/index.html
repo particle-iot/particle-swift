@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html"> Docs</a> (53% documented)</p>
+        <p class="header-right"><a href="https://github.com/vakoc/particle-swift"><img src="img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html"> Reference</a>
+        <img id="carat" src="img/carat.png" />
+          Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/ParticleCloud.html">ParticleCloud</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Global Variables.html#/s:v13ParticleSwift11errorDomainSS">errorDomain</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Global Variables.html#/s:v13ParticleSwift14globalLogLevelOS_8LogLevel">globalLogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Global Variables.html#/s:v13ParticleSwift19kParticleDefaultURLV10Foundation3URL">kParticleDefaultURL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/LogLevel.html">LogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/ParticleError.html">ParticleError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/Product.html">Product</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/Result.html">Result</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/Date.html">Date</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/UUID.html">UUID</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:F13ParticleSwiftoi2eeFTVS_11ClaimResultS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:F13ParticleSwiftoi2eeFTVS_17DeviceInformationS0__Sb">==(_:_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/OAuthAuthenticatable.html">OAuthAuthenticatable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/SecureStorage.html">SecureStorage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/StringKeyedDictionaryConvertible.html">StringKeyedDictionaryConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/WebServiceCallable.html">WebServiceCallable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/ClaimResult.html">ClaimResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/DeviceDetailInformation.html">DeviceDetailInformation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/DeviceInformation.html">DeviceInformation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/OAuthToken.html">OAuthToken</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/OAuthTokenListEntry.html">OAuthTokenListEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/ParticleSwiftInfo.html">ParticleSwiftInfo</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <a href='#particle-swift' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='particle-swift'>particle-swift</h1>
+
+<p>Swift 3.0 Package for interacting with Particle Cloud services </p>
+
+<p><em>Compatibility:</em> Swift 3.0 (Xcode 8) or the equivalent open source variant of Swift is required.</p>
+
+<p>This is a very early stage of porting a non-public (but entirely written by me) Swift based particle
+framework.  The particle relaated bits will be separated from more derivative type functionality which 
+may or may not become open source.</p>
+
+<p>This project has the following long term goals</p>
+
+<ul>
+<li>Follow pure swift design and coding styles</li>
+<li>Be dependency free (other than other projects authored by myself, and those will be minimal)</li>
+<li>Work with the swift package manager and provide frameworks for iOS, macOS, tvOS, and watchOS</li>
+</ul>
+
+<p>Some general design guidelines are </p>
+
+<ul>
+<li>Delegate secured storage of credentials to the caller.  Higher level consumers can store in keychain, etc.</li>
+<li>Generally be a stateless (outside of authentication) API set for the Particle Cloud services.</li>
+<li>Be compatible with Linux and other swift ports (long term goal)</li>
+</ul>
+
+<p>Intended usages for this library would include server side Swift, iOS/tvOS/macOS/watchOS applications that utilize particle cloud service, or any other Swift based product that wants to use the awesome Particle Cloud.</p>
+
+<p>A swift package manager compatible executable project is available <a href="https://github.com/vakoc/particle-swift-cli">here</a></p>
+<a href='#roadmap' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='roadmap'>Roadmap</h2>
+
+<p>Although derived/ported from a fairly mature codebase, I consider this a rewrite to adopt Swift 3.0 patterns
+and decouple the core Particle functionality from a more more complex framework.</p>
+
+<p>Work will focus on porting a small portion to adopt Swift 3.0 then migrate the remaining (bulk of) functionality.</p>
+
+<p>This should be considered earlier than alpha functionality and anything can change in the next commit.</p>
+<a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license'>License</h2>
+
+<p>All code is licenced under the Apache 2.0 license.  See <a href="http://www.vakoc.com/LICENSE.txt">http://www.vakoc.com/LICENSE.txt</a> for more information.</p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Mark Vakoc</a>. All rights reserved. (Last updated: 2016-11-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
