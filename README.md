@@ -2,7 +2,7 @@
 
 Swift 3.0 Package for interacting with Particle Cloud services 
 
-*Compatibility:* Xcode 8 beta 6 or the equivalent open source variant of Swift is required.
+*Compatibility:* Xcode 8 (Swift 3.0) or the equivalent open source variant of Swift is required.
 
 This project provides a pure Swift SDK for interacting with the particle.io cloud services.  The 
 APIs provide access to the following portions of the Particle Cloud
@@ -146,6 +146,8 @@ Note:  if you are using particle-swift in a command line style application you w
 ```swift
 RunLoop.current.run(until: Date.distantFuture)
 ```
+
+Refer to the particle-swift-cli sample application, which utilizes every particle-swift capability, for more examples on how to make use of this framework.
 
 Roadmap
 -------
