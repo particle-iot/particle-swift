@@ -289,92 +289,85 @@
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
-      "line": null,
-      "symbol": "ParticleError",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
-      "line": 10,
-      "symbol": "ParticleError",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
-      "line": 11,
+      "line": 12,
       "symbol": "ParticleError.missingCredentials",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
-      "line": 12,
+      "line": 13,
       "symbol": "ParticleError.listAccessTokensFailed",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
-      "line": 13,
+      "line": 14,
       "symbol": "ParticleError.callFunctionFailed",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
-      "line": 14,
+      "line": 15,
       "symbol": "ParticleError.deviceListFailed",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
-      "line": 15,
+      "line": 16,
       "symbol": "ParticleError.deviceInformationFailed",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
-      "line": 16,
+      "line": 17,
       "symbol": "ParticleError.oauthTokenCreationFailed",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
-      "line": 17,
+      "line": 18,
       "symbol": "ParticleError.invalidURLRequest",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
-      "line": 18,
+      "line": 19,
       "symbol": "ParticleError.claimDeviceFailed",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
-      "line": 19,
+      "line": 20,
       "symbol": "ParticleError.transferDeviceFailed",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
-      "line": 20,
+      "line": 21,
       "symbol": "ParticleError.createClaimCode",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
-      "line": 21,
+      "line": 22,
       "symbol": "ParticleError.unclaimDeviceFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
+      "line": 23,
+      "symbol": "ParticleError.webhookListFailed",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
@@ -467,6 +460,34 @@
       "line": 10,
       "symbol": "ParticleSwiftInfo.version",
       "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Webhooks.swift",
+      "line": 20,
+      "symbol": "Webhook.RequestType.delete",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Webhooks.swift",
+      "line": 20,
+      "symbol": "Webhook.RequestType.get",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Webhooks.swift",
+      "line": 20,
+      "symbol": "Webhook.RequestType.post",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Webhooks.swift",
+      "line": 20,
+      "symbol": "Webhook.RequestType.put",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     }
   ],

@@ -49,6 +49,7 @@ extension String {
 
 extension Dictionary where Key: ExpressibleByStringLiteral, Value: ExpressibleByStringLiteral {
     
+    /// The dictionary as a properly encoded url query
     var URLEncodedParameters: String? {
         
         var comps = URLComponents(string: "http://www.vakoc.com/")
@@ -58,8 +59,37 @@ extension Dictionary where Key: ExpressibleByStringLiteral, Value: ExpressibleBy
     }
 }
 
+
+
+
 extension Dictionary where Key: ExpressibleByStringLiteral, Value: Any {
     
+    /// Return the boolean value for a given key
+    ///
+    /// The method returns a boolean if the value or the given key is
+    ///    - an instance of Bool
+    ///    - a string.  Returns true if the case insensitive value is true or 1
+    ///    - an Int.  Return true if the value is non-zero
+    /// Otherwise nil is returned
+    /// 
+    /// - return: the boolean value for the key, or nil
+    func bool(for key: Key) -> Bool? {
+        
+        switch (self[key]) {
+        case .none:
+            return nil
+        case let val as Bool:
+            return val
+        case let val as String:
+            return val.uppercased() == "TRUE" || val == "1"
+        case let val as Int:
+            return val > 0
+        default:
+            return nil
+        }
+    }
+    
+    /// The dictionary as a JSON object, or nil if the object cannot be converted to JSON
     var jsonString: String?  {
         if let dict = (self as AnyObject) as? Dictionary<String, AnyObject> {
             do {
@@ -77,6 +107,7 @@ extension Dictionary where Key: ExpressibleByStringLiteral, Value: Any {
 
 extension Array where Element: AnyObject {
     
+    /// The array as a JSON object, or nil if the object cannot be converted to JSON
     var jsonString: String?  {
 
         do {

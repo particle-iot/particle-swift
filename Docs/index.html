@@ -13,7 +13,7 @@
     <a title="  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (53% documented)</p>
+        <p><a href="index.html"> Docs</a> (55% documented)</p>
         <p class="header-right"><a href="https://github.com/vakoc/particle-swift"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -126,6 +126,12 @@
               <li class="nav-group-task">
                 <a href="Structs/ParticleSwiftInfo.html">ParticleSwiftInfo</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Structs/Webhook.html">Webhook</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Webhook/RequestType.html">– RequestType</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -138,11 +144,16 @@
 
 <p>Swift 3.0 Package for interacting with Particle Cloud services </p>
 
-<p><em>Compatibility:</em> Swift 3.0 (Xcode 8) or the equivalent open source variant of Swift is required.</p>
+<p><em>Compatibility:</em> Xcode 8 beta 6 or the equivalent open source variant of Swift is required.</p>
 
-<p>This is a very early stage of porting a non-public (but entirely written by me) Swift based particle
-framework.  The particle relaated bits will be separated from more derivative type functionality which 
-may or may not become open source.</p>
+<p>This project provides a pure Swift SDK for interacting with the particle.io cloud services.  The 
+APIs provide access to the following portions of the Particle Cloud</p>
+
+<ul>
+<li>Authentication</li>
+<li>Devices</li>
+<li>Webhooks (initial support)</li>
+</ul>
 
 <p>This project has the following long term goals</p>
 
@@ -162,15 +173,18 @@ may or may not become open source.</p>
 
 <p>Intended usages for this library would include server side Swift, iOS/tvOS/macOS/watchOS applications that utilize particle cloud service, or any other Swift based product that wants to use the awesome Particle Cloud.</p>
 
-<p>A swift package manager compatible executable project is available <a href="https://github.com/vakoc/particle-swift-cli">here</a></p>
+<p>A swift package manager compatible executable project is available <a href="https://github.com/vakoc/particle-swift-cli">here</a>.  </p>
 <a href='#roadmap' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='roadmap'>Roadmap</h2>
 
-<p>Although derived/ported from a fairly mature codebase, I consider this a rewrite to adopt Swift 3.0 patterns
-and decouple the core Particle functionality from a more more complex framework.</p>
+<p>APIs should be relatively stable but are subject to change.  Additional Particle Cloud functionality is being added
+in the following general order</p>
 
-<p>Work will focus on porting a small portion to adopt Swift 3.0 then migrate the remaining (bulk of) functionality.</p>
+<ul>
+<li>Events</li>
+<li>Firmware</li>
+</ul>
 
-<p>This should be considered earlier than alpha functionality and anything can change in the next commit.</p>
+<p>Once complete additional functionality will be added.</p>
 <a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license'>License</h2>
 
 <p>All code is licenced under the Apache 2.0 license.  See <a href="http://www.vakoc.com/LICENSE.txt">http://www.vakoc.com/LICENSE.txt</a> for more information.</p>

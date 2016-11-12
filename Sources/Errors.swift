@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Errors that can be thrown during particle operations
 public enum ParticleError: Error {
     case missingCredentials,
     listAccessTokensFailed(Error),
@@ -18,7 +19,8 @@ public enum ParticleError: Error {
     claimDeviceFailed(Error),
     transferDeviceFailed(Error),
     createClaimCode(Error),
-    unclaimDeviceFailed(Error)
+    unclaimDeviceFailed(Error),
+    webhookListFailed(Error)
 }
 
 extension ParticleError: CustomStringConvertible {
@@ -47,6 +49,8 @@ extension ParticleError: CustomStringConvertible {
             return String.localizedStringWithFormat("Unable to create a claim code with error %1@", "\(error)")
         case .unclaimDeviceFailed(let error):
             return String.localizedStringWithFormat("Unable to unclaim a device with error %1@", "\(error)")
+        case .webhookListFailed(let error):
+            return String.localizedStringWithFormat("Unable to list the available webhooks with error %1@", "\(error)")
         }
     }
 }
