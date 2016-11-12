@@ -4,9 +4,11 @@ Swift 3.0 Package for interacting with Particle Cloud services
 
 *Compatibility:* Swift 3.0 (Xcode 8) or the equivalent open source variant of Swift is required.
 
-This is a very early stage of porting a non-public (but entirely written by me) Swift based particle
-framework.  The particle relaated bits will be separated from more derivative type functionality which 
-may or may not become open source.
+This project provides a pure Swift SDK for interacting with the particle.io cloud services.  The 
+APIs provide access to the following portions of the Particle Cloud
+
+  * Authentication
+  * Devices
 
 This project has the following long term goals
 
@@ -22,17 +24,20 @@ Some general design guidelines are
 
 Intended usages for this library would include server side Swift, iOS/tvOS/macOS/watchOS applications that utilize particle cloud service, or any other Swift based product that wants to use the awesome Particle Cloud.
 
-A swift package manager compatible executable project is available [here](https://github.com/vakoc/particle-swift-cli)
+A swift package manager compatible executable project is available [here](https://github.com/vakoc/particle-swift-cli).  
+
 
 Roadmap
 -------
 
-Although derived/ported from a fairly mature codebase, I consider this a rewrite to adopt Swift 3.0 patterns
-and decouple the core Particle functionality from a more more complex framework.
+APIs should be relatively stable but are subject to change.  Additional Particle Cloud functionality is being added
+in the following general order
 
-Work will focus on porting a small portion to adopt Swift 3.0 then migrate the remaining (bulk of) functionality.
+  * Webhooks
+  * Events
+  * Firmware
 
-This should be considered earlier than alpha functionality and anything can change in the next commit.
+Once complete additional functionality will be added.
 
 License
 -------
