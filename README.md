@@ -129,7 +129,7 @@ extension MyParticleCloud: SecureStorage {
     func updateOAuthToken(_ token: OAuthToken?, forRealm realm: String) {
         self.token = token
         /// Persist this for subsequent runs
-        UserDefaults.standard.set(token, forKey: "token")
+        UserDefaults.standard.set(token.dictionary, forKey: "token")
     }
 }
 ```
