@@ -20,7 +20,8 @@ public enum ParticleError: Error {
     transferDeviceFailed(Error),
     createClaimCode(Error),
     unclaimDeviceFailed(Error),
-    webhookListFailed(Error)
+    webhookListFailed(Error),
+    webhookGetFailed(String,Error)
 }
 
 extension ParticleError: CustomStringConvertible {
@@ -51,6 +52,8 @@ extension ParticleError: CustomStringConvertible {
             return String.localizedStringWithFormat("Unable to unclaim a device with error %1@", "\(error)")
         case .webhookListFailed(let error):
             return String.localizedStringWithFormat("Unable to list the available webhooks with error %1@", "\(error)")
+        case .webhookGetFailed(let webhookID, let error):
+            return String.localizedStringWithFormat("Unable to get the webhook %1@ with error %2@", "\(webhookID)", "\(error)")
         }
     }
 }

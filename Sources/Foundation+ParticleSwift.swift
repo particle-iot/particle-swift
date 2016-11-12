@@ -18,19 +18,37 @@ extension Date {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         return dateFormatter.string(from: self as Date)
     }
+    
+    /// Return the date as the yyyyMMdd format, e.g. 20161225 for Christmas Day 2016
+    public var yearMonthDayString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyyMMdd"
+        return dateFormatter.string(from: self as Date)
+    }
 }
 
 extension UUID {
+    /// Simple UUID with all zero values
     public static let allZeros = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
 }
 
 extension String {
     
+    /// The string parsed as a date using the ISO8601 string format
     var dateWithISO8601String: Date? {
         
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        return dateFormatter.date(from: self)
+    }
+    
+    /// The string parsed as a date using the yyyyMMdd format, for example 20161225 for Christmas Day, 2016
+    var dateWithYearMonthDay: Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyyMMdd"
         return dateFormatter.date(from: self)
     }
     

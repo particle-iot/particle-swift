@@ -372,10 +372,10 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Foundation+ParticleSwift.swift",
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
       "line": 24,
-      "symbol": "UUID.allZeros",
-      "symbol_kind": "source.lang.swift.decl.var.static",
+      "symbol": "ParticleError.webhookGetFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {

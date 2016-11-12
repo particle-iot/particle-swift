@@ -14,7 +14,7 @@
     <a title="ParticleCloud Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (55% documented)</p>
+        <p><a href="../index.html"> Docs</a> (60% documented)</p>
         <p class="header-right"><a href="https://github.com/vakoc/particle-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -132,6 +132,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Webhook/RequestType.html">– RequestType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Webhook/Counter.html">– Counter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Webhook/Log.html">– Log</a>
               </li>
             </ul>
           </li>
@@ -711,6 +717,69 @@ if not successful</p>
             </div>
             <div class="task-group">
               <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13ParticleSwift13ParticleCloud7webhookFTSS15productIdOrSlugGSqSS_10completionFGOS_6ResultVS_7Webhook_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/webhook(_:productIdOrSlug:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13ParticleSwift13ParticleCloud7webhookFTSS15productIdOrSlugGSqSS_10completionFGOS_6ResultVS_7Webhook_T__T_">webhook(_:productIdOrSlug:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asynchronously obtain a webhook available by product or account by the webhook id</p>
+
+<p>This method will invoke authenticate with validateToken = false.  Any authentication error will be returned
+if not successful</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">webhook</span><span class="p">(</span><span class="n">_</span> <span class="nv">webhookID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">productIdOrSlug</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/Result.html">Result</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/Webhook.html">Webhook</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>webhookID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the unique identifier of the webhook to fetch</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>completion handler. Contains an array of Webhook objects</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
