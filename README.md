@@ -14,7 +14,7 @@ APIs provide access to the following portions of the Particle Cloud
 This project has the following long term goals
 
   * Follow pure swift design and coding styles
-  * Be dependency free (other than other projects authored by myself, and those will be minimal)
+  * Be dependency free
   * Work with the swift package manager and provide frameworks for iOS, macOS, tvOS, and watchOS
 
 Some general design guidelines are 
@@ -154,7 +154,6 @@ Roadmap
 
 APIs should be relatively stable but are subject to change.  Additional Particle Cloud functionality is being added
 in the following general order
-
 
   * Events
   * Firmware
