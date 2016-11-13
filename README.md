@@ -9,7 +9,7 @@ APIs provide access to the following portions of the Particle Cloud
 
   * Authentication
   * Devices
-  * Webhooks (initial support)
+  * Webhooks
 
 This project has the following long term goals
 
