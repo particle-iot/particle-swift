@@ -379,6 +379,27 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
+      "line": 25,
+      "symbol": "ParticleError.createWebhookFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
+      "line": 26,
+      "symbol": "ParticleError.failedToParseJsonFile",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
+      "line": 27,
+      "symbol": "ParticleError.deleteWebhookFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Logging.swift",
       "line": null,
       "symbol": "LogLevel",

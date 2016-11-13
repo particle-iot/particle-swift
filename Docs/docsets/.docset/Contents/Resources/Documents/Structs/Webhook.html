@@ -253,6 +253,38 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:FV13ParticleSwift7WebhookcFT5eventSS3urlV10Foundation3URL11requestTypeOS0_11RequestType_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(event:url:requestType:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV13ParticleSwift7WebhookcFT5eventSS3urlV10Foundation3URL11requestTypeOS0_11RequestType_S0_">init(event:url:requestType:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a webhook </p>
+
+<p>Webhooks created by this method are intended or use in the ParticleCloud.createWebhook 
+method.  Properties are either manually configured or read from a dictionary using the 
+configure(with:) method.  The id of all Webhook instances created with this constructor
+will be an empty string</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">event</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">requestType</span><span class="p">:</span> <span class="kt"><a href="../Structs/Webhook/RequestType.html">RequestType</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">get</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:FV13ParticleSwift7WebhookcFT4withGVs10DictionarySSP___GSqS0__"></a>
                     <a name="//apple_ref/swift/Method/init(with:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:FV13ParticleSwift7WebhookcFT4withGVs10DictionarySSP___GSqS0__">init(with:)</a>
@@ -295,6 +327,36 @@
                             </tr>
                           </tbody>
                         </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV13ParticleSwift7Webhook9configureFT4withGVs10DictionarySSP___T_"></a>
+                    <a name="//apple_ref/swift/Method/configure(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV13ParticleSwift7Webhook9configureFT4withGVs10DictionarySSP___T_">configure(with:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize the properties of the Webhook from the specified dictionary</p>
+
+<p>Non-optional properties id, event, and url are not modified by this method.  Use
+an appropriate constructor instead</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">configure</span><span class="p">(</span><span class="n">with</span> <span class="nv">dictionary</span><span class="p">:</span> <span class="kt">Dictionary</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span> <span class="kt">Any</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>

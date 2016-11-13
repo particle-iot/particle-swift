@@ -192,6 +192,18 @@ public struct Webhook {
         }
     }
     
+    /// Creates a webhook 
+    ///
+    /// Webhooks created by this method are intended or use in the ParticleCloud.createWebhook 
+    /// method.  Properties are either manually configured or read from a dictionary using the 
+    /// configure(with:) method.  The id of all Webhook instances created with this constructor
+    /// will be an empty string
+    public init(event: String, url: URL, requestType: RequestType = .get) {
+        self.id = ""
+        self.event = event
+        self.url = url
+        self.requestType = requestType
+    }
     
     /// Create a Webhook using the supplied dictionary.  
     ///
@@ -200,15 +212,24 @@ public struct Webhook {
     /// - parameter dictionary:  The dictionary containing the webhook information
     public init?(with dictionary: Dictionary<String,Any>) {
         
-        guard let id = dictionary["id"] as? String, let event = dictionary["event"] as? String, let urlString = dictionary["url"] as? String, let url = URL(string: urlString) else {
+        guard let event = dictionary["event"] as? String, let urlString = dictionary["url"] as? String, let url = URL(string: urlString) else {
             warn("Failed to create Webhook due to missing required values in \(dictionary)")
             return nil
         }
         
-        self.id = id
+        self.id = dictionary["id"] as? String ?? ""
         self.event = event
         self.url = url
         
+        configure(with: dictionary)
+    }
+    
+    /// Initialize the properties of the Webhook from the specified dictionary
+    ///
+    /// Non-optional properties id, event, and url are not modified by this method.  Use
+    /// an appropriate constructor instead
+    public mutating func configure(with dictionary: Dictionary<String, Any>) {
+    
         if let created_at = dictionary["created_at"] as? String, let created = created_at.dateWithISO8601String {
             self.created = created
         }
@@ -256,7 +277,10 @@ public struct Webhook {
     public var jsonRepresentation: [String : Any] {
 
         var ret = [String : Any]()
-        ret["id"] = id
+
+        if !id.isEmpty {
+            ret["id"] = id
+        }
         ret["event"] = event
         ret["url"] = url.absoluteString
         ret["requestType"] = requestType.rawValue
@@ -309,12 +333,106 @@ extension Webhook: Equatable {
 // MARK: Webhooks
 extension ParticleCloud {
     
+    
+    /// Asynchronously create a new webhook in the ParticleCloud
+    ///
+    /// - parameter webhook: the Webhook to create
+    /// - parameter productIdOrSlug: Product ID or slug (only for product webhooks)
+    /// - parameter completion:  callback invoked with the asynchronous result
+    public func create(webhook: Webhook, productIdOrSlug: String? = nil, completion: @escaping (Result<Webhook>) -> Void ) {
+        
+        self.authenticate(false) { result in
+            switch result {
+                
+            case .failure(let error):
+                return completion(.failure(error))
+                
+            case .success(let accessToken):
+                var request = URLRequest(url: productIdOrSlug != nil ? self.baseURL.appendingPathComponent("v1/products/\(productIdOrSlug)/webhooks") : self.baseURL.appendingPathComponent("v1/webhooks"))
+                request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+                request.httpMethod = "POST"
+                
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.httpBody = webhook.jsonRepresentation.jsonString?.data(using: .utf8)
+                
+                let task = self.urlSession.dataTask(with: request) { (data, response, error) in
+                    
+                    trace( "Created webhook", request: request, data: data, response: response, error: error)
+                    
+                    if let error = error {
+                        return completion(.failure(ParticleError.createWebhookFailed(error)))
+                    }
+                    
+                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject], let j = json, let id = j["id"] as? String, j.bool(for: "ok") == true {
+                        
+                        var newWebhook = webhook
+                        newWebhook.configure(with: j)
+                        newWebhook.id = id
+                        return completion(.success(newWebhook))
+                    } else {
+                        
+                        let message = data != nil ? String(data: data!, encoding: String.Encoding.utf8) ?? "" : ""
+                        warn("failed to create webhook with response: \(response) and message body \(message)")
+                        
+                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to create webhook: \(message)", tableName: nil, bundle: Bundle(for: type(of: self)), comment: "The http request to create the webhook failed with message: \(message)")])
+                        return completion(.failure(ParticleError.createWebhookFailed(error)))
+                    }
+                }
+                task.resume()
+            }
+        }
+    }
+    
+    /// Asynchronously delete a new webhook in the ParticleCloud
+    ///
+    /// - parameter webhookID: the id Webhook to delete
+    /// - parameter productIdOrSlug: Product ID or slug (only for product webhooks)
+    /// - parameter completion:  callback invoked with the asynchronous result
+    public func delete(webhookID: String, productIdOrSlug: String? = nil, completion: @escaping (Result<Bool>) -> Void ) {
+        
+        self.authenticate(false) { result in
+            switch result {
+                
+            case .failure(let error):
+                return completion(.failure(error))
+                
+            case .success(let accessToken):
+                var request = URLRequest(url: productIdOrSlug != nil ? self.baseURL.appendingPathComponent("v1/products/\(productIdOrSlug)/webhooks/\(webhookID)") : self.baseURL.appendingPathComponent("v1/webhooks/\(webhookID)"))
+                request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+                request.httpMethod = "DELETE"
+                
+                let task = self.urlSession.dataTask(with: request) { (data, response, error) in
+                    
+                    trace( "Delete webhook", request: request, data: data, response: response, error: error)
+                    
+                    if let error = error {
+                        return completion(.failure(ParticleError.createWebhookFailed(error)))
+                    }
+                    
+                    if let response = response as? HTTPURLResponse, response.statusCode == 204 {
+                        return completion(.success(true))
+                    } else {
+                        
+                        let message = data != nil ? String(data: data!, encoding: String.Encoding.utf8) ?? "" : ""
+                        warn("failed to delete webhook \(webhookID) with response: \(response) and message body \(message)")
+                        
+                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to create webhook: \(message)", tableName: nil, bundle: Bundle(for: type(of: self)), comment: "The http request to create the webhook failed with message: \(message)")])
+                        return completion(.failure(ParticleError.deleteWebhookFailed(webhookID, error)))
+                    }
+                }
+                task.resume()
+            }
+        }
+    }
+    
+    
     /// Asynchronously obtain a webhook available by product or account by the webhook id
     ///
     /// This method will invoke authenticate with validateToken = false.  Any authentication error will be returned
     /// if not successful
     ///
     /// - parameter webhookID: the unique identifier of the webhook to fetch
+    /// - parameter productIdOrSlug: Product ID or slug (only for product webhooks)
     /// - parameter completion: completion handler. Contains an array of Webhook objects
     public func webhook(_ webhookID: String, productIdOrSlug: String? = nil, completion: @escaping (Result<Webhook>) -> Void ) {
         
@@ -344,7 +462,7 @@ extension ParticleCloud {
                         warn("failed to get webhook \(webhookID) with response: \(response) and message body \(message)")
                         
                         /// todo: this error is wrong
-                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to get webhook \(webhookID): \(message)", tableName: nil, bundle: Bundle(for: type(of: self)), comment: "The http request to get the webhook \(webhookID) failed with message: \(message)")])
+                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to get webhook \(webhookID): \(message)", tableName: nil, bundle: Bundle(for: type(of: self)), comment: "The http request to get the webhook failed with message: \(message)")])
                         
                         return completion(.failure(ParticleError.webhookGetFailed(webhookID, error)))
                     }
@@ -359,6 +477,7 @@ extension ParticleCloud {
     /// This method will invoke authenticate with validateToken = false.  Any authentication error will be returned
     /// if not successful
     ///
+    /// - parameter productIdOrSlug: Product ID or slug (only for product webhooks)
     /// - parameter completion: completion handler. Contains an array of Webhook objects
     public func webhooks(productIdOrSlug: String? = nil, completion: @escaping (Result<[Webhook]>) -> Void ) {
         
@@ -386,8 +505,6 @@ extension ParticleCloud {
                         
                         let message = data != nil ? String(data: data!, encoding: String.Encoding.utf8) ?? "" : ""
                         warn("failed to list all webhooks with response: \(response) and message body \(message)")
-                        
-                        /// todo: this error is wrong
                         let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain active webhooks: \(message)", tableName: nil, bundle: Bundle(for: type(of: self)), comment: "The http request to obtain the webhooks failed with message: \(message)")])
                         
                         return completion(.failure(ParticleError.webhookListFailed(error)))
@@ -397,7 +514,6 @@ extension ParticleCloud {
             }
         }
     }
-    
 }
 
 

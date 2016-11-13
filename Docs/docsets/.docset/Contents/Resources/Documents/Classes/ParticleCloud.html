@@ -720,6 +720,152 @@ if not successful</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:FC13ParticleSwift13ParticleCloud6createFT7webhookVS_7Webhook15productIdOrSlugGSqSS_10completionFGOS_6ResultS1__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/create(webhook:productIdOrSlug:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13ParticleSwift13ParticleCloud6createFT7webhookVS_7Webhook15productIdOrSlugGSqSS_10completionFGOS_6ResultS1__T__T_">create(webhook:productIdOrSlug:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asynchronously create a new webhook in the ParticleCloud</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">create</span><span class="p">(</span><span class="nv">webhook</span><span class="p">:</span> <span class="kt"><a href="../Structs/Webhook.html">Webhook</a></span><span class="p">,</span> <span class="nv">productIdOrSlug</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/Result.html">Result</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/Webhook.html">Webhook</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>webhook</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Webhook to create</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>productIdOrSlug</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Product ID or slug (only for product webhooks)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>callback invoked with the asynchronous result</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC13ParticleSwift13ParticleCloud6deleteFT9webhookIDSS15productIdOrSlugGSqSS_10completionFGOS_6ResultSb_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/delete(webhookID:productIdOrSlug:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13ParticleSwift13ParticleCloud6deleteFT9webhookIDSS15productIdOrSlugGSqSS_10completionFGOS_6ResultSb_T__T_">delete(webhookID:productIdOrSlug:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asynchronously delete a new webhook in the ParticleCloud</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">delete</span><span class="p">(</span><span class="nv">webhookID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">productIdOrSlug</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/Result.html">Result</a></span><span class="o">&lt;</span><span class="kt">Bool</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>webhookID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the id Webhook to delete</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>productIdOrSlug</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Product ID or slug (only for product webhooks)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>callback invoked with the asynchronous result</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:FC13ParticleSwift13ParticleCloud7webhookFTSS15productIdOrSlugGSqSS_10completionFGOS_6ResultVS_7Webhook_T__T_"></a>
                     <a name="//apple_ref/swift/Method/webhook(_:productIdOrSlug:completion:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:FC13ParticleSwift13ParticleCloud7webhookFTSS15productIdOrSlugGSqSS_10completionFGOS_6ResultVS_7Webhook_T__T_">webhook(_:productIdOrSlug:completion:)</a>
@@ -757,6 +903,19 @@ if not successful</p>
                               <td>
                                 <div>
                                   <p>the unique identifier of the webhook to fetch</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>productIdOrSlug</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Product ID or slug (only for product webhooks)</p>
 
                                 </div>
                               </td>
@@ -811,6 +970,19 @@ if not successful</p>
                         <h4>Parameters</h4>
                         <table class="graybox">
                           <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>productIdOrSlug</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Product ID or slug (only for product webhooks)</p>
+
+                                </div>
+                              </td>
+                            </tr>
                             <tr>
                               <td>
                                 <code>

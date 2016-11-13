@@ -21,7 +21,10 @@ public enum ParticleError: Error {
     createClaimCode(Error),
     unclaimDeviceFailed(Error),
     webhookListFailed(Error),
-    webhookGetFailed(String,Error)
+    webhookGetFailed(String,Error),
+    createWebhookFailed(Error),
+    failedToParseJsonFile,
+    deleteWebhookFailed(String,Error)
 }
 
 extension ParticleError: CustomStringConvertible {
@@ -54,6 +57,12 @@ extension ParticleError: CustomStringConvertible {
             return String.localizedStringWithFormat("Unable to list the available webhooks with error %1@", "\(error)")
         case .webhookGetFailed(let webhookID, let error):
             return String.localizedStringWithFormat("Unable to get the webhook %1@ with error %2@", "\(webhookID)", "\(error)")
+        case .createWebhookFailed(let error):
+            return String.localizedStringWithFormat("Unable to create the webhook with error %1@", "\(error)")
+        case .failedToParseJsonFile:
+            return String.localizedStringWithFormat("Unable to parse the specified JSON file")
+        case .deleteWebhookFailed(let webhookID, let error):
+            return String.localizedStringWithFormat("Unable to delete the webhook %1@ with error %2@", "\(webhookID)", "\(error)")            
         }
     }
 }
