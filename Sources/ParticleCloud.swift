@@ -9,17 +9,16 @@
 import Foundation
 
 
-
-
-/// The base for the particle URLs
-public let kParticleDefaultURL = URL(string: "https://api.particle.io/")!
-
 ///
 ///
 /// ParticleCloud methods are not generally stateful.  Beyond authentication, which itself is stateful
 /// only in that it stores credentials thorugh the secure storage delegate, does not
 /// 
 public class ParticleCloud: WebServiceCallable {
+    
+    /// The base for the particle URLs
+    public static let defaultURL = URL(string: "https://api.particle.io/")!
+
     
     /// The base URL used to interact with particle.  Set during initialization
     public let baseURL: URL
@@ -48,7 +47,7 @@ public class ParticleCloud: WebServiceCallable {
     ///
     /// - parameter baseURL: the base url to use, defaults to kParticleDefaultURL
     /// - parameter secureStorage: provider of credentials
-    public init(baseURL:URL = kParticleDefaultURL, secureStorage: SecureStorage?) {
+    public init(baseURL:URL = defaultURL, secureStorage: SecureStorage?) {
         self.baseURL = baseURL
         self.secureStorage = secureStorage
     }

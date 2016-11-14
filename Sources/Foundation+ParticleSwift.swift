@@ -140,3 +140,22 @@ extension Array where Element: AnyObject {
     }
 }
 
+extension Scanner {
+    
+    /// The remaining portion of the scanner's string
+    var remainder: String {
+        return self.string.substring(from: self.string.index(self.string.startIndex, offsetBy: self.scanLocation))
+    }
+
+    /// Check the next character from the scanner's location
+    /// - parameter character: the character to check
+    /// - returns: true if the next character matches the supplied value, false otherwise
+    func isNext(character: Character) -> Bool {
+        let scanLocation = self.scanLocation
+        if self.string.index(self.string.characters.startIndex, offsetBy: scanLocation + 1) < self.string.characters.endIndex {
+            return self.string.characters[self.string.index(self.string.characters.startIndex, offsetBy: scanLocation + 1)] == character
+            }
+        return false
+    }
+}
+

@@ -400,6 +400,27 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Events.swift",
+      "line": 43,
+      "symbol": "EventSource.State.started",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Events.swift",
+      "line": 43,
+      "symbol": "EventSource.State.stopped",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Events.swift",
+      "line": 166,
+      "symbol": "EventSource.urlSession(_:dataTask:didReceive:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Logging.swift",
       "line": null,
       "symbol": "LogLevel",

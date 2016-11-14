@@ -13,7 +13,7 @@
     <a title="  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (60% documented)</p>
+        <p><a href="index.html"> Docs</a> (61% documented)</p>
         <p class="header-right"><a href="https://github.com/vakoc/particle-swift"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -31,6 +31,12 @@
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Classes/EventSource.html">EventSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/EventSource/State.html">– State</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/ParticleCloud.html">ParticleCloud</a>
               </li>
             </ul>
@@ -43,9 +49,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="Global Variables.html#/s:v13ParticleSwift14globalLogLevelOS_8LogLevel">globalLogLevel</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Global Variables.html#/s:v13ParticleSwift19kParticleDefaultURLV10Foundation3URL">kParticleDefaultURL</a>
               </li>
             </ul>
           </li>
@@ -150,7 +153,7 @@
 
 <p>Swift 3.0 Package for interacting with Particle Cloud services </p>
 
-<p><em>Compatibility:</em> Xcode 8 beta 6 or the equivalent open source variant of Swift is required.</p>
+<p><em>Compatibility:</em> Xcode 8 (Swift 3.0) or the equivalent open source variant of Swift is required.</p>
 
 <p>This project provides a pure Swift SDK for interacting with the particle.io cloud services.  The 
 APIs provide access to the following portions of the Particle Cloud</p>
@@ -158,14 +161,14 @@ APIs provide access to the following portions of the Particle Cloud</p>
 <ul>
 <li>Authentication</li>
 <li>Devices</li>
-<li>Webhooks (initial support)</li>
+<li>Webhooks</li>
 </ul>
 
 <p>This project has the following long term goals</p>
 
 <ul>
 <li>Follow pure swift design and coding styles</li>
-<li>Be dependency free (other than other projects authored by myself, and those will be minimal)</li>
+<li>Be dependency free</li>
 <li>Work with the swift package manager and provide frameworks for iOS, macOS, tvOS, and watchOS</li>
 </ul>
 
@@ -179,7 +182,116 @@ APIs provide access to the following portions of the Particle Cloud</p>
 
 <p>Intended usages for this library would include server side Swift, iOS/tvOS/macOS/watchOS applications that utilize particle cloud service, or any other Swift based product that wants to use the awesome Particle Cloud.</p>
 
-<p>A swift package manager compatible executable project is available <a href="https://github.com/vakoc/particle-swift-cli">here</a>.  </p>
+<p>A swift package manager compatible executable project is available <a href="https://github.com/vakoc/particle-swift-cli">here</a>. </p>
+<a href='#using-the-library' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='using-the-library'>Using the Library</h2>
+
+<p>particle-swift can be used by by any platform that is supported by the Swift Package Manager (SPM) or directly by Xcode for Apple based platforms.</p>
+
+<p>SPM based deployments simply need to include the particle-swift github url in the Package.swift as shown below.  The particle-swift-cli, for example, utilizes particle-swift by delcaring it in Package.swift as follows</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">PackageDescription</span>
+
+<span class="k">let</span> <span class="nv">package</span> <span class="o">=</span> <span class="kt">Package</span><span class="p">(</span>
+    <span class="nv">name</span><span class="p">:</span> <span class="s">"particle-swift-cli"</span><span class="p">,</span>
+    <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+        <span class="o">.</span><span class="kt">Package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/vakoc/particle-swift.git"</span><span class="p">,</span> <span class="nv">versions</span><span class="p">:</span> <span class="kt">Version</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">...</span><span class="kt">Version</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</code></pre>
+
+<p>The SPM supports only macOS targets on the Apple platforms and command line applications on Linux.  Traditional iOS, tvOS, watchOS, or macOS applications may also utilize particle-swift by simply cloning the git repository and adding the source managed Xcode/ParticleSwift.xcodeproj Xcode project directly into their sources.  </p>
+
+<p>This Xcode project provides Swift frameworks for each of those platforms.  Simply add the corresponding framework as an embedded framework to your application.  Any source files that want to utilize particle-swift should import the module as shown below</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">Foundation</span>
+<span class="kd">import</span> <span class="kt">ParticleSwift</span>
+
+<span class="k">let</span> <span class="nv">particleCloud</span> <span class="o">=</span> <span class="kt">ParticleCloud</span><span class="p">(</span><span class="o">.....</span><span class="p">)</span>
+</code></pre>
+<a href='#getting-started' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='getting-started'>Getting Started</h2>
+
+<p>particle-swift provides the APIs to interact with the Particle Cloud webservices.  Authentication is handled by the particle-swift library but credential storage is not;  the caller is reponsible for providing and securely storing sensitive information.  Apple platorms provide keychain storage which is suitable for persisting sensitive information.  </p>
+
+<p>The following sample provides an example of using particle-swift using insecure credential management.  Keychain services is beyond the scope of this example.  Note:  ParticleCloud instances are not singletons and is fully supported to have multiple instances run concurrently that may utilize separate OAuth realms at the same time.  Multi-user concurrency is an essential design goal of this library.</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">Foundation</span>
+<span class="kd">import</span> <span class="kt">ParticleSwift</span>
+
+<span class="c1">// Illustrative example utilizing insecure UserDefaults for token storage and hard coded</span>
+<span class="c1">// user names.  Production apps should use more secure mechanisms like the Keychain services </span>
+<span class="c1">// provided by the OS</span>
+<span class="kd">class</span> <span class="kt">MyParticleCloud</span> <span class="p">{</span>
+
+    <span class="k">var</span> <span class="nv">token</span><span class="p">:</span> <span class="kt">OAuthToken</span><span class="p">?</span>
+    <span class="k">var</span> <span class="nv">particleCloud</span><span class="p">:</span> <span class="kt">ParticleCloud</span><span class="p">?</span>
+
+    <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="k">let</span> <span class="nv">dictionary</span> <span class="o">=</span> <span class="kt">UserDefaults</span><span class="o">.</span><span class="n">standard</span><span class="o">.</span><span class="nf">value</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"token"</span><span class="p">)</span> <span class="k">as?</span> <span class="kt">Dictionary</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="o">&gt;</span> <span class="p">{</span>
+            <span class="k">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="kt">OAuthToken</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">dictionary</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">particleCloud</span> <span class="o">=</span> <span class="kt">ParticleCloud</span><span class="p">(</span><span class="nv">secureStorage</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">callFunctionOnAllMyDevices</span><span class="p">()</span> <span class="p">{</span>
+
+        <span class="n">particleCloud</span><span class="p">?</span><span class="o">.</span><span class="n">devices</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+            <span class="k">switch</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">devices</span><span class="p">):</span>
+                <span class="n">devices</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="n">device</span> <span class="k">in</span>
+                    <span class="k">self</span><span class="o">.</span><span class="n">particleCloud</span><span class="p">?</span><span class="o">.</span><span class="nf">callFunction</span><span class="p">(</span><span class="s">"myFunction"</span><span class="p">,</span> <span class="nv">deviceID</span><span class="p">:</span> <span class="n">device</span><span class="o">.</span><span class="n">deviceID</span><span class="p">,</span> <span class="nv">argument</span><span class="p">:</span> <span class="s">"7"</span><span class="p">)</span> <span class="p">{</span> <span class="n">functionResult</span> <span class="k">in</span>
+
+                        <span class="k">switch</span> <span class="p">(</span><span class="n">functionResult</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">retVal</span><span class="p">):</span>
+                                <span class="nf">print</span><span class="p">(</span><span class="s">"Result of myFunction(7) device </span><span class="se">\(</span><span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="se">)</span><span class="s"> was </span><span class="se">\(</span><span class="n">retVal</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+                            <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+                                <span class="nf">print</span><span class="p">(</span><span class="s">"Error:  Failed to call myFunction(7) on device </span><span class="se">\(</span><span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="se">)</span><span class="s"> with error </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"Error:  Unable to enumerate all devices with function </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="kt">MyParticleCloud</span><span class="p">:</span> <span class="kt">SecureStorage</span> <span class="p">{</span>
+
+    <span class="kd">func</span> <span class="nf">username</span><span class="p">(</span><span class="n">_</span> <span class="nv">realm</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">"myuser"</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">password</span><span class="p">(</span><span class="n">_</span> <span class="nv">realm</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">"mypassword"</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">oauthClientId</span><span class="p">(</span><span class="n">_</span> <span class="nv">realm</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">"particle"</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">oauthClientSecret</span><span class="p">(</span><span class="n">_</span> <span class="nv">realm</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">"particle"</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">oauthToken</span><span class="p">(</span><span class="n">_</span> <span class="nv">realm</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">OAuthToken</span><span class="p">?</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">token</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">updateOAuthToken</span><span class="p">(</span><span class="n">_</span> <span class="nv">token</span><span class="p">:</span> <span class="kt">OAuthToken</span><span class="p">?,</span> <span class="n">forRealm</span> <span class="nv">realm</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="n">token</span>
+        <span class="c1">/// Persist this for subsequent runs</span>
+        <span class="kt">UserDefaults</span><span class="o">.</span><span class="n">standard</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="n">token</span><span class="o">.</span><span class="n">dictionary</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"token"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The following example uses the MyParticleCloud class to call a function on all devices assocaited with the user&rsquo;s account.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">cloud</span> <span class="o">=</span> <span class="kt">MyParticleCloud</span><span class="p">()</span>
+<span class="n">cloud</span><span class="o">.</span><span class="nf">callFunctionOnAllMyDevices</span><span class="p">()</span>
+</code></pre>
+
+<p>Note:  if you are using particle-swift in a command line style application you will need to create a runloop.  All particle-swift interactions are asynchronous and utliize background threads for network communications.  Create a runloop like</p>
+<pre class="highlight swift"><code><span class="kt">RunLoop</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="nf">run</span><span class="p">(</span><span class="nv">until</span><span class="p">:</span> <span class="kt">Date</span><span class="o">.</span><span class="n">distantFuture</span><span class="p">)</span>
+</code></pre>
+
+<p>Refer to the particle-swift-cli sample application, which utilizes every particle-swift capability, for more examples on how to make use of this framework.</p>
 <a href='#roadmap' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='roadmap'>Roadmap</h2>
 
 <p>APIs should be relatively stable but are subject to change.  Additional Particle Cloud functionality is being added
@@ -198,7 +310,7 @@ in the following general order</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Mark Vakoc</a>. All rights reserved. (Last updated: 2016-11-12)</p>
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Mark Vakoc</a>. All rights reserved. (Last updated: 2016-11-13)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
