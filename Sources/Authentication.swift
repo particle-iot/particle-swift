@@ -43,7 +43,7 @@ public struct OAuthToken: CustomStringConvertible, StringKeyedDictionaryConverti
     public init?(with dictionary: [String : Any]) {
         guard let accessToken = dictionary["access_token"] as? String , !accessToken.isEmpty,
             let tokenType = dictionary["token_type"] as? String , !tokenType.isEmpty,
-            let expiresIn = dictionary["expires_in"] as? Int,
+            let expiresIn = dictionary["expires_in"] as? Double,
             let refreshToken = dictionary["refresh_token"] as? String , !tokenType.isEmpty
         
         else {
@@ -52,7 +52,7 @@ public struct OAuthToken: CustomStringConvertible, StringKeyedDictionaryConverti
         
         self.accessToken = accessToken
         self.tokenType = tokenType
-        self.expiresIn = Double(expiresIn)
+        self.expiresIn = expiresIn
         self.refreshToken = refreshToken
         self.created = (dictionary["created_at"] as? String)?.dateWithISO8601String ?? Date()
     }
