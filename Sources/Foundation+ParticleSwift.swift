@@ -78,8 +78,6 @@ extension Dictionary where Key: ExpressibleByStringLiteral, Value: ExpressibleBy
 }
 
 
-
-
 extension Dictionary where Key: ExpressibleByStringLiteral, Value: Any {
     
     /// Return the boolean value for a given key
@@ -108,7 +106,7 @@ extension Dictionary where Key: ExpressibleByStringLiteral, Value: Any {
     }
     
     /// The dictionary as a JSON object, or nil if the object cannot be converted to JSON
-    var jsonString: String?  {
+    public var jsonString: String?  {
         if let dict = (self as AnyObject) as? Dictionary<String, AnyObject> {
             do {
                 let data = try JSONSerialization.data(withJSONObject: dict, options: [.prettyPrinted])

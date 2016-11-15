@@ -7,6 +7,11 @@
 
 import Foundation
 
+extension Notification.Name {
+    
+    /// Notification emitted when a particle event occurs
+    public static let ParticleEvent = Notification.Name("ParticleEventNotification")
+}
 
 
 /// Event source that monitors and notifies on events emitted by monitored devices
@@ -18,6 +23,64 @@ import Foundation
 /// useful only for the lifetime of the access token provided
 public class EventSource: NSObject {
     
+    /// The key in the user info of the Notification.Name.ParticleEvent containing the actual Event
+    public static let ParticleEventKey = "ParticleEventKey"
+    
+    
+    /// Represents an event received from an EventSource (Particle Cloud)
+    public struct Event {
+        
+        /// The name of the event
+        public let name: String
+        
+        /// the date the event was published
+        public let published: Date
+        
+        /// ttl
+        public let ttl: Int
+        
+        /// The identifier of the core
+        public let coreid: String
+        
+        /// Data associated with the event
+        public let data: String?
+        
+        /// JSON representation of the event
+        public var jsonRepresentation: Dictionary<String,Any> {
+            var ret = [String : Any]()
+            ret["name"] = name
+            ret["published_at"] = published.ISO8601String
+            ret["ttl"] = ttl
+            ret["coreid"] = coreid
+            if let data = data {
+                ret["data"] = data
+            }
+            return ret
+        }
+        
+        /// Create an event with the specified name and properties defined in a dictionary
+        ///
+        /// Returns nil if the event name is invalid or the dictionary does not contain
+        /// all the required information
+        ///
+        /// - parameter name: the name of the event
+        /// - parameter dictionary: the dictionary containing the required initialization properties
+        fileprivate init?(name: String, dictionary: Dictionary<String,Any>) {
+            
+            guard !name.isEmpty, let dateString = dictionary["published_at"] as? String, let date = dateString.dateWithISO8601String,
+                let ttl = dictionary["ttl"], let ttlInt = Int("\(ttl)"),
+                let coreid = dictionary["coreid"]  else {
+                    warn("Unable to create an Event with name \(name) and dictionary \(dictionary)")
+                    return nil
+            }
+            
+            self.name = name
+            self.published = date
+            self.ttl = ttlInt
+            self.coreid = "\(coreid)"
+            self.data = dictionary["data"] as? String
+        }
+    }
     
     /// The URL of the event emitter
     public let url: URL
@@ -105,7 +168,7 @@ public class EventSource: NSObject {
     
     /// Parse the incoming string.  The method should be invoked only within the context of the self.queue dispatch queue
     ///
-    /// - Parameter string: <#string description#>
+    /// - Parameter string: the incoming string
     fileprivate func parse(_ string: String) {
         
         let scanner = Scanner(string: pendingString + string)
@@ -147,16 +210,27 @@ public class EventSource: NSObject {
                     parseState = .pendingEventTag
                     guard let json = json as? String else { break }
                     let data = json.data(using: .utf8)
-                    if let nextEvent = nextEvent as? String, let data = data, let parsedJson = try? JSONSerialization.jsonObject(with: data, options: []) {
+                    if let nextEvent = nextEvent as? String, let data = data, let parsedJson = try? JSONSerialization.jsonObject(with: data, options: []) as? Dictionary<String,Any>, var j = parsedJson, let event = Event(name: nextEvent, dictionary: j) {
                         trace("Received event \(nextEvent) with payload \(parsedJson)")
+                        j["name"] = nextEvent
+                        NotificationCenter.default.post(name: .ParticleEvent, object: self, userInfo: [EventSource.ParticleEventKey : event])
                     }
                 }
                 break
             }
-            
-            
             pendingString = scanner.remainder
         } while parseState != currentState && !pendingString.isEmpty
+    }
+}
+
+extension EventSource.Event: Equatable {
+    
+    public static func ==(lhs: EventSource.Event, rhs: EventSource.Event) -> Bool {
+        return lhs.name == rhs.name &&
+            lhs.published == rhs.published &&
+            lhs.ttl == rhs.ttl &&
+            lhs.coreid == rhs.coreid &&
+            lhs.data == rhs.data
     }
 }
 
