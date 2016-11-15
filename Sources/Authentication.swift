@@ -9,13 +9,54 @@
 import Foundation
 
 /// Delegate protocol used to provide ParticleSwift with credentials storage
+///
+/// The functions of this protocol take a realm as the parameter.  The realm is the domain
+/// in which to obtain credentails.  Derivative products may reuse this protocol to enable 
+/// OAuth credential handling for multiple backends
+///
+/// Clients interested only in ParticleSwift may either ignore this parameter or return values
+/// only when the realm is equal to ParticleSwiftInfo.realm, or the literal value "ParticleSwift"
+///
+/// Particle swift will typically ask the secure storage for a valid OAuthToken.  If the token is
+/// not provided it will begin the authentication process, which will subsequently ask for the 
+/// username, password, client id, and client secret.  These will be used to create a new OAuth token
+/// and, if successful, will be provided back to the secure storage through the update method.
+///
+/// The secure storage class should should securely persist any tokens it is given and provide them
+/// when asked.  Failure to store/restore tokens can result in a significant number of new server
+/// created tokens and significant performce slowdowns due to the number of network requests needed
+/// for their creation.
+///
 public protocol SecureStorage: class {
-    
+   
+    /// Return the username for the given realm
+    /// - parameter realm: The realm (domain) to return results.  Ignore if only using ParticleSwift 
+    /// - returns: the username, or nil if not available
     func username(_ realm: String) -> String?
+    
+    /// Return the password for the given realm
+    /// - parameter realm: The realm (domain) to return results.  Ignore if only using ParticleSwift
+    /// - returns: the password, or nil if not available
     func password(_ realm: String) -> String?
+    
+    /// Return the OAuth client id for the given realm
+    /// - parameter realm: The realm (domain) to return results.  Ignore if only using ParticleSwift
+    /// - returns: the OAuth client id, or nil if not available
     func oauthClientId(_ realm: String) -> String?
+    
+    /// Return the OAuth client secret for the given realm
+    /// - parameter realm: The realm (domain) to return results.  Ignore if only using ParticleSwift
+    /// - returns: the OAuth client secret, or nil if not available
     func oauthClientSecret(_ realm: String) -> String?
+    
+    /// Return the persisted OAuth token for a given ealm
+    /// - parameter realm: The realm (domain) to return results.  Ignore if only using ParticleSwift
+    /// - returns: the OAUth token, or nil if not available
     func oauthToken(_ realm: String) -> OAuthToken?
+    
+    /// Save the specified token for the given realm
+    /// - parameter realm: The realm (domain) to return results.  Ignore if only using ParticleSwift
+    /// - returns: the OAuth token, or nil if not available
     func updateOAuthToken(_ token: OAuthToken?, forRealm realm: String)
 }
 
@@ -40,6 +81,7 @@ public struct OAuthToken: CustomStringConvertible, StringKeyedDictionaryConverti
     /// Creates an OAuth token from a string keyed dictionary as returned by /oauth/token
     ///
     /// If any of the required properties are not found it returns nil
+    /// - parameter dictionary: the key/value definition of the token to parse
     public init?(with dictionary: [String : Any]) {
         guard let accessToken = dictionary["access_token"] as? String , !accessToken.isEmpty,
             let tokenType = dictionary["token_type"] as? String , !tokenType.isEmpty,
@@ -47,6 +89,7 @@ public struct OAuthToken: CustomStringConvertible, StringKeyedDictionaryConverti
             let refreshToken = dictionary["refresh_token"] as? String , !tokenType.isEmpty
         
         else {
+            warn("failed to reconstitute and OAuth token with the dictionary \(dictionary)")
             return nil
         }
         
@@ -57,14 +100,17 @@ public struct OAuthToken: CustomStringConvertible, StringKeyedDictionaryConverti
         self.created = (dictionary["created_at"] as? String)?.dateWithISO8601String ?? Date()
     }
     
+    /// The date the token expires
     public var expirationDate: Date {
         return self.created.addingTimeInterval(expiresIn)
     }
     
+    /// Textual description of the token
     public var description: String {
         return "OAuthToken[accessToken=\(accessToken), expires=\(self.expirationDate.description)]"
     }
     
+    /// Dictionary represenation of the token, suitable for serialization
     public var dictionary: [String : Any] {
         return ["access_token" : accessToken, "token_type" : self.tokenType, "expires_in" : self.expiresIn, "refresh_token" : self.refreshToken, "created_at" : self.created.ISO8601String]
     }
@@ -103,10 +149,15 @@ public struct OAuthTokenListEntry: CustomStringConvertible {
     }
 }
 
+/// Abstraction for services that provide OAuth based uathentication.  OAuthAutheticable are objects
+/// that can request, process, and use credentials to validate or create OAuth tokens and store them
+/// for subsequent use
 public protocol OAuthAuthenticatable: class, WebServiceCallable {
     
+    /// The realm for authentication.  Used to enable multiple OAuth providers out of a single secure storage provider
     var realm: String { get }
     
+    /// The secure storage provider used to provide/persist credentails on a per realm instance
     var secureStorage: SecureStorage? { get }
         
     /// Performs authentication asynchronously returning the access token to utilize

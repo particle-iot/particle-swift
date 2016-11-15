@@ -5,9 +5,7 @@
 //
 // See http://www.vakoc.com/LICENSE.txt for license information
 
-
 import Foundation
-
 
 extension Date {
     
@@ -124,7 +122,7 @@ extension Dictionary where Key: ExpressibleByStringLiteral, Value: Any {
 extension Array where Element: AnyObject {
     
     /// The array as a JSON object, or nil if the object cannot be converted to JSON
-    var jsonString: String?  {
+    public var jsonString: String?  {
 
         do {
             let data = try JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted])
