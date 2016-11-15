@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Product Enum Reference</title>
+    <title>Dictionary Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/Product" class="dashAnchor"></a>
-    <a title="Product Enum Reference"></a>
+    <a name="//apple_ref/swift/Extension/Dictionary" class="dashAnchor"></a>
+    <a title="Dictionary Extension Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (63% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Product Enum Reference
+        Dictionary Extension Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -158,15 +158,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Product</h1>
+            <h1>Dictionary</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Product</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Dictionary</span><span class="o">&lt;</span><span class="kt">Key</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">Value</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">Collection</span><span class="p">,</span> <span class="kt">ExpressibleByDictionaryLiteral</span></code></pre>
 
                 </div>
               </div>
-            <p>Represents the particle product</p>
-
+            
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -174,9 +173,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO13ParticleSwift7Product4coreFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/core" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO13ParticleSwift7Product4coreFMS0_S0_">core</a>
+                    <a name="/s:ve13ParticleSwift0_Rxs26ExpressibleByStringLiteralxs8HashablerVs10Dictionary10jsonStringGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/jsonString" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ve13ParticleSwift0_Rxs26ExpressibleByStringLiteralxs8HashablerVs10Dictionary10jsonStringGSqSS_">jsonString</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -184,99 +183,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Particle Core</p>
+                        <p>The dictionary as a JSON object, or nil if the object cannot be converted to JSON</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">core</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FO13ParticleSwift7Product6photonFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/photon" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO13ParticleSwift7Product6photonFMS0_S0_">photon</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Particle Photon</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">photon</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FO13ParticleSwift7Product8electronFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/electron" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO13ParticleSwift7Product8electronFMS0_S0_">electron</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Particle Electron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">electron</span> <span class="o">=</span> <span class="mi">10</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FO13ParticleSwift7Product13productStringFT_SS"></a>
-                    <a name="//apple_ref/swift/Method/productString()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO13ParticleSwift7Product13productStringFT_SS">productString()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Product</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">jsonString</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
