@@ -11,6 +11,7 @@
 		4F1110351DD7AA400036E55C /* Webhooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1110331DD7AA200036E55C /* Webhooks.swift */; };
 		4F1110361DD7AA410036E55C /* Webhooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1110331DD7AA200036E55C /* Webhooks.swift */; };
 		4F1110371DD7AA410036E55C /* Webhooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1110331DD7AA200036E55C /* Webhooks.swift */; };
+		4F5304DC1DDACE4900286CA6 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5304DB1DDACE4900286CA6 /* Events.swift */; };
 		4FA85AA61D0C866C00EC906B /* ParticleSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FA85AA51D0C866C00EC906B /* ParticleSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4FA85AAD1D0C866C00EC906B /* ParticleSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA85AA21D0C866C00EC906B /* ParticleSwift.framework */; };
 		4FA85AB21D0C866C00EC906B /* ParticleSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85AB11D0C866C00EC906B /* ParticleSwiftTests.swift */; };
@@ -81,6 +82,7 @@
 
 /* Begin PBXFileReference section */
 		4F1110331DD7AA200036E55C /* Webhooks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Webhooks.swift; sourceTree = "<group>"; };
+		4F5304DB1DDACE4900286CA6 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Events.swift; path = ../Xcode/Events.swift; sourceTree = "<group>"; };
 		4FA85AA21D0C866C00EC906B /* ParticleSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParticleSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA85AA51D0C866C00EC906B /* ParticleSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParticleSwift.h; sourceTree = "<group>"; };
 		4FA85AA71D0C866C00EC906B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -213,15 +215,16 @@
 		4FA85ABC1D0C87E600EC906B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				4F1110331DD7AA200036E55C /* Webhooks.swift */,
-				4FFCEF0F1D443C6E00FBECDE /* ParticleSwiftInfo.swift */,
-				4FFCEE881D43B07200FBECDE /* Logging.swift */,
-				4FA85B0D1D0CA04100EC906B /* Common.swift */,
-				4FA85B081D0C9FF900EC906B /* Errors.swift */,
 				4FA85B121D0CA07B00EC906B /* Authentication.swift */,
-				4FA85B171D0CA14800EC906B /* ParticleCloud.swift */,
+				4FA85B0D1D0CA04100EC906B /* Common.swift */,
 				4FA85B191D0CA14800EC906B /* Device.swift */,
+				4FA85B081D0C9FF900EC906B /* Errors.swift */,
+				4F5304DB1DDACE4900286CA6 /* Events.swift */,
 				4FA85B271D0CA15900EC906B /* Foundation+ParticleSwift.swift */,
+				4FA85B171D0CA14800EC906B /* ParticleCloud.swift */,
+				4FFCEE881D43B07200FBECDE /* Logging.swift */,
+				4FFCEF0F1D443C6E00FBECDE /* ParticleSwiftInfo.swift */,
+				4F1110331DD7AA200036E55C /* Webhooks.swift */,
 			);
 			name = Sources;
 			path = ../Sources;
@@ -576,6 +579,7 @@
 				4FA85B0E1D0CA04100EC906B /* Common.swift in Sources */,
 				4FA85B1A1D0CA14800EC906B /* ParticleCloud.swift in Sources */,
 				4FA85B2C1D0CA15900EC906B /* Foundation+ParticleSwift.swift in Sources */,
+				4F5304DC1DDACE4900286CA6 /* Events.swift in Sources */,
 				4FA85B221D0CA14800EC906B /* Device.swift in Sources */,
 				4FA85B131D0CA07B00EC906B /* Authentication.swift in Sources */,
 				4FFCEE891D43B07200FBECDE /* Logging.swift in Sources */,
