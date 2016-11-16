@@ -10,7 +10,39 @@ import Foundation
 extension Notification.Name {
     
     /// Notification emitted when a particle event occurs
+    ///
+    /// The notification object is the event and the userInfo dictionary contains an
+    /// entry named EventSource.ParticleEventKey that contains the Event received
+    /// 
+    /// The notification is posted shortly before the corresponding delegate function is called
     public static let ParticleEvent = Notification.Name("ParticleEventNotification")
+}
+
+/// Delegate protocol for EventSource.  
+///
+/// Delegate functions are called from background threads.  Delegate implementations should
+/// perform their work and return quickly.
+public protocol EventSourceDelegate: class {
+    
+    /// Called when the event source is started.  
+    ///
+    /// Note that this corresponds to the state property
+    /// of the event source.  Starting does not imply a successful connection to the event source,
+    /// only that it is begun attempting to (re-) connect to the source URL
+    /// - parameter eventSource: The event source invoking this method
+    func started(_ eventSource: EventSource)
+
+    /// Called when the event source is stopped.  Note that this corresponds to the state property
+    /// of the event source.  Stopping does not imply a disconnection to the event source at the
+    /// time the stop event is called
+    /// - parameter eventSource: The event source invoking this method
+    func stopped(_ eventSource: EventSource)
+    
+    /// Called when an event is received from the event source
+    ///
+    /// The event source will post the Notification.Name.ParticleEvent notification prior
+    /// calling this delegate method
+    func receivedEvent(_ event: EventSource.Event, from eventSource: EventSource)
 }
 
 
@@ -26,6 +58,8 @@ public class EventSource: NSObject {
     /// The key in the user info of the Notification.Name.ParticleEvent containing the actual Event
     public static let ParticleEventKey = "ParticleEventKey"
     
+    /// The delegate to receive notification of event source actions
+    public weak var delegate: EventSourceDelegate?
     
     /// Represents an event received from an EventSource (Particle Cloud)
     public struct Event {
@@ -100,14 +134,110 @@ public class EventSource: NSObject {
     
     /// The state of an event source
     ///
-    /// - stopped: Not actively receiving data
-    /// - started: Actively receiving data
+    /// - inactive      : Not actively attempting to use the event source
+    /// - connecting    : Attempting to connect to the event source
+    /// - connected     : Actively connected and receiving events
+    /// - disconnecting : Terminating the connection
     public enum State {
-        case stopped, started
+        case inactive, connecting, connected, disconnecting
     }
     
     /// The current state
-    public internal(set) var state: State = .stopped
+    public internal(set) var state: State = .inactive {
+        didSet {
+            
+            trace("Event source moving from \(oldValue) to \(state)")
+            switch (oldValue, state) {
+                
+            case (.inactive, .inactive):
+                break
+            case (.inactive, .connecting):
+                trace("Attempting to establish an event source on url \(url)")
+                var request = URLRequest(url: url)
+                request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+                task = urlSession?.dataTask(with: request)
+                task?.resume()
+                
+            case (.inactive, .connected):
+                break // we broke the internet -- connected without connecting
+            case (.inactive, .disconnecting):
+                break // we broke the internet -- disconnecting without connecting
+                
+                
+            case (.connecting, .inactive):
+                if let task = task {
+                    // we will transition to .inactive based on the callback from the task
+                    task.cancel()
+                }
+                state = .inactive
+                delegate?.stopped(self)
+            case (.connecting, .connecting):
+                break
+            case (.connecting, .connected):
+                trace("Event source connected to url \(url)")
+            case (.connecting, .disconnecting):
+                break // we broke the internet -- connecting straight to disconnecting
+
+                
+            case (.connected, .inactive):
+                break // we broke the internet -- connecting straight to disconnecting
+            case (.connected, .connecting):
+                break // we broke the internet -- cconnected to connecting
+            case (.connected, .connected):
+                break
+            case (.connected, .disconnecting):
+                trace("Disconnecting from event source \(url)")
+                if let task = task {
+                    task.cancel()
+                }
+                state = .inactive
+                
+                
+            case (.disconnecting, .connecting):
+                break;
+            case (.disconnecting, .connected):
+                break;
+            case (.disconnecting, .disconnecting):
+                break;
+            case (.disconnecting, .inactive):
+                trace("Event source for url \(url) is inactive")
+                task = nil
+                parseState = .pendingOK
+                pendingString = ""
+                delegate?.stopped(self)
+            }
+        }
+    }
+    
+    /// The desired future state.  Unlike the public state variable this is where we want to be
+    /// and not necessarily where we are.  Limited to .stopped and .connected
+    fileprivate var desiredFutureState: State = .inactive {
+        didSet {
+            switch (state, desiredFutureState) {
+            case (.inactive, .inactive):
+                break
+            case (.connecting, .inactive):
+                break
+            case (.connected, .inactive):
+                break
+            case (.disconnecting, .inactive):
+                break
+
+            case (.inactive, .connected):
+                state = .connecting
+                break
+            case (.connecting, .connected):
+                break
+            case (.connected, .connected):
+                break
+            case (.disconnecting, .connected):
+                break
+            default:
+                break
+
+            }
+        }
+    }
     
     /// The data task used to fetch data.  Valid only when the state == .started
     internal var task: URLSessionDataTask?
@@ -128,21 +258,12 @@ public class EventSource: NSObject {
     
     /// Connect and start emitting events
     public func start() {
-        if task != nil { return }
-        
-        var request = URLRequest(url: url)
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        task = urlSession?.dataTask(with: request)
-        task?.resume()
-        
+        self.desiredFutureState = .connected
     }
     
     /// Stop any active url sessions and terminate sending events
     public func stop() {
-        parseState = .pendingOK
-        pendingString = ""
-        task?.cancel()
-        task = nil
+        desiredFutureState = .inactive
     }
     
     /// Internal state used during the processing of the incoming HTTP messagew
@@ -211,9 +332,10 @@ public class EventSource: NSObject {
                     guard let json = json as? String else { break }
                     let data = json.data(using: .utf8)
                     if let nextEvent = nextEvent as? String, let data = data, let parsedJson = try? JSONSerialization.jsonObject(with: data, options: []) as? Dictionary<String,Any>, var j = parsedJson, let event = Event(name: nextEvent, dictionary: j) {
-                        trace("Received event \(nextEvent) with payload \(parsedJson)")
+                        trace("Received event \(nextEvent) with payload \(j)")
                         j["name"] = nextEvent
                         NotificationCenter.default.post(name: .ParticleEvent, object: self, userInfo: [EventSource.ParticleEventKey : event])
+                        delegate?.receivedEvent(event, from: self)
                     }
                 }
                 break
@@ -234,8 +356,22 @@ extension EventSource.Event: Equatable {
     }
 }
 
+extension EventSource: URLSessionTaskDelegate {
+    
+    public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        state = .disconnecting
+    }
+}
+
 
 extension EventSource: URLSessionDataDelegate {
+    
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Swift.Void) {
+        
+        trace("EventSource for url \(url) received response \(response)")
+        state = .connected
+        completionHandler(.allow)
+    }
     
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         
