@@ -386,6 +386,73 @@ extension EventSource: URLSessionDataDelegate {
     }
 }
 
+extension EventSource {
+    
+    /// EventSource Configuration
+    public struct Config {
+
+        public init() {
+            
+        }
+        /// The type of stream
+        ///
+        /// - device: Stream events from devices associated the account
+        /// - product: Stream events from a product
+        public enum StreamType {
+            case device, product
+        }
+        
+        /// If true all public events are included.  If false only public and private events from devices
+        /// owned by the account are included
+        var publicEvents: Bool = false
+        
+        /// The type of stream
+        var streamType: StreamType = .device
+        
+        /// Filter used to return only events that start with the specified value.  If nil all events are retrieved
+        var filterPrefix: String? = nil
+        
+        /// The product id or slug for product type streams
+        var productIdOrSlug: String? = nil
+        
+        /// Limit the results to the specified device id
+        var deviceID: String? = nil
+        
+        /// The url path built based on the options
+        fileprivate var urlPathComponent: String {
+        
+            switch (streamType, publicEvents, filterPrefix, deviceID, productIdOrSlug) {
+            // products
+            case (.product, _, .none, _, let productId):
+                return "/v1/products/\(productId)/events"
+            case (.product, _, let filter, _, let productId):
+                return "/v1/products/\(productId)/events/\(filter)"
+
+            // public device events
+            case (.device, true, .none, let deviceID, _):
+                return "/v1/events/\(deviceID)"
+            case (.device, true, let filter, .none, _):
+                return "/v1/events/\(filter)"
+            case (.device, true, let filter, let deviceID, _):
+                return "/v1/events/\(deviceID)/\(filter)"
+                
+            // account only device events
+            case (.device, false, .none, .none, _):
+                return "/v1/devices/events"
+            case (.device, false, .none, let deviceID, _):
+                return "/v1/devices/\(deviceID)/events"
+            case (.device, false, let filter, .none, _):
+                return "/v1/devices/events/\(filter)"
+            case (.device, false, let filter, let deviceID, _):
+                return "/v1/devices/\(deviceID)/events/\(filter)"
+
+            }
+        }
+    }
+}
+
+
+
 extension ParticleCloud {
     
     /// Create an event source
@@ -397,17 +464,16 @@ extension ParticleCloud {
     /// Event sources are created in the stopped state and must be started by invoking start()
     ///
     /// - Parameters:
-    ///   - prefix: Optional filter that results in only the events that start with the specified value being included
-    ///   - productIdOrSlug: The product id, for product events
+    ///   - config: The event source configuration
     ///   - completion: Handler to call with the event source.  The completion handler is expected to strongly own any event source provided
-    public func createEventSource(prefix: String? = nil, productIdOrSlug: String? = nil, completion: @escaping (Result<EventSource>) -> Void ) {
+    public func createEventSource(_ config: EventSource.Config, completion: @escaping (Result<EventSource>) -> Void ) {
         
         self.authenticate(false) { result in
             switch result {
                 case .failure(let error):
                     completion(.failure(error))
                 case .success(let accessToken):
-                    completion(.success(EventSource(with: self.baseURL.appendingPathComponent("v1/devices/events"), token: accessToken, cloud: self)))
+                    completion(.success(EventSource(with: self.baseURL.appendingPathComponent(config.urlPathComponent), token: accessToken, cloud: self)))
             }
         }
     }

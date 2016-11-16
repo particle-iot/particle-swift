@@ -10,6 +10,7 @@ APIs provide access to the following portions of the Particle Cloud
   * Authentication
   * Devices
   * Webhooks
+  * Events
 
 This project has the following long term goals
 
@@ -155,7 +156,6 @@ Roadmap
 APIs should be relatively stable but are subject to change.  Additional Particle Cloud functionality is being added
 in the following general order
 
-  * Events
   * Firmware
 
 Once complete additional functionality will be added.
