@@ -401,21 +401,21 @@
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Events.swift",
-      "line": 43,
+      "line": 106,
       "symbol": "EventSource.State.started",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Events.swift",
-      "line": 43,
+      "line": 106,
       "symbol": "EventSource.State.stopped",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Events.swift",
-      "line": 166,
+      "line": 240,
       "symbol": "EventSource.urlSession(_:dataTask:didReceive:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

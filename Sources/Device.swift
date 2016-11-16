@@ -7,30 +7,30 @@
 
 import Foundation
 
-/// Represents the particle product
-public enum Product: Int {
-    /// Particle Core
-    case core = 0,
-    /// Particle Photon
-    photon = 6,
-    /// Particle Electron
-    electron = 10
-    
-    public func productString() -> String {
-        switch (self) {
-        case .core:
-            return "Core"
-        case .photon:
-            return "Photon"
-        case .electron:
-            return "Electron"
-        }
-    }
-}
-
-
 /// Represents a particle device (spark, photon, electron, etc)
 public struct DeviceInformation {
+    
+    /// Represents the particle product
+    public enum Product: Int {
+        /// Particle Core
+        case core = 0,
+        /// Particle Photon
+        photon = 6,
+        /// Particle Electron
+        electron = 10
+        
+        
+        public func productString() -> String {
+            switch (self) {
+            case .core:
+                return "Core"
+            case .photon:
+                return "Photon"
+            case .electron:
+                return "Electron"
+            }
+        }
+    }
     
     struct DictionaryConstants {
         static let id = "id"
@@ -194,7 +194,7 @@ public struct DeviceDetailInformation {
     public var cc3000_patch_version: String?
     
     /// Indicates what product the device belongs to. Common values are 0 for Core, 6 for Photon.
-    public let product: Product
+    public let product: DeviceInformation.Product
     
     /// Date the cloud last heard from the device
     public var lastHeard: Date?
@@ -215,7 +215,7 @@ public struct DeviceDetailInformation {
     public var cellular: Bool = false
     
     /// Ceate a new device
-    public init(deviceID: String, name: String, product: Product) {
+    public init(deviceID: String, name: String, product: DeviceInformation.Product) {
         self.deviceID = deviceID
         self.name = name
         self.product = product
@@ -228,7 +228,7 @@ extension DeviceDetailInformation: StringKeyedDictionaryConvertible {
         guard let deviceID = dictionary[DictionaryConstants.id] as? String , !deviceID.isEmpty,
             let name = dictionary[DictionaryConstants.name] as? String , !name.isEmpty,
             let productId = dictionary[DictionaryConstants.product] as? Int,
-            let product = Product(rawValue: productId) else {
+            let product = DeviceInformation.Product(rawValue: productId) else {
                 warn("Failed to create a Device using the dictionary \(dictionary);  the required properties were not found")
                 return nil;
         }
