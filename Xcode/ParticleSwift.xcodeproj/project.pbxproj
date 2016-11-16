@@ -12,6 +12,9 @@
 		4F1110361DD7AA410036E55C /* Webhooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1110331DD7AA200036E55C /* Webhooks.swift */; };
 		4F1110371DD7AA410036E55C /* Webhooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1110331DD7AA200036E55C /* Webhooks.swift */; };
 		4F5304E91DDCD82A00286CA6 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5304E81DDCD82A00286CA6 /* Events.swift */; };
+		4F5304EA1DDCD84E00286CA6 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5304E81DDCD82A00286CA6 /* Events.swift */; };
+		4F5304EB1DDCD85000286CA6 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5304E81DDCD82A00286CA6 /* Events.swift */; };
+		4F5304EC1DDCD85100286CA6 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5304E81DDCD82A00286CA6 /* Events.swift */; };
 		4FA85AA61D0C866C00EC906B /* ParticleSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FA85AA51D0C866C00EC906B /* ParticleSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4FA85AAD1D0C866C00EC906B /* ParticleSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA85AA21D0C866C00EC906B /* ParticleSwift.framework */; };
 		4FA85AB21D0C866C00EC906B /* ParticleSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85AB11D0C866C00EC906B /* ParticleSwiftTests.swift */; };
@@ -604,6 +607,7 @@
 				4FA85B0F1D0CA04100EC906B /* Common.swift in Sources */,
 				4FA85B1B1D0CA14800EC906B /* ParticleCloud.swift in Sources */,
 				4FA85B2D1D0CA15900EC906B /* Foundation+ParticleSwift.swift in Sources */,
+				4F5304EA1DDCD84E00286CA6 /* Events.swift in Sources */,
 				4FA85B231D0CA14800EC906B /* Device.swift in Sources */,
 				4FA85B141D0CA07B00EC906B /* Authentication.swift in Sources */,
 				4FFCEE8A1D43B07200FBECDE /* Logging.swift in Sources */,
@@ -628,6 +632,7 @@
 				4FA85B101D0CA04100EC906B /* Common.swift in Sources */,
 				4FA85B1C1D0CA14800EC906B /* ParticleCloud.swift in Sources */,
 				4FA85B2E1D0CA15900EC906B /* Foundation+ParticleSwift.swift in Sources */,
+				4F5304EC1DDCD85100286CA6 /* Events.swift in Sources */,
 				4FA85B241D0CA14800EC906B /* Device.swift in Sources */,
 				4FA85B151D0CA07B00EC906B /* Authentication.swift in Sources */,
 				4FFCEE8B1D43B07200FBECDE /* Logging.swift in Sources */,
@@ -644,6 +649,7 @@
 				4FA85B111D0CA04100EC906B /* Common.swift in Sources */,
 				4FA85B1D1D0CA14800EC906B /* ParticleCloud.swift in Sources */,
 				4FA85B2F1D0CA15900EC906B /* Foundation+ParticleSwift.swift in Sources */,
+				4F5304EB1DDCD85000286CA6 /* Events.swift in Sources */,
 				4FA85B251D0CA14800EC906B /* Device.swift in Sources */,
 				4FA85B161D0CA07B00EC906B /* Authentication.swift in Sources */,
 				4FFCEE8C1D43B07200FBECDE /* Logging.swift in Sources */,
