@@ -68,10 +68,15 @@ extension Dictionary where Key: ExpressibleByStringLiteral, Value: ExpressibleBy
     /// The dictionary as a properly encoded url query
     var URLEncodedParameters: String? {
         
-        var comps = URLComponents(string: "http://www.vakoc.com/")
+        let ret =  self.flatMap ( { (key, value) -> String? in
+            guard let a = "\(key)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                let b = "\(value)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+                    return nil
+            }
+            return "\(a)=\(b)"
+        }).joined(separator: "&")
         
-        comps?.queryItems = self.map( { (key, value) -> URLQueryItem  in return URLQueryItem(name: "\(key)", value: "\(value)") })
-        return comps?.percentEncodedQuery
+        return ret
     }
 }
 
