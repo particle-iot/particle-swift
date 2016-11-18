@@ -374,8 +374,7 @@ extension ParticleCloud {
                         let message = data != nil ? String(data: data!, encoding: String.Encoding.utf8) ?? "" : ""
                         warn("failed to create webhook with response: \(response) and message body \(message)")
                         
-                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to create webhook: \(message)", tableName: nil, bundle: Bundle(for: type(of: self)), comment: "The http request to create the webhook failed with message: \(message)")])
-                        return completion(.failure(ParticleError.createWebhookFailed(error)))
+                        return completion(.failure(ParticleError.createWebhookFailed(ParticleError.httpReponseParseFailed(message))))
                     }
                 }
                 task.resume()
@@ -416,8 +415,7 @@ extension ParticleCloud {
                         let message = data != nil ? String(data: data!, encoding: String.Encoding.utf8) ?? "" : ""
                         warn("failed to delete webhook \(webhookID) with response: \(response) and message body \(message)")
                         
-                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to create webhook: \(message)", tableName: nil, bundle: Bundle(for: type(of: self)), comment: "The http request to create the webhook failed with message: \(message)")])
-                        return completion(.failure(ParticleError.deleteWebhookFailed(webhookID, error)))
+                        return completion(.failure(ParticleError.deleteWebhookFailed(webhookID, ParticleError.httpReponseParseFailed(message))))
                     }
                 }
                 task.resume()
@@ -460,11 +458,7 @@ extension ParticleCloud {
                         
                         let message = data != nil ? String(data: data!, encoding: String.Encoding.utf8) ?? "" : ""
                         warn("failed to get webhook \(webhookID) with response: \(response) and message body \(message)")
-                        
-                        /// todo: this error is wrong
-                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to get webhook \(webhookID): \(message)", tableName: nil, bundle: Bundle(for: type(of: self)), comment: "The http request to get the webhook failed with message: \(message)")])
-                        
-                        return completion(.failure(ParticleError.webhookGetFailed(webhookID, error)))
+                        return completion(.failure(ParticleError.webhookGetFailed(webhookID, ParticleError.httpReponseParseFailed(message))))
                     }
                 }
                 task.resume()
@@ -505,9 +499,7 @@ extension ParticleCloud {
                         
                         let message = data != nil ? String(data: data!, encoding: String.Encoding.utf8) ?? "" : ""
                         warn("failed to list all webhooks with response: \(response) and message body \(message)")
-                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain active webhooks: \(message)", tableName: nil, bundle: Bundle(for: type(of: self)), comment: "The http request to obtain the webhooks failed with message: \(message)")])
-                        
-                        return completion(.failure(ParticleError.webhookListFailed(error)))
+                        return completion(.failure(ParticleError.webhookListFailed(ParticleError.httpReponseParseFailed(message))))
                     }
                 }
                 task.resume()

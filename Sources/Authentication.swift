@@ -256,7 +256,7 @@ extension OAuthAuthenticatable {
         
         let task = self.urlSession.dataTask(with: request) { (data, response, error) in
             
-            trace( "Creating an OAuth token", request: request, data: data, response: response, error: error as NSError?)
+            trace( "Creating an OAuth token", request: request, data: data, response: response, error: error)
             
             if let error = error {
                 return completion(.failure(ParticleError.oauthTokenCreationFailed(error)))
@@ -266,8 +266,7 @@ extension OAuthAuthenticatable {
                 let token = OAuthToken(with: j) {
                 completion(.success(token))
             } else {
-                let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain an OAuth token", tableName: nil, bundle: Bundle(for: type(of: self)), comment: "The http request to create an OAuthToken failed")])
-                return completion(.failure(ParticleError.oauthTokenCreationFailed(error)))
+                return completion(.failure(ParticleError.oauthTokenCreationFailed(ParticleError.oauthTokenParseFailed)))
             }
         }        
         task.resume()

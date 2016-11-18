@@ -350,10 +350,7 @@ extension ParticleCloud {
                         
                         warn("failed to obtain devices with response: \(response) and message body \(message)")
                         
-                        /// todo: this error is wrong
-                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain active devices: \(message)", tableName: nil, bundle: Bundle(for: type(of: self)), comment: "The http request obtain the devices failed with message: \(message)")])
-                        
-                        return completion(.failure(ParticleError.deviceListFailed(error)))
+                        return completion(.failure(ParticleError.deviceListFailed(ParticleError.httpReponseParseFailed(message))))
                     }
                 }
                 task.resume()
@@ -376,14 +373,13 @@ extension ParticleCloud {
                     
                     trace( "Get device detail information", request: request, data: data, response: response, error: error)
                     if let error = error {
-                        return completion(.failure(ParticleError.listAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.deviceDetailedInformationFailed(error)))
                     }
                     
                     if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json, let deviceDetailInformation = DeviceDetailInformation(with: j) {
                         return completion(.success(deviceDetailInformation))
                     } else {
-                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain detail device information", tableName: nil, bundle: Bundle(for: type(of: self)), comment: "The http request to create an OAuthToken failed")])
-                        return completion(.failure(ParticleError.listAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.deviceDetailedInformationFailed(ParticleError.httpReponseParseFailed(nil))))
                     }
                 }
                 task.resume()
@@ -406,15 +402,13 @@ extension ParticleCloud {
                     
                     trace( "Get device detail information", request: request, data: data, response: response, error: error)
                     if let error = error {
-                        return completion(.failure(ParticleError.listAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.deviceDetailedInformationFailed(error)))
                     }
                     
                     if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json, let deviceDetailInformation = DeviceDetailInformation(with: j) {
                         return completion(.success(deviceDetailInformation))
                     } else {
-                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain detail device information", tableName: nil, bundle: Bundle(for: type(of: self)), comment: "The http request to create an OAuthToken failed")])
-                        
-                        return completion(.failure(ParticleError.listAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.deviceDetailedInformationFailed(ParticleError.httpReponseParseFailed(nil))))
                     }
                 }
                 task.resume()
@@ -451,9 +445,7 @@ extension ParticleCloud {
                     if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json {
                         return completion(.success(j))
                     } else {
-                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to invoke function \(functionName)", tableName: nil, bundle: Bundle(for: type(of: self)), comment: "The request failed")])
-                        
-                        return completion(.failure(ParticleError.callFunctionFailed(error)))
+                        return completion(.failure(ParticleError.callFunctionFailed(ParticleError.httpReponseParseFailed(nil))))
                     }
                 }
                 task.resume()
@@ -477,14 +469,13 @@ extension ParticleCloud {
                     trace( "Get variable value", request: request, data: data, response: response, error: error)
                     
                     if let error = error {
-                        return completion(.failure(ParticleError.listAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.variableValueFailed(error)))
                     }
                     
                     if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json {
                         return completion(.success(j))
                     } else {
-                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain variable \(variableName)", tableName: nil, bundle: Bundle(for: type(of: self)), comment: "The request failed")])
-                        return completion(.failure(ParticleError.listAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.variableValueFailed(ParticleError.httpReponseParseFailed(nil))))
                     }
                 }
                 task.resume()
@@ -511,7 +502,7 @@ extension ParticleCloud {
                     trace( "Claim device", request: request, data: data, response: response, error: error)
                     
                     if let error = error {
-                        return completion(.failure(ParticleError.listAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.claimDeviceFailed(error)))
                     }
                     // TODO: what does this actually return?
                     completion(.success((response as! HTTPURLResponse).statusCode))
@@ -544,8 +535,7 @@ extension ParticleCloud {
                     if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json {
                         return completion(.success(j))
                     } else {
-                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to unclaim device \(deviceID)", tableName: nil, bundle: Bundle(for: type(of: self)), comment: "The request failed")])
-                        return completion(.failure(ParticleError.unclaimDeviceFailed(error)))
+                        return completion(.failure(ParticleError.unclaimDeviceFailed(ParticleError.httpReponseParseFailed(nil))))
                     }
                 }
                 task.resume()
@@ -572,14 +562,13 @@ extension ParticleCloud {
                     trace( "Transfer device", request: request, data: data, response: response, error: error)
                     
                     if let error = error {
-                        return completion(.failure(ParticleError.listAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.transferDeviceFailed(error)))
                     }
                     
                     if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json, let transferid = j["transfer_id"] as? String {
                         return completion(.success(transferid))
                     } else {
-                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to transfer", tableName: nil, bundle: Bundle(for: type(of: self)), comment: "The request failed")])
-                        return completion(.failure(ParticleError.listAccessTokensFailed(error)))
+                        return completion(.failure(ParticleError.transferDeviceFailed(ParticleError.httpReponseParseFailed(nil))))
                     }
                 }
                 task.resume()
@@ -623,8 +612,7 @@ extension ParticleCloud {
                     if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json, let claimCode = ClaimResult(with: j) {
                         return completion(.success(claimCode))
                     } else {
-                        let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to create a claim code", tableName: nil, bundle: Bundle(for: type(of: self)), comment: "The request failed")])
-                        return completion(.failure(ParticleError.createClaimCode(error)))
+                        return completion(.failure(ParticleError.createClaimCode(ParticleError.httpReponseParseFailed(nil))))
                     }
                 }
                 task.resume()

@@ -76,7 +76,7 @@ public class ParticleCloud: WebServiceCallable {
         request.setValue("Basic \(base64AuthCredentials)", forHTTPHeaderField: "Authorization")
         let task = urlSession.dataTask(with: request, completionHandler:  { (data, response, error) in
             
-            trace( "Get access tokens", request: request, data: data, response: response, error: error as NSError? )
+            trace( "Get access tokens", request: request, data: data, response: response, error: error )
             
             if let error = error {
                 return completion(.failure(ParticleError.listAccessTokensFailed(error)))
@@ -85,8 +85,7 @@ public class ParticleCloud: WebServiceCallable {
             if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String : AnyObject]],  let j = json {
                 return completion(.success(j.flatMap() { return OAuthTokenListEntry(dictionary: $0)} ))
             } else {
-                let error = NSError(domain: errorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Failed to obtain access token lists", tableName: nil, bundle: Bundle(for: type(of: self)), comment: "The http request to create an OAuthToken failed")])
-                return completion(.failure(ParticleError.listAccessTokensFailed(error)))
+                return completion(.failure(ParticleError.listAccessTokensFailed(ParticleError.httpReponseParseFailed(nil))))
             }
         })
         task.resume()
