@@ -16,7 +16,7 @@ extension Notification.Name {
     /// entry named EventSource.ParticleEventKey that contains the Event received
     /// 
     /// The notification is posted shortly before the corresponding delegate function is called
-    public static let ParticleEvent = Notification.Name("ParticleEventNotification")
+    public static let ParticleEvent = Notification.Name(rawValue: "ParticleEventNotification")
 }
 
 /// Delegate protocol for EventSource.  
