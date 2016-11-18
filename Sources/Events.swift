@@ -424,27 +424,27 @@ extension EventSource {
             switch (streamType, publicEvents, filterPrefix, deviceID, productIdOrSlug) {
             // products
             case (.product, _, .none, _, let productId):
-                return "/v1/products/\(productId)/events"
+                return "v1/products/\(productId)/events"
             case (.product, _, let filter, _, let productId):
-                return "/v1/products/\(productId)/events/\(filter)"
+                return "v1/products/\(productId)/events/\(filter)"
 
             // public device events
             case (.device, true, .none, let deviceID, _):
-                return "/v1/events/\(deviceID)"
+                return "v1/events/\(deviceID)"
             case (.device, true, let filter, .none, _):
-                return "/v1/events/\(filter)"
+                return "v1/events/\(filter)"
             case (.device, true, let filter, let deviceID, _):
-                return "/v1/events/\(deviceID)/\(filter)"
+                return "v1/events/\(deviceID)/\(filter)"
                 
             // account only device events
             case (.device, false, .none, .none, _):
-                return "/v1/devices/events"
+                return "v1/devices/events"
             case (.device, false, .none, let deviceID, _):
-                return "/v1/devices/\(deviceID)/events"
+                return "v1/devices/\(deviceID)/events"
             case (.device, false, let filter, .none, _):
-                return "/v1/devices/events/\(filter)"
+                return "v1/devices/events/\(filter)"
             case (.device, false, let filter, let deviceID, _):
-                return "/v1/devices/\(deviceID)/events/\(filter)"
+                return "v1/devices/\(deviceID)/events/\(filter)"
 
             }
         }

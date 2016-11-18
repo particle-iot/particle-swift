@@ -103,17 +103,17 @@ extension Dictionary where Key: ExpressibleByStringLiteral, Value: Any {
         }
     }
     
+    
     /// The dictionary as a JSON object, or nil if the object cannot be converted to JSON
     public var jsonString: String?  {
-        if let dict = (self as AnyObject) as? Dictionary<String, AnyObject> {
-            do {
-                let data = try JSONSerialization.data(withJSONObject: dict, options: [.prettyPrinted])
-                if let string = String(data: data, encoding: String.Encoding.utf8) {
-                    return string
-                }
-            } catch {
-                warn("Failed to convert \(self) to JSON with error \(error)")
+
+        do {
+            let data = try JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted])
+            if let string = String(data: data, encoding: String.Encoding.utf8) {
+                return string
             }
+        } catch {
+            warn("Failed to convert \(self) to JSON with error \(error)")            
         }
         return nil
     }
