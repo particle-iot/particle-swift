@@ -101,7 +101,8 @@ extension DeviceInformation: StringKeyedDictionaryConvertible {
     public init?(with dictionary: [String : Any]) {
         guard let deviceID = dictionary[DictionaryConstants.id] as? String , !deviceID.isEmpty,
             let name = dictionary[DictionaryConstants.name] as? String , !name.isEmpty,
-            let productId = dictionary[DictionaryConstants.product] as? Int,
+            let productIdString = dictionary[DictionaryConstants.product] as? CustomStringConvertible,
+            let productId = Int("\(productIdString)"),
             let product = Product(rawValue: productId) else {
                 warn("Failed to create a Device using the dictionary \(dictionary);  the required properties were not found")
                 return nil;
@@ -227,7 +228,8 @@ extension DeviceDetailInformation: StringKeyedDictionaryConvertible {
     public init?(with dictionary: [String : Any]) {
         guard let deviceID = dictionary[DictionaryConstants.id] as? String , !deviceID.isEmpty,
             let name = dictionary[DictionaryConstants.name] as? String , !name.isEmpty,
-            let productId = dictionary[DictionaryConstants.product] as? Int,
+            let productIdString = dictionary[DictionaryConstants.product] as? CustomStringConvertible,
+            let productId = Int("\(productIdString)"),
             let product = DeviceInformation.Product(rawValue: productId) else {
                 warn("Failed to create a Device using the dictionary \(dictionary);  the required properties were not found")
                 return nil;
@@ -340,7 +342,7 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.deviceListFailed(error)))
                     }
                     
-                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String : AnyObject]],  let j = json {
+                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String : Any]],  let j = json {
                         
                         
                         return completion(.success(j.flatMap({ return DeviceInformation(with: $0)})))
@@ -376,7 +378,7 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.deviceDetailedInformationFailed(error)))
                     }
                     
-                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json, let deviceDetailInformation = DeviceDetailInformation(with: j) {
+                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],  let j = json, let deviceDetailInformation = DeviceDetailInformation(with: j) {
                         return completion(.success(deviceDetailInformation))
                     } else {
                         return completion(.failure(ParticleError.deviceDetailedInformationFailed(ParticleError.httpReponseParseFailed(nil))))
@@ -405,7 +407,7 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.deviceDetailedInformationFailed(error)))
                     }
                     
-                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json, let deviceDetailInformation = DeviceDetailInformation(with: j) {
+                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],  let j = json, let deviceDetailInformation = DeviceDetailInformation(with: j) {
                         return completion(.success(deviceDetailInformation))
                     } else {
                         return completion(.failure(ParticleError.deviceDetailedInformationFailed(ParticleError.httpReponseParseFailed(nil))))
@@ -416,7 +418,7 @@ extension ParticleCloud {
         }
     }
     
-    public func callFunction(_ functionName: String, deviceID: String, argument: String?, completion: @escaping (Result<[String : AnyObject]>) -> Void ) {
+    public func callFunction(_ functionName: String, deviceID: String, argument: String?, completion: @escaping (Result<[String : Any]>) -> Void ) {
         
         authenticate(false) { (result) in
             switch (result) {
@@ -442,7 +444,7 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.callFunctionFailed(error)))
                     }
                     
-                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json {
+                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],  let j = json {
                         return completion(.success(j))
                     } else {
                         return completion(.failure(ParticleError.callFunctionFailed(ParticleError.httpReponseParseFailed(nil))))
@@ -453,7 +455,7 @@ extension ParticleCloud {
         }
     }
     
-    public func variableValue(_ variableName: String, deviceID: String, completion: @escaping (Result<[String : AnyObject]>) -> Void ) {
+    public func variableValue(_ variableName: String, deviceID: String, completion: @escaping (Result<[String : Any]>) -> Void ) {
         
         authenticate( false) { (result) in
             switch (result) {
@@ -472,7 +474,7 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.variableValueFailed(error)))
                     }
                     
-                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json {
+                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],  let j = json {
                         return completion(.success(j))
                     } else {
                         return completion(.failure(ParticleError.variableValueFailed(ParticleError.httpReponseParseFailed(nil))))
@@ -512,7 +514,7 @@ extension ParticleCloud {
         }
     }
     
-    public func unclaim(_ deviceID: String, completion: @escaping (Result<[String: AnyObject]>) -> Void ) {
+    public func unclaim(_ deviceID: String, completion: @escaping (Result<[String: Any]>) -> Void ) {
         trace("attempting to unclaim device \(deviceID)")
         authenticate(false) { (result) in
             switch (result) {
@@ -532,7 +534,7 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.unclaimDeviceFailed(error)))
                     }
                     
-                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json {
+                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],  let j = json {
                         return completion(.success(j))
                     } else {
                         return completion(.failure(ParticleError.unclaimDeviceFailed(ParticleError.httpReponseParseFailed(nil))))
@@ -565,7 +567,7 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.transferDeviceFailed(error)))
                     }
                     
-                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json, let transferid = j["transfer_id"] as? String {
+                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],  let j = json, let transferid = j["transfer_id"] as? String {
                         return completion(.success(transferid))
                     } else {
                         return completion(.failure(ParticleError.transferDeviceFailed(ParticleError.httpReponseParseFailed(nil))))
@@ -609,7 +611,7 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.createClaimCode(error)))
                     }
                     
-                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json, let claimCode = ClaimResult(with: j) {
+                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],  let j = json, let claimCode = ClaimResult(with: j) {
                         return completion(.success(claimCode))
                     } else {
                         return completion(.failure(ParticleError.createClaimCode(ParticleError.httpReponseParseFailed(nil))))

@@ -82,7 +82,7 @@ public class ParticleCloud: WebServiceCallable {
                 return completion(.failure(ParticleError.listAccessTokensFailed(error)))
             }
             
-            if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String : AnyObject]],  let j = json {
+            if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String : Any]],  let j = json {
                 return completion(.success(j.flatMap() { return OAuthTokenListEntry(dictionary: $0)} ))
             } else {
                 return completion(.failure(ParticleError.listAccessTokensFailed(ParticleError.httpReponseParseFailed(nil))))

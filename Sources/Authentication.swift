@@ -85,7 +85,8 @@ public struct OAuthToken: CustomStringConvertible, StringKeyedDictionaryConverti
     public init?(with dictionary: [String : Any]) {
         guard let accessToken = dictionary["access_token"] as? String , !accessToken.isEmpty,
             let tokenType = dictionary["token_type"] as? String , !tokenType.isEmpty,
-            let expiresIn = dictionary["expires_in"] as? Double,
+            let expiresIn = dictionary["expires_in"] as? CustomStringConvertible,
+            let expiresInInt = Int("\(expiresIn)"),
             let refreshToken = dictionary["refresh_token"] as? String , !tokenType.isEmpty
         
         else {
@@ -95,7 +96,7 @@ public struct OAuthToken: CustomStringConvertible, StringKeyedDictionaryConverti
         
         self.accessToken = accessToken
         self.tokenType = tokenType
-        self.expiresIn = expiresIn
+        self.expiresIn = TimeInterval(expiresInInt)
         self.refreshToken = refreshToken
         self.created = (dictionary["created_at"] as? String)?.dateWithISO8601String ?? Date()
     }
@@ -129,7 +130,7 @@ public struct OAuthTokenListEntry: CustomStringConvertible {
     /// the client string
     public var client: String
     
-    public init?(dictionary: [String : AnyObject]) {
+    public init?(dictionary: [String : Any]) {
         guard let accessToken = dictionary["token"] as? String , !accessToken.isEmpty,
             let client = dictionary["client"] as? String , !client.isEmpty,
             let expires = dictionary["expires_at"] as? String,
@@ -266,7 +267,7 @@ extension OAuthAuthenticatable {
                 return completion(.failure(ParticleError.oauthTokenCreationFailed(error)))
             }
             
-            if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : AnyObject],  let j = json,
+            if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],  let j = json,
                 let token = OAuthToken(with: j) {
                 completion(.success(token))
             } else {
