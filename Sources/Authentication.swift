@@ -247,12 +247,16 @@ extension OAuthAuthenticatable {
         
         let base64AuthCredentials = data.base64EncodedString(options: [])
         
-        var request = URLRequest(url: self.baseURL.appendingPathComponent("oauth/token"))
+        var requesta = URLRequest(url: self.baseURL.appendingPathComponent("oauth/token"))
         
-        request.setValue("Basic \(base64AuthCredentials)", forHTTPHeaderField: "Authorization")
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        request.httpBody = urlParams.URLEncodedParameters?.data(using: String.Encoding.utf8)
-        request.httpMethod = "POST"
+        requesta.setValue("Basic \(base64AuthCredentials)", forHTTPHeaderField: "Authorization")
+        requesta.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        requesta.httpBody = urlParams.URLEncodedParameters?.data(using: String.Encoding.utf8)
+        requesta.httpMethod = "POST"
+
+	// Work around a compiler crash bug on Linux by preventing the capture of a mutable variable by ref
+        // and simply capture a let instead
+	let request = requesta
         
         let task = self.urlSession.dataTask(with: request) { (data, response, error) in
             

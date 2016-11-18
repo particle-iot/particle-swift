@@ -285,9 +285,73 @@ public class EventSource: NSObject {
     /// The current parser state
     private var parseState: ParseState = .pendingOK
     
+    
+#if os(Linux)
+    /// The name of the next event.  Set during .pendingEventName and cleared during .pendingEventTag states
+    var nextEvent: String?
+
+    /// Parse the incoming string.  The method should be invoked only within the context of the self.queue dispatch queue
+    ///
+    /// - Parameter string: the incoming string
+    fileprivate func parse(_ string: String) {
+        
+        let scanner = Scanner(string: pendingString + string)
+        var currentState = parseState
+        repeat {
+            currentState = parseState
+            
+            switch parseState {
+            case .pendingOK:
+                _ = scanner.scanUpToString(":ok")
+                if  let _ = scanner.scanString(string: ":ok") {
+                    _ = scanner.scanCharactersFromSet(.whitespacesAndNewlines)
+                    parseState = .pendingEventTag
+                }
+            case .pendingEventTag:
+                _ = scanner.scanCharactersFromSet(.whitespacesAndNewlines)
+                nextEvent = nil
+                if scanner.scanString(string: "event: ") != nil {
+                    _ = scanner.scanCharactersFromSet(.whitespacesAndNewlines)
+                    parseState = .pendingEventName
+                }
+            case .pendingEventName:
+                _ = scanner.scanCharactersFromSet(.whitespacesAndNewlines)
+                if let nextEvent = scanner.scanUpToCharactersFromSet(.newlines) {
+                    self.nextEvent = nextEvent
+                    parseState = .pendingData
+                }
+            case .pendingData:
+                _ = scanner.scanCharactersFromSet(.whitespacesAndNewlines)
+                if scanner.scanString(string: "data:") != nil {
+                    _ = scanner.scanCharactersFromSet(.whitespacesAndNewlines)
+                    parseState = .pendingDataPayload
+                }
+            case .pendingDataPayload:
+                _ = scanner.scanCharactersFromSet(.whitespacesAndNewlines)
+/**
+                if scanner.isNext(character: "{"), let json = scanner.scanUpToCharactersFromSet(.newlines) {
+                    _ = scanner.scanCharactersFromSet(.whitespacesAndNewlines)
+                    
+                    parseState = .pendingEventTag
+                    // guard let json = json as? String else { break }
+                    let data = json.data(using: .utf8)
+                    if let nextEvent = nextEvent, let data = data, let parsedJson = try? JSONSerialization.jsonObject(with: data, options: []) as? Dictionary<String,Any>, var j = parsedJson, let event = Event(name: nextEvent, dictionary: j) {
+                        trace("Received event \(nextEvent) with payload \(j)")
+                        j["name"] = nextEvent
+                        NotificationCenter.default.post(name: .ParticleEvent, object: self, userInfo: [EventSource.ParticleEventKey : event])
+                        delegate?.receivedEvent(event, from: self)
+                    }
+                }
+*/
+                break
+            }
+            pendingString = scanner.remainder
+        } while parseState != currentState && !pendingString.isEmpty
+    }
+#else
     /// The name of the next event.  Set during .pendingEventName and cleared during .pendingEventTag states
     var nextEvent: NSString?
-    
+
     /// Parse the incoming string.  The method should be invoked only within the context of the self.queue dispatch queue
     ///
     /// - Parameter string: the incoming string
@@ -344,6 +408,8 @@ public class EventSource: NSObject {
             pendingString = scanner.remainder
         } while parseState != currentState && !pendingString.isEmpty
     }
+#endif
+
 }
 
 extension EventSource.Event: Equatable {

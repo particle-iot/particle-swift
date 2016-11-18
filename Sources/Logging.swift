@@ -203,7 +203,16 @@ func trace(_ description: String, request: URLRequest, data: Data?, response: UR
     }
     
     
-    
+#if os(Linux)    
+    if let response = response as? HTTPURLResponse, let contentType = response.allHeaderFields["Content-Type"] , contentType.contains("application/json"), let data = data, let json = try? JSONSerialization.jsonObject(with: data as Data, options: []) {
+        components.append("with response")
+        components.append("\(json)")
+        
+    } else if let data = data, let body = String(data: data as Data, encoding: String.Encoding.utf8) {
+        components.append("with response")
+        components.append(body)
+    }
+#else
     if let response = response as? HTTPURLResponse, let contentType = response.allHeaderFields["Content-Type"] as? String  , contentType.contains("application/json"), let data = data, let json = try? JSONSerialization.jsonObject(with: data as Data, options: []) {
         components.append("with response")
         components.append("\(json)")
@@ -212,6 +221,7 @@ func trace(_ description: String, request: URLRequest, data: Data?, response: UR
         components.append("with response")
         components.append(body)
     }
+#endif
     
     if let error = error {
         components.append("error:")
