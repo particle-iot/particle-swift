@@ -465,7 +465,7 @@ extension ParticleCloud {
                 
                 var request = URLRequest(url: self.baseURL.appendingPathComponent("v1/devices/\(deviceID)/\(variableName)"))
                 request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-                
+
                 let task = self.urlSession.dataTask(with: request) { (data, response, error) in
                     
                     trace( "Get variable value", request: request, data: data, response: response, error: error)
