@@ -108,7 +108,7 @@ public struct OAuthToken: CustomStringConvertible, StringKeyedDictionaryConverti
     
     /// Textual description of the token
     public var description: String {
-        return "OAuthToken[accessToken=\(accessToken), expires=\(self.expirationDate.description)]"
+        return "OAuthToken[accessToken=\(accessToken), expires=\(self.expirationDate.ISO8601String)]"
     }
     
     /// Dictionary represenation of the token, suitable for serialization

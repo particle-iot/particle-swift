@@ -50,7 +50,7 @@ extension ParticleError: CustomStringConvertible {
         case .deviceInformationFailed(let deviceID, let error):
             return "The request to obtain device information for device ID \(deviceID) failed with error \(error)"
         case .deviceDetailedInformationFailed(let error):
-            return "The requirest to obtain detailed device information failed with error \(error)"
+            return "The request to obtain detailed device information failed with error \(error)"
         case .oauthTokenCreationFailed(let error):
             return "Failed to create an OAuth token with error \(error)"
         case .oauthTokenParseFailed:
@@ -101,7 +101,7 @@ extension ParticleError: CustomStringConvertible {
         case .deviceInformationFailed(let deviceID, let error):
             return String.localizedStringWithFormat("The request to obtain device information for device ID %1@ failed with error %2@", deviceID, "\(error)")
         case .deviceDetailedInformationFailed(let error):
-            return String.localizedStringWithFormat("The requirest to obtain detailed device information failed with error %1@", "\(error)")
+            return String.localizedStringWithFormat("The request to obtain detailed device information failed with error %1@", "\(error)")
         case .oauthTokenCreationFailed(let error):
             return String.localizedStringWithFormat("Failed to create an OAuth token with error %1@", "\(error)")
         case .oauthTokenParseFailed:
