@@ -13,7 +13,7 @@
     <a title="Protocols  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (63% documented)</p>
+        <p><a href="index.html"> Docs</a> (75% documented)</p>
         <p class="header-right"><a href="https://github.com/vakoc/particle-swift"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -40,6 +40,9 @@
                 <a href="Classes/EventSource/State.html">– State</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/EventSource/Config.html">– Config</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/ParticleCloud.html">ParticleCloud</a>
               </li>
             </ul>
@@ -47,9 +50,6 @@
           <li class="nav-group-name">
             <a href="Global Variables.html">Global Variables</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Global Variables.html#/s:v13ParticleSwift11errorDomainSS">errorDomain</a>
-              </li>
               <li class="nav-group-task">
                 <a href="Global Variables.html#/s:v13ParticleSwift14globalLogLevelOS_8LogLevel">globalLogLevel</a>
               </li>
@@ -65,9 +65,6 @@
                 <a href="Enums/ParticleError.html">ParticleError</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/Product.html">Product</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Enums/Result.html">Result</a>
               </li>
             </ul>
@@ -76,6 +73,9 @@
             <a href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/Date.html">Date</a>
               </li>
               <li class="nav-group-task">
@@ -83,6 +83,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/Notification.html">Notification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/ParticleError.html">ParticleError</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/UUID.html">UUID</a>
@@ -103,6 +106,9 @@
           <li class="nav-group-name">
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/EventSourceDelegate.html">EventSourceDelegate</a>
+              </li>
               <li class="nav-group-task">
                 <a href="Protocols/OAuthAuthenticatable.html">OAuthAuthenticatable</a>
               </li>
@@ -128,6 +134,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Structs/DeviceInformation.html">DeviceInformation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/DeviceInformation/Product.html">– Product</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/OAuthToken.html">OAuthToken</a>
@@ -179,6 +188,23 @@
                       <div class="abstract">
                         <p>Delegate protocol used to provide ParticleSwift with credentials storage</p>
 
+<p>The functions of this protocol take a realm as the parameter.  The realm is the domain
+in which to obtain credentails.  Derivative products may reuse this protocol to enable 
+OAuth credential handling for multiple backends</p>
+
+<p>Clients interested only in ParticleSwift may either ignore this parameter or return values
+only when the realm is equal to ParticleSwiftInfo.realm, or the literal value <q>ParticleSwift</q></p>
+
+<p>Particle swift will typically ask the secure storage for a valid OAuthToken.  If the token is
+not provided it will begin the authentication process, which will subsequently ask for the 
+username, password, client id, and client secret.  These will be used to create a new OAuth token
+and, if successful, will be provided back to the secure storage through the update method.</p>
+
+<p>The secure storage class should should securely persist any tokens it is given and provide them
+when asked.  Failure to store/restore tokens can result in a significant number of new server
+created tokens and significant performce slowdowns due to the number of network requests needed
+for their creation.</p>
+
                         <a href="Protocols/SecureStorage.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
@@ -205,9 +231,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Abstraction for services that provide OAuth based uathentication.  OAuthAutheticable are objects
+that can request, process, and use credentials to validate or create OAuth tokens and store them
+for subsequent use</p>
 
                         <a href="Protocols/OAuthAuthenticatable.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">OAuthAuthenticatable</span><span class="p">:</span> <span class="kd">class</span><span class="p">,</span> <span class="kt"><a href="Protocols/WebServiceCallable.html">WebServiceCallable</a></span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -229,9 +265,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Items that can be initialized from and converted to a dictionary with string keys</p>
 
                         <a href="Protocols/StringKeyedDictionaryConvertible.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">StringKeyedDictionaryConvertible</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -267,10 +311,45 @@ call.</p>
                 </li>
               </ul>
             </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P13ParticleSwift19EventSourceDelegate"></a>
+                    <a name="//apple_ref/swift/Protocol/EventSourceDelegate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P13ParticleSwift19EventSourceDelegate">EventSourceDelegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Delegate protocol for EventSource.  </p>
+
+<p>Delegate functions are called from background threads.  Delegate implementations should
+perform their work and return quickly.</p>
+
+                        <a href="Protocols/EventSourceDelegate.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">EventSourceDelegate</span><span class="p">:</span> <span class="kd">class</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Mark Vakoc</a>. All rights reserved. (Last updated: 2016-11-14)</p>
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Mark Vakoc</a>. All rights reserved. (Last updated: 2016-11-20)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

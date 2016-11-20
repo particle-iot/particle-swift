@@ -14,7 +14,7 @@
     <a title="SecureStorage Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (63% documented)</p>
+        <p><a href="../index.html"> Docs</a> (75% documented)</p>
         <p class="header-right"><a href="https://github.com/vakoc/particle-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -41,6 +41,9 @@
                 <a href="../Classes/EventSource/State.html">– State</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/EventSource/Config.html">– Config</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/ParticleCloud.html">ParticleCloud</a>
               </li>
             </ul>
@@ -48,9 +51,6 @@
           <li class="nav-group-name">
             <a href="../Global Variables.html">Global Variables</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Global Variables.html#/s:v13ParticleSwift11errorDomainSS">errorDomain</a>
-              </li>
               <li class="nav-group-task">
                 <a href="../Global Variables.html#/s:v13ParticleSwift14globalLogLevelOS_8LogLevel">globalLogLevel</a>
               </li>
@@ -66,9 +66,6 @@
                 <a href="../Enums/ParticleError.html">ParticleError</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/Product.html">Product</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Enums/Result.html">Result</a>
               </li>
             </ul>
@@ -77,6 +74,9 @@
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/Date.html">Date</a>
               </li>
               <li class="nav-group-task">
@@ -84,6 +84,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Notification.html">Notification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/ParticleError.html">ParticleError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/UUID.html">UUID</a>
@@ -104,6 +107,9 @@
           <li class="nav-group-name">
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/EventSourceDelegate.html">EventSourceDelegate</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Protocols/OAuthAuthenticatable.html">OAuthAuthenticatable</a>
               </li>
@@ -129,6 +135,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/DeviceInformation.html">DeviceInformation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DeviceInformation/Product.html">– Product</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/OAuthToken.html">OAuthToken</a>
@@ -167,6 +176,23 @@
               </div>
             <p>Delegate protocol used to provide ParticleSwift with credentials storage</p>
 
+<p>The functions of this protocol take a realm as the parameter.  The realm is the domain
+in which to obtain credentails.  Derivative products may reuse this protocol to enable 
+OAuth credential handling for multiple backends</p>
+
+<p>Clients interested only in ParticleSwift may either ignore this parameter or return values
+only when the realm is equal to ParticleSwiftInfo.realm, or the literal value <q>ParticleSwift</q></p>
+
+<p>Particle swift will typically ask the secure storage for a valid OAuthToken.  If the token is
+not provided it will begin the authentication process, which will subsequently ask for the 
+username, password, client id, and client secret.  These will be used to create a new OAuth token
+and, if successful, will be provided back to the secure storage through the update method.</p>
+
+<p>The secure storage class should should securely persist any tokens it is given and provide them
+when asked.  Failure to store/restore tokens can result in a significant number of new server
+created tokens and significant performce slowdowns due to the number of network requests needed
+for their creation.</p>
+
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -184,16 +210,43 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Return the username for the given realm
+- parameter realm: The realm (domain) to return results.  Ignore if only using ParticleSwift 
+- returns: the username, or nil if not available</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SecureStorage</span><span class="p">:</span> <span class="kd">class</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">username</span><span class="p">(</span><span class="n">_</span> <span class="nv">realm</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>realm</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The realm (domain) to return results.  Ignore if only using ParticleSwift</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the username, or nil if not available</p>
+
                       </div>
                     </section>
                   </div>
@@ -211,16 +264,43 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Return the password for the given realm
+- parameter realm: The realm (domain) to return results.  Ignore if only using ParticleSwift
+- returns: the password, or nil if not available</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SecureStorage</span><span class="p">:</span> <span class="kd">class</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">password</span><span class="p">(</span><span class="n">_</span> <span class="nv">realm</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>realm</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The realm (domain) to return results.  Ignore if only using ParticleSwift</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the password, or nil if not available</p>
+
                       </div>
                     </section>
                   </div>
@@ -238,16 +318,43 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Return the OAuth client id for the given realm
+- parameter realm: The realm (domain) to return results.  Ignore if only using ParticleSwift
+- returns: the OAuth client id, or nil if not available</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SecureStorage</span><span class="p">:</span> <span class="kd">class</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">oauthClientId</span><span class="p">(</span><span class="n">_</span> <span class="nv">realm</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>realm</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The realm (domain) to return results.  Ignore if only using ParticleSwift</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the OAuth client id, or nil if not available</p>
+
                       </div>
                     </section>
                   </div>
@@ -265,16 +372,43 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Return the OAuth client secret for the given realm
+- parameter realm: The realm (domain) to return results.  Ignore if only using ParticleSwift
+- returns: the OAuth client secret, or nil if not available</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SecureStorage</span><span class="p">:</span> <span class="kd">class</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">oauthClientSecret</span><span class="p">(</span><span class="n">_</span> <span class="nv">realm</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>realm</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The realm (domain) to return results.  Ignore if only using ParticleSwift</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the OAuth client secret, or nil if not available</p>
+
                       </div>
                     </section>
                   </div>
@@ -292,16 +426,43 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Return the persisted OAuth token for a given ealm
+- parameter realm: The realm (domain) to return results.  Ignore if only using ParticleSwift
+- returns: the OAUth token, or nil if not available</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SecureStorage</span><span class="p">:</span> <span class="kd">class</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">oauthToken</span><span class="p">(</span><span class="n">_</span> <span class="nv">realm</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/OAuthToken.html">OAuthToken</a></span><span class="p">?</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>realm</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The realm (domain) to return results.  Ignore if only using ParticleSwift</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the OAUth token, or nil if not available</p>
+
                       </div>
                     </section>
                   </div>
@@ -319,16 +480,43 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Save the specified token for the given realm
+- parameter realm: The realm (domain) to return results.  Ignore if only using ParticleSwift
+- returns: the OAuth token, or nil if not available</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SecureStorage</span><span class="p">:</span> <span class="kd">class</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">updateOAuthToken</span><span class="p">(</span><span class="n">_</span> <span class="nv">token</span><span class="p">:</span> <span class="kt"><a href="../Structs/OAuthToken.html">OAuthToken</a></span><span class="p">?,</span> <span class="n">forRealm</span> <span class="nv">realm</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>realm</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The realm (domain) to return results.  Ignore if only using ParticleSwift</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the OAuth token, or nil if not available</p>
+
                       </div>
                     </section>
                   </div>
@@ -338,7 +526,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Mark Vakoc</a>. All rights reserved. (Last updated: 2016-11-14)</p>
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Mark Vakoc</a>. All rights reserved. (Last updated: 2016-11-20)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

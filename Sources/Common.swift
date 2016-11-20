@@ -8,15 +8,17 @@
 import Foundation
 import Dispatch
 
-public let errorDomain = "com.vakoc.ParticleSwift"
-
-/// Enum for a result of something that can fail, particularly network requests
+/// Enum for a result of something that can fail, particularly on asynchronous actions like network requests
+///
+/// - success: The action succedded;  the associated value is the operation result
+/// - failure: The action failed;  the associated value is an error
 public enum Result<T> {
     case success(T)
     case failure(Error)
 }
 
 
+/// Items that can be initialized from and converted to a dictionary with string keys
 public protocol StringKeyedDictionaryConvertible {
     
     init? (with dictionary: [String : Any])

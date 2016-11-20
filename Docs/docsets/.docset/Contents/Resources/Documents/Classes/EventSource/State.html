@@ -14,7 +14,7 @@
     <a title="State Enum Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../../index.html"> Docs</a> (63% documented)</p>
+        <p><a href="../../index.html"> Docs</a> (75% documented)</p>
         <p class="header-right"><a href="https://github.com/vakoc/particle-swift"><img src="../../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -41,6 +41,9 @@
                 <a href="../../Classes/EventSource/State.html">– State</a>
               </li>
               <li class="nav-group-task">
+                <a href="../../Classes/EventSource/Config.html">– Config</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../../Classes/ParticleCloud.html">ParticleCloud</a>
               </li>
             </ul>
@@ -48,9 +51,6 @@
           <li class="nav-group-name">
             <a href="../../Global Variables.html">Global Variables</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../../Global Variables.html#/s:v13ParticleSwift11errorDomainSS">errorDomain</a>
-              </li>
               <li class="nav-group-task">
                 <a href="../../Global Variables.html#/s:v13ParticleSwift14globalLogLevelOS_8LogLevel">globalLogLevel</a>
               </li>
@@ -66,9 +66,6 @@
                 <a href="../../Enums/ParticleError.html">ParticleError</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Enums/Product.html">Product</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../../Enums/Result.html">Result</a>
               </li>
             </ul>
@@ -77,6 +74,9 @@
             <a href="../../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../../Extensions/Date.html">Date</a>
               </li>
               <li class="nav-group-task">
@@ -84,6 +84,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../../Extensions/Notification.html">Notification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/ParticleError.html">ParticleError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Extensions/UUID.html">UUID</a>
@@ -104,6 +107,9 @@
           <li class="nav-group-name">
             <a href="../../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Protocols/EventSourceDelegate.html">EventSourceDelegate</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../../Protocols/OAuthAuthenticatable.html">OAuthAuthenticatable</a>
               </li>
@@ -129,6 +135,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../../Structs/DeviceInformation.html">DeviceInformation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/DeviceInformation/Product.html">– Product</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Structs/OAuthToken.html">OAuthToken</a>
@@ -168,8 +177,10 @@
             <p>The state of an event source</p>
 
 <ul>
-<li>stopped: Not actively receiving data</li>
-<li>started: Actively receiving data</li>
+<li>inactive      : Not actively attempting to use the event source</li>
+<li>connecting    : Attempting to connect to the event source</li>
+<li>connected     : Actively connected and receiving events</li>
+<li>disconnecting : Terminating the connection</li>
 </ul>
 
           </section>
@@ -179,9 +190,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FOC13ParticleSwift11EventSource5State7stoppedFMS1_S1_"></a>
-                    <a name="//apple_ref/swift/Element/stopped" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FOC13ParticleSwift11EventSource5State7stoppedFMS1_S1_">stopped</a>
+                    <a name="/s:FOC13ParticleSwift11EventSource5State8inactiveFMS1_S1_"></a>
+                    <a name="//apple_ref/swift/Element/inactive" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FOC13ParticleSwift11EventSource5State8inactiveFMS1_S1_">inactive</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -206,9 +217,63 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FOC13ParticleSwift11EventSource5State7startedFMS1_S1_"></a>
-                    <a name="//apple_ref/swift/Element/started" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FOC13ParticleSwift11EventSource5State7startedFMS1_S1_">started</a>
+                    <a name="/s:FOC13ParticleSwift11EventSource5State10connectingFMS1_S1_"></a>
+                    <a name="//apple_ref/swift/Element/connecting" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FOC13ParticleSwift11EventSource5State10connectingFMS1_S1_">connecting</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">State</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FOC13ParticleSwift11EventSource5State9connectedFMS1_S1_"></a>
+                    <a name="//apple_ref/swift/Element/connected" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FOC13ParticleSwift11EventSource5State9connectedFMS1_S1_">connected</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">State</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FOC13ParticleSwift11EventSource5State13disconnectingFMS1_S1_"></a>
+                    <a name="//apple_ref/swift/Element/disconnecting" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FOC13ParticleSwift11EventSource5State13disconnectingFMS1_S1_">disconnecting</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -235,7 +300,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Mark Vakoc</a>. All rights reserved. (Last updated: 2016-11-14)</p>
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Mark Vakoc</a>. All rights reserved. (Last updated: 2016-11-20)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

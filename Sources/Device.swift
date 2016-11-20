@@ -32,6 +32,7 @@ public struct DeviceInformation {
         }
     }
     
+    /// Dictionary keys used in the conversion to/from a dictionary
     fileprivate enum DictionaryConstants: String {
         case id
         case name
@@ -284,15 +285,22 @@ extension DeviceDetailInformation: StringKeyedDictionaryConvertible {
     }
 }
 
+/// The result of the claim cloud method
 public struct ClaimResult {
     
+    /// Dictionary constants in the serialization of ClaimResult
+    ///
+    /// - claimCode: the key for the claim code
+    /// - deviceIDs: the key for the associated devices
     enum DictionaryConstants: String {
         case claimCode = "claim_code"
         case deviceIDs = "device_ids"
     }
     
+    /// The claim code
     public var claimCode: String
     
+    /// The associated devices
     public var deviceIDs: [String]
 }
 
@@ -367,35 +375,20 @@ extension ParticleCloud {
         }
     }
     
+    /// Retrieve detailed device information for a given device
+    ///
+    /// - Parameters:
+    ///   - device: The device to fetch detailed information for
+    ///   - completion: callback containing the reuslts of the request
     public func deviceDetailInformation(_ device: DeviceInformation, completion: @escaping (Result<DeviceDetailInformation>) -> Void ) {
-        
-        authenticate(false) { (result) in
-            switch (result) {
-            case .failure(let error):
-                return completion(.failure(error))
-                
-            case .success(let accessToken):
-                
-                var request = URLRequest(url: self.baseURL.appendingPathComponent("v1/devices/\(device.deviceID)"))
-                request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-                let task = self.urlSession.dataTask(with: request) { (data, response, error) in
-                    
-                    trace( "Get device detail information", request: request, data: data, response: response, error: error)
-                    if let error = error {
-                        return completion(.failure(ParticleError.deviceDetailedInformationFailed(error)))
-                    }
-                    
-                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],  let j = json, let deviceDetailInformation = DeviceDetailInformation(with: j) {
-                        return completion(.success(deviceDetailInformation))
-                    } else {
-                        return completion(.failure(ParticleError.deviceDetailedInformationFailed(ParticleError.httpReponseParseFailed(nil))))
-                    }
-                }
-                task.resume()
-            }
-        }
+        deviceDetailInformation(device.deviceID, completion: completion)
     }
-    
+
+    /// Retrieve detailed device information for a given device
+    ///
+    /// - Parameters:
+    ///   - device: The device to fetch detailed information for
+    ///   - completion: callback containing the reuslts of the request
     public func deviceDetailInformation(_ deviceID: String, completion: @escaping (Result<DeviceDetailInformation>) -> Void ) {
         
         authenticate( false) { (result) in
@@ -425,6 +418,13 @@ extension ParticleCloud {
         }
     }
     
+    /// Invoke a function on a specific device
+    ///
+    /// - Parameters:
+    ///   - functionName: the name of the function
+    ///   - deviceID: the id of the device on which to call the function
+    ///   - argument: the argument to pass to the function
+    ///   - completion: callback with the results of the function call
     public func callFunction(_ functionName: String, deviceID: String, argument: String?, completion: @escaping (Result<[String : Any]>) -> Void ) {
         
         authenticate(false) { (result) in
@@ -462,6 +462,12 @@ extension ParticleCloud {
         }
     }
     
+    /// Retrieve a variable value on a specific device
+    ///
+    /// - Parameters:
+    ///   - variableName: the variable to retreive
+    ///   - deviceID: the id of the device from which to retrieve the variable
+    ///   - completion: callback containing the result of the invocation
     public func variableValue(_ variableName: String, deviceID: String, completion: @escaping (Result<[String : Any]>) -> Void ) {
         
         authenticate( false) { (result) in
@@ -492,6 +498,11 @@ extension ParticleCloud {
         }
     }
     
+    /// Claim a device
+    ///
+    /// - Parameters:
+    ///   - deviceID: the device id
+    ///   - completion: the callback with the result
     public func claim(_ deviceID: String, completion: @escaping (Result<Int>) -> Void ) {
         trace("attempting to claim device \(deviceID)")
         authenticate(false) { (result) in
@@ -521,6 +532,11 @@ extension ParticleCloud {
         }
     }
     
+    /// Unclaim a device
+    ///
+    /// - Parameters:
+    ///   - deviceID: the device id to unclaim
+    ///   - completion: callback with the result
     public func unclaim(_ deviceID: String, completion: @escaping (Result<[String: Any]>) -> Void ) {
         trace("attempting to unclaim device \(deviceID)")
         authenticate(false) { (result) in
@@ -552,6 +568,11 @@ extension ParticleCloud {
         }
     }
     
+    /// Transfer a device
+    ///
+    /// - Parameters:
+    ///   - deviceID: the devide id
+    ///   - completion: callback with the result
     public func transfer(_ deviceID: String, completion: @escaping (Result<String>) -> Void ) {
         trace("attempting to transfer device \(deviceID)")
         authenticate(false) { (result) in
@@ -585,6 +606,12 @@ extension ParticleCloud {
         }
     }
 
+    /// Create a claim code for cellular devices
+    ///
+    /// - Parameters:
+    ///   - imei: imei for the device
+    ///   - iccid: iccid for the device
+    ///   - completion: callback with the result
     public func createClaimCode(_ imei: String? = nil, iccid: String? = nil, completion: @escaping (Result<ClaimResult>) -> Void ) {
         trace("attempting to create a claim code")
 
