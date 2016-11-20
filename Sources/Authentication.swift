@@ -160,6 +160,9 @@ public protocol OAuthAuthenticatable: class, WebServiceCallable {
     
     /// The secure storage provider used to provide/persist credentails on a per realm instance
     var secureStorage: SecureStorage? { get }
+    
+    /// The default amoun to time, in seconds, that created tokens are valid.  0 means forever.  Shorter times are more secure
+    var defaultTokenExpiration: TimeInterval { get }
         
     /// Performs authentication asynchronously returning the access token to utilize
     ///
@@ -206,6 +209,10 @@ public protocol OAuthAuthenticatable: class, WebServiceCallable {
 
 extension OAuthAuthenticatable {
     
+    public var defaultTokenExpiration: TimeInterval {
+        return 60*60*24
+    }
+    
     public func authenticate(_ validateToken: Bool, completion: @escaping (Result<String>) -> Void) {
         
         if let token = secureStorage?.oauthToken(self.realm) , Date().compare(token.expirationDate as Date) == ComparisonResult.orderedAscending {
@@ -213,12 +220,11 @@ extension OAuthAuthenticatable {
                 return dispatchQueue.async { completion(.success(token.accessToken)) }
             }
             
-            /// TODO validate the token to ensure it doesn't suck
+            /// TODO validate the token
             return dispatchQueue.async { completion(.success(token.accessToken)) }
         }
         
-        /// TODO:  parameterize the expiresIn
-        self.createOAuthToken(60*60*7, expiresAt: nil) { (createOAuthTokenResult) in
+        self.createOAuthToken(defaultTokenExpiration, expiresAt: nil) { (createOAuthTokenResult) in
             switch (createOAuthTokenResult) {
             case .failure(let error):
                 return completion(.failure(error))
@@ -229,7 +235,7 @@ extension OAuthAuthenticatable {
         }
     }
     
-    public func createOAuthToken(_ expiresIn: TimeInterval = 60*60*24*365, expiresAt: Date? = nil, completion: @escaping (Result<OAuthToken>) -> Void ) {
+    public func createOAuthToken(_ expiresIn: TimeInterval = 60*60*24, expiresAt: Date? = nil, completion: @escaping (Result<OAuthToken>) -> Void ) {
         
         guard let username = secureStorage?.username(self.realm), let password = secureStorage?.password(self.realm), let OAuthClientID = secureStorage?.oauthClientId(self.realm), let OAuthClientSecret = secureStorage?.oauthClientSecret(self.realm) else {
             return dispatchQueue.async { completion(.failure(ParticleError.missingCredentials)) }
@@ -255,9 +261,9 @@ extension OAuthAuthenticatable {
         requesta.httpBody = urlParams.URLEncodedParameters?.data(using: String.Encoding.utf8)
         requesta.httpMethod = "POST"
 
-	// Work around a compiler crash bug on Linux by preventing the capture of a mutable variable by ref
+        // Work around a compiler crash bug on Linux by preventing the capture of a mutable variable by ref
         // and simply capture a let instead
-	let request = requesta
+        let request = requesta
         
         let task = self.urlSession.dataTask(with: request) { (data, response, error) in
             
@@ -269,6 +275,7 @@ extension OAuthAuthenticatable {
             
             if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],  let j = json,
                 let token = OAuthToken(with: j) {
+                trace("Created an OAuth token \(token.dictionary)")
                 completion(.success(token))
             } else {
                 return completion(.failure(ParticleError.oauthTokenCreationFailed(ParticleError.oauthTokenParseFailed)))
