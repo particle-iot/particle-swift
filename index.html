@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Particle-swift : Swift 3.0 Package for interacting with Particle Cloud services ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Particle-swift</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/vakoc/particle-swift">View on GitHub</a>
+
+          <h1 id="project_title">Particle-swift</h1>
+          <h2 id="project_tagline">Swift 3.0 Package for interacting with Particle Cloud services </h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/vakoc/particle-swift/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/vakoc/particle-swift/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="particle-swift" class="anchor" href="#particle-swift" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>particle-swift</h1>
+
+<p>Swift 3.0 Package for interacting with Particle Cloud services </p>
+
+<p><em>Compatibility:</em> Xcode 8 (Swift 3.0) or the equivalent open source variant of Swift is required.</p>
+
+<p>This project provides a pure Swift SDK for interacting with the particle.io cloud services.  The 
+APIs provide access to the following portions of the Particle Cloud</p>
+
+<ul>
+<li>Authentication</li>
+<li>Devices</li>
+<li>Webhooks</li>
+<li>Events</li>
+</ul>
+
+<p>This project has the following long term goals</p>
+
+<ul>
+<li>Follow pure swift design and coding styles</li>
+<li>Be dependency free</li>
+<li>Work with the swift package manager and provide frameworks for iOS, macOS, tvOS, and watchOS</li>
+</ul>
+
+<p>Some general design guidelines are </p>
+
+<ul>
+<li>Delegate secured storage of credentials to the caller.  Higher level consumers can store in keychain, etc.</li>
+<li>Generally be a stateless (outside of authentication) API set for the Particle Cloud services. </li>
+<li>Be compatible with Linux and other swift ports (long term goal)</li>
+<li>Multi-user concurrency.  Multiple particle cloud accounts may be created and used at the same time.</li>
+</ul>
+
+<p>Intended usages for this library would include server side Swift, iOS/tvOS/macOS/watchOS applications that utilize particle cloud service, or any other Swift based product that wants to use the awesome Particle Cloud.</p>
+
+<p>A swift package manager compatible executable project is available <a href="https://github.com/vakoc/particle-swift-cli">here</a>. </p>
+
+<h2>
+<a id="using-the-library" class="anchor" href="#using-the-library" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using the Library</h2>
+
+<p>particle-swift can be used by by any platform that is supported by the Swift Package Manager (SPM) or directly by Xcode for Apple based platforms.</p>
+
+<p>SPM based deployments simply need to include the particle-swift github url in the Package.swift as shown below.  The particle-swift-cli, for example, utilizes particle-swift by delcaring it in Package.swift as follows</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">import</span> <span class="pl-en">PackageDescription</span>
+
+<span class="pl-k">let</span> package <span class="pl-k">=</span> <span class="pl-c1">Package</span>(
+    <span class="pl-c1">name</span>: <span class="pl-s"><span class="pl-pds">"</span>particle-swift-cli<span class="pl-pds">"</span></span>,
+    <span class="pl-c1">dependencies</span>: [
+        .<span class="pl-c1">Package</span>(<span class="pl-c1">url</span>: <span class="pl-s"><span class="pl-pds">"</span>https://github.com/vakoc/particle-swift.git<span class="pl-pds">"</span></span>, <span class="pl-c1">versions</span>: <span class="pl-c1">Version</span>(<span class="pl-c1">0</span>,<span class="pl-c1">0</span>,<span class="pl-c1">0</span>)<span class="pl-k">...</span><span class="pl-c1">Version</span>(<span class="pl-c1">1</span>,<span class="pl-c1">0</span>,<span class="pl-c1">0</span>)),
+    ]
+)</pre></div>
+
+<p>The SPM supports only macOS targets on the Apple platforms and command line applications on Linux.  Traditional iOS, tvOS, watchOS, or macOS applications may also utilize particle-swift by simply cloning the git repository and adding the source managed Xcode/ParticleSwift.xcodeproj Xcode project directly into their sources.  </p>
+
+<p>This Xcode project provides Swift frameworks for each of those platforms.  Simply add the corresponding framework as an embedded framework to your application.  Any source files that want to utilize particle-swift should import the module as shown below</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">import</span> <span class="pl-en">Foundation</span>
+<span class="pl-k">import</span> <span class="pl-en">ParticleSwift</span>
+
+<span class="pl-k">let</span> particleCloud <span class="pl-k">=</span> <span class="pl-c1">ParticleCloud</span>(<span class="pl-k">.....</span>)</pre></div>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<p>particle-swift provides the APIs to interact with the Particle Cloud webservices.  Authentication is handled by the library but credential storage is not; the caller is reponsible for providing and securely storing sensitive information.  Apple platorms provide keychain storage which is suitable for persisting sensitive information.  </p>
+
+<p>The following sample provides an example of using particle-swift with basic and  insecure credential management.  Keychain services is beyond the scope of this example.  Note:  ParticleCloud instances are not singletons and is fully supported to have multiple instances run concurrently that may utilize separate OAuth realms at the same time.  Multi-user concurrency is an essential design goal of this library.</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">import</span> <span class="pl-en">Foundation</span>
+<span class="pl-k">import</span> <span class="pl-en">ParticleSwift</span>
+
+<span class="pl-c">// Illustrative example utilizing insecure UserDefaults for token storage and hard coded</span>
+<span class="pl-c">// user names.  Production apps should use more secure mechanisms like the Keychain services </span>
+<span class="pl-c">// provided by the OS</span>
+<span class="pl-c"></span><span class="pl-k">class</span> <span class="pl-en">MyParticleCloud</span> {
+
+    <span class="pl-k">var</span> token<span class="pl-k">:</span> OAuthToken<span class="pl-k">?</span>
+    <span class="pl-k">var</span> particleCloud<span class="pl-k">:</span> ParticleCloud<span class="pl-k">?</span>
+
+    <span class="pl-k">init</span>() {
+        <span class="pl-k">if</span> <span class="pl-k">let</span> dictionary <span class="pl-k">=</span> UserDefaults.<span class="pl-smi">standard</span>.<span class="pl-c1">value</span>(<span class="pl-c1">forKey</span>: <span class="pl-s"><span class="pl-pds">"</span>token<span class="pl-pds">"</span></span>) <span class="pl-k">as?</span> <span class="pl-c1">Dictionary</span><span class="pl-k">&lt;</span><span class="pl-c1">String</span>,<span class="pl-c1">Any</span><span class="pl-k">&gt;</span> {
+            <span class="pl-v">self</span>.<span class="pl-smi">token</span> <span class="pl-k">=</span> <span class="pl-c1">OAuthToken</span>(<span class="pl-c1">with</span>: dictionary)
+        }
+        particleCloud <span class="pl-k">=</span> <span class="pl-c1">ParticleCloud</span>(<span class="pl-c1">secureStorage</span>: <span class="pl-v">self</span>)
+    }
+
+    <span class="pl-k">func</span> <span class="pl-en">callFunctionOnAllMyDevices</span>() {
+
+        particleCloud<span class="pl-k">?</span>.<span class="pl-smi">devices</span> { result <span class="pl-k">in</span>
+            <span class="pl-k">switch</span> (result) {
+            <span class="pl-k">case</span> .<span class="pl-c1">success</span>(<span class="pl-k">let</span> devices)<span class="pl-k">:</span>
+                devices.<span class="pl-c1">forEach</span> { device <span class="pl-k">in</span>
+                    <span class="pl-v">self</span>.<span class="pl-smi">particleCloud</span><span class="pl-k">?</span>.<span class="pl-c1">callFunction</span>(<span class="pl-s"><span class="pl-pds">"</span>myFunction<span class="pl-pds">"</span></span>, <span class="pl-c1">deviceID</span>: device.<span class="pl-smi">deviceID</span>, <span class="pl-c1">argument</span>: <span class="pl-s"><span class="pl-pds">"</span>7<span class="pl-pds">"</span></span>) { functionResult <span class="pl-k">in</span>
+
+                        <span class="pl-k">switch</span> (functionResult) {
+                            <span class="pl-k">case</span> .<span class="pl-c1">success</span>(<span class="pl-k">let</span> retVal)<span class="pl-k">:</span>
+                                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Result of myFunction(7) device <span class="pl-pse">\(</span><span class="pl-s1">device.<span class="pl-smi">name</span>)</span> was <span class="pl-pse">\(</span><span class="pl-s1">retVal)</span><span class="pl-pds">"</span></span>)
+                            <span class="pl-k">case</span> .<span class="pl-c1">failure</span>(<span class="pl-k">let</span> error)<span class="pl-k">:</span>
+                                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Error:  Failed to call myFunction(7) on device <span class="pl-pse">\(</span><span class="pl-s1">device.<span class="pl-smi">name</span>)</span> with error <span class="pl-pse">\(</span><span class="pl-s1">error)</span><span class="pl-pds">"</span></span>)
+                        }
+                    }
+                }
+            <span class="pl-k">case</span> .<span class="pl-c1">failure</span>(<span class="pl-k">let</span> error)<span class="pl-k">:</span>
+                <span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>Error:  Unable to enumerate all devices with function <span class="pl-pse">\(</span><span class="pl-s1">error)</span><span class="pl-pds">"</span></span>)
+            }
+        }
+    }
+}
+
+<span class="pl-k">extension</span> <span class="pl-en">MyParticleCloud</span>: <span class="pl-e">SecureStorage </span>{
+
+    <span class="pl-k">func</span> <span class="pl-en">username</span>(<span class="pl-en">_</span> <span class="pl-smi">realm</span>: <span class="pl-c1">String</span>) <span class="pl-k">-&gt;</span> <span class="pl-c1">String</span><span class="pl-k">?</span> {
+        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>myuser<span class="pl-pds">"</span></span>
+    }
+
+    <span class="pl-k">func</span> <span class="pl-en">password</span>(<span class="pl-en">_</span> <span class="pl-smi">realm</span>: <span class="pl-c1">String</span>) <span class="pl-k">-&gt;</span> <span class="pl-c1">String</span><span class="pl-k">?</span> {
+        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>mypassword<span class="pl-pds">"</span></span>
+    }
+
+    <span class="pl-k">func</span> <span class="pl-en">oauthClientId</span>(<span class="pl-en">_</span> <span class="pl-smi">realm</span>: <span class="pl-c1">String</span>) <span class="pl-k">-&gt;</span> <span class="pl-c1">String</span><span class="pl-k">?</span> {
+        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>particle<span class="pl-pds">"</span></span>
+    }
+
+    <span class="pl-k">func</span> <span class="pl-en">oauthClientSecret</span>(<span class="pl-en">_</span> <span class="pl-smi">realm</span>: <span class="pl-c1">String</span>) <span class="pl-k">-&gt;</span> <span class="pl-c1">String</span><span class="pl-k">?</span> {
+        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>particle<span class="pl-pds">"</span></span>
+    }
+
+    <span class="pl-k">func</span> <span class="pl-en">oauthToken</span>(<span class="pl-en">_</span> <span class="pl-smi">realm</span>: <span class="pl-c1">String</span>) <span class="pl-k">-&gt;</span> OAuthToken<span class="pl-k">?</span> {
+        <span class="pl-k">return</span> token
+    }
+
+    <span class="pl-k">func</span> <span class="pl-en">updateOAuthToken</span>(<span class="pl-en">_</span> <span class="pl-smi">token</span>: OAuthToken<span class="pl-k">?</span>, <span class="pl-en">forRealm</span> <span class="pl-smi">realm</span>: <span class="pl-c1">String</span>) {
+        <span class="pl-v">self</span>.<span class="pl-smi">token</span> <span class="pl-k">=</span> token
+        <span class="pl-c">/// Persist this for subsequent runs</span>
+<span class="pl-c"></span>        UserDefaults.<span class="pl-smi">standard</span>.<span class="pl-c1">set</span>(token.<span class="pl-c1">dictionary</span>, <span class="pl-c1">forKey</span>: <span class="pl-s"><span class="pl-pds">"</span>token<span class="pl-pds">"</span></span>)
+    }
+}</pre></div>
+
+<p>The following example uses the MyParticleCloud class to call a function on all devices assocaited with the user's account.</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> cloud <span class="pl-k">=</span> <span class="pl-c1">MyParticleCloud</span>()
+cloud.<span class="pl-c1">callFunctionOnAllMyDevices</span>()</pre></div>
+
+<p>Note:  if you are using particle-swift in a command line style application you will need to create a runloop.  All particle-swift interactions are asynchronous and utliize background threads for network communications.  Create a runloop like</p>
+
+<div class="highlight highlight-source-swift"><pre>RunLoop.<span class="pl-smi">current</span>.<span class="pl-c1">run</span>(<span class="pl-c1">until</span>: Date.<span class="pl-smi">distantFuture</span>)</pre></div>
+
+<p>Refer to the particle-swift-cli sample application, which utilizes every particle-swift capability, for more examples on how to make use of this framework.</p>
+
+<h2>
+<a id="versioning" class="anchor" href="#versioning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Versioning</h2>
+
+<p>Swift package manager based projects utilize only tagged releases that match the versions specified in the Package.swift manifest file.  As such releases of this library are created often.  Version numbers follow the semantic versioning system of MAJOR.MINOR.PATCH.  While every attempt is made to prevent source level incompatibilities between patch level versions, at this point, this is not guaranteed.  </p>
+
+<h2>
+<a id="linux-support" class="anchor" href="#linux-support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Linux Support</h2>
+
+<p>particle-swift (and particle-swift-cli) currently compile and function on Linux.  Known bugs exist in 3.0.1 and 3.0.2 verions of swift on Linux that can prevent HTTP headers from being properly included in requests, which is extremely significant to this library.  As such a recent Swift snapshots (later than ~ Oct 20, 2016) resolve this issue.</p>
+
+<p>Linux support is an important long term goal of this project and every effort is made to make it work as well on Linux as on Apple platforms.  Swift on Linux is rather unstable IMHO and the focus of Linux support will be concerned only with using recent Swift builds.</p>
+
+<p>The most recent Swift build known to work is swift-DEVELOPMENT-SNAPSHOT-2016-11-15-a-ubuntu16.04.</p>
+
+<h2>
+<a id="roadmap" class="anchor" href="#roadmap" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Roadmap</h2>
+
+<p>APIs should be relatively stable but are subject to change.  Additional Particle Cloud functionality is being added
+in the following general order</p>
+
+<ul>
+<li>Firmware</li>
+</ul>
+
+<p>Once complete additional functionality will be added.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>All code is licenced under the Apache 2.0 license.  See <a href="http://www.vakoc.com/LICENSE.txt">http://www.vakoc.com/LICENSE.txt</a> for more information.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Particle-swift maintained by <a href="https://github.com/vakoc">vakoc</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
