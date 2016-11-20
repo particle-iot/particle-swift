@@ -23,6 +23,7 @@ Some general design guidelines are
   * Delegate secured storage of credentials to the caller.  Higher level consumers can store in keychain, etc.
   * Generally be a stateless (outside of authentication) API set for the Particle Cloud services. 
   * Be compatible with Linux and other swift ports (long term goal)
+  * Multi-user concurrency.  Multiple particle cloud accounts may be created and used at the same time.
 
 Intended usages for this library would include server side Swift, iOS/tvOS/macOS/watchOS applications that utilize particle cloud service, or any other Swift based product that wants to use the awesome Particle Cloud.
 
@@ -59,9 +60,9 @@ let particleCloud = ParticleCloud(.....)
 
 Getting Started
 -------
-particle-swift provides the APIs to interact with the Particle Cloud webservices.  Authentication is handled by the particle-swift library but credential storage is not;  the caller is reponsible for providing and securely storing sensitive information.  Apple platorms provide keychain storage which is suitable for persisting sensitive information.  
+particle-swift provides the APIs to interact with the Particle Cloud webservices.  Authentication is handled by the library but credential storage is not; the caller is reponsible for providing and securely storing sensitive information.  Apple platorms provide keychain storage which is suitable for persisting sensitive information.  
 
-The following sample provides an example of using particle-swift using insecure credential management.  Keychain services is beyond the scope of this example.  Note:  ParticleCloud instances are not singletons and is fully supported to have multiple instances run concurrently that may utilize separate OAuth realms at the same time.  Multi-user concurrency is an essential design goal of this library.
+The following sample provides an example of using particle-swift with basic and  insecure credential management.  Keychain services is beyond the scope of this example.  Note:  ParticleCloud instances are not singletons and is fully supported to have multiple instances run concurrently that may utilize separate OAuth realms at the same time.  Multi-user concurrency is an essential design goal of this library.
 
 ```swift
 import Foundation
@@ -149,6 +150,10 @@ RunLoop.current.run(until: Date.distantFuture)
 ```
 
 Refer to the particle-swift-cli sample application, which utilizes every particle-swift capability, for more examples on how to make use of this framework.
+
+Versioning
+-------
+Swift package manager based projects utilize only tagged releases that match the versions specified in the Package.swift manifest file.  As such releases of this library are created often.  Version numbers follow the semantic versioning system of MAJOR.MINOR.PATCH.  While every attempt is made to prevent source level incompatibilities between patch level versions, at this point, this is not guaranteed.  
 
 Linux Support
 -------

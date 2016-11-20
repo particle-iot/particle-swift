@@ -99,6 +99,6 @@ extension ParticleCloud: OAuthAuthenticatable {
 extension ParticleCloud: CustomStringConvertible {
     
      public var description: String {
-        return "\(secureStorage?.username) -- \(secureStorage?.oauthClientId)"
+        return "\(String(describing: secureStorage?.username)) -- \(String(describing: secureStorage?.oauthClientId))"
     }
 }

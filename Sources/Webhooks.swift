@@ -350,7 +350,7 @@ extension ParticleCloud {
                 return completion(.failure(error))
                 
             case .success(let accessToken):
-                var request = URLRequest(url: productIdOrSlug != nil ? self.baseURL.appendingPathComponent("v1/products/\(productIdOrSlug)/webhooks") : self.baseURL.appendingPathComponent("v1/webhooks"))
+                var request = URLRequest(url: productIdOrSlug != nil ? self.baseURL.appendingPathComponent("v1/products/\(String(describing: productIdOrSlug))/webhooks") : self.baseURL.appendingPathComponent("v1/webhooks"))
                 request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
                 request.httpMethod = "POST"
                 
@@ -374,7 +374,7 @@ extension ParticleCloud {
                     } else {
                         
                         let message = data != nil ? String(data: data!, encoding: String.Encoding.utf8) ?? "" : ""
-                        warn("failed to create webhook with response: \(response) and message body \(message)")
+                        warn("failed to create webhook with response: \(String(describing: response)) and message body \(message)")
                         
                         return completion(.failure(ParticleError.createWebhookFailed(ParticleError.httpReponseParseFailed(message))))
                     }
@@ -398,7 +398,7 @@ extension ParticleCloud {
                 return completion(.failure(error))
                 
             case .success(let accessToken):
-                var request = URLRequest(url: productIdOrSlug != nil ? self.baseURL.appendingPathComponent("v1/products/\(productIdOrSlug)/webhooks/\(webhookID)") : self.baseURL.appendingPathComponent("v1/webhooks/\(webhookID)"))
+                var request = URLRequest(url: productIdOrSlug != nil ? self.baseURL.appendingPathComponent("v1/products/\(String(describing: productIdOrSlug))/webhooks/\(webhookID)") : self.baseURL.appendingPathComponent("v1/webhooks/\(webhookID)"))
                 request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
                 request.httpMethod = "DELETE"
                 
@@ -415,7 +415,7 @@ extension ParticleCloud {
                     } else {
                         
                         let message = data != nil ? String(data: data!, encoding: String.Encoding.utf8) ?? "" : ""
-                        warn("failed to delete webhook \(webhookID) with response: \(response) and message body \(message)")
+                        warn("failed to delete webhook \(webhookID) with response: \(String(describing:response)) and message body \(message)")
                         
                         return completion(.failure(ParticleError.deleteWebhookFailed(webhookID, ParticleError.httpReponseParseFailed(message))))
                     }
@@ -443,7 +443,7 @@ extension ParticleCloud {
                 return completion(.failure(error))
                 
             case .success(let accessToken):
-                var request = URLRequest(url: productIdOrSlug != nil ? self.baseURL.appendingPathComponent("v1/products/\(productIdOrSlug)/webhooks/\(webhookID)") : self.baseURL.appendingPathComponent("v1/webhooks/\(webhookID)"))
+                var request = URLRequest(url: productIdOrSlug != nil ? self.baseURL.appendingPathComponent("v1/products/\(String(describing: productIdOrSlug))/webhooks/\(webhookID)") : self.baseURL.appendingPathComponent("v1/webhooks/\(webhookID)"))
                 request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
                 
                 let task = self.urlSession.dataTask(with: request) { (data, response, error) in
@@ -459,7 +459,7 @@ extension ParticleCloud {
                     } else {
                         
                         let message = data != nil ? String(data: data!, encoding: String.Encoding.utf8) ?? "" : ""
-                        warn("failed to get webhook \(webhookID) with response: \(response) and message body \(message)")
+                        warn("failed to get webhook \(webhookID) with response: \(String(describing: response)) and message body \(message)")
                         return completion(.failure(ParticleError.webhookGetFailed(webhookID, ParticleError.httpReponseParseFailed(message))))
                     }
                 }
@@ -484,7 +484,7 @@ extension ParticleCloud {
                 return completion(.failure(error))
                 
             case .success(let accessToken):
-                var request = URLRequest(url: productIdOrSlug != nil ? self.baseURL.appendingPathComponent("v1/products/\(productIdOrSlug)/webhooks") : self.baseURL.appendingPathComponent("v1/webhooks"))
+                var request = URLRequest(url: productIdOrSlug != nil ? self.baseURL.appendingPathComponent("v1/products/\(String(describing: productIdOrSlug))/webhooks") : self.baseURL.appendingPathComponent("v1/webhooks"))
                 request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
                
                 let task = self.urlSession.dataTask(with: request) { (data, response, error) in
@@ -500,7 +500,7 @@ extension ParticleCloud {
                     } else {
                         
                         let message = data != nil ? String(data: data!, encoding: String.Encoding.utf8) ?? "" : ""
-                        warn("failed to list all webhooks with response: \(response) and message body \(message)")
+                        warn("failed to list all webhooks with response: \(String(describing: response)) and message body \(String(describing: message))")
                         return completion(.failure(ParticleError.webhookListFailed(ParticleError.httpReponseParseFailed(message))))
                     }
                 }

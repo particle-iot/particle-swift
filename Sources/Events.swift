@@ -491,27 +491,27 @@ extension EventSource {
             switch (streamType, publicEvents, filterPrefix, deviceID, productIdOrSlug) {
             // products
             case (.product, _, .none, _, let productId):
-                return "v1/products/\(productId)/events"
+                return "v1/products/\(String(describing: productId))/events"
             case (.product, _, let filter, _, let productId):
-                return "v1/products/\(productId)/events/\(filter)"
+                return "v1/products/\(String(describing: productId))/events/\(String(describing: filter))"
 
             // public device events
             case (.device, true, .none, let deviceID, _):
-                return "v1/events/\(deviceID)"
+                return "v1/events/\(String(describing: deviceID))"
             case (.device, true, let filter, .none, _):
-                return "v1/events/\(filter)"
+                return "v1/events/\(String(describing: filter))"
             case (.device, true, let filter, let deviceID, _):
-                return "v1/events/\(deviceID)/\(filter)"
+                return "v1/events/\(String(describing: deviceID))/\(String(describing: filter))"
                 
             // account only device events
             case (.device, false, .none, .none, _):
                 return "v1/devices/events"
             case (.device, false, .none, let deviceID, _):
-                return "v1/devices/\(deviceID)/events"
+                return "v1/devices/\(String(describing: deviceID))/events"
             case (.device, false, let filter, .none, _):
-                return "v1/devices/events/\(filter)"
+                return "v1/devices/events/\(String(describing: filter))"
             case (.device, false, let filter, let deviceID, _):
-                return "v1/devices/\(deviceID)/events/\(filter)"
+                return "v1/devices/\(String(describing: deviceID))/events/\(String(describing: filter))"
 
             }
         }

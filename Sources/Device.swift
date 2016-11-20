@@ -11,7 +11,7 @@ import Foundation
 public struct DeviceInformation {
     
     /// Represents the particle product
-    public enum Product: Int {
+    public enum Product: Int, CustomStringConvertible {
         /// Particle Core
         case core = 0,
         /// Particle Photon
@@ -20,7 +20,7 @@ public struct DeviceInformation {
         electron = 10
         
         
-        public func productString() -> String {
+        public var description: String {
             switch (self) {
             case .core:
                 return "Core"
@@ -32,17 +32,17 @@ public struct DeviceInformation {
         }
     }
     
-    struct DictionaryConstants {
-        static let id = "id"
-        static let name = "name"
-        static let lastApp = "last_app"
-        static let lastIPAddress = "last_ip_address"
-        static let product = "product_id"
-        static let lastHeard = "last_heard"
-        static let connected = "connected"
-        static let lastICCID = "last_iccid"
-        static let imei = "imei"
-        static let status = "status"
+    fileprivate enum DictionaryConstants: String {
+        case id
+        case name
+        case lastApp = "last_app"
+        case lastIPAddress = "last_ip_address"
+        case product = "product_id"
+        case lastHeard = "last_heard"
+        case connected
+        case lastICCID = "last_iccid"
+        case imei
+        case status
     }
     
     /// Device ID
@@ -85,6 +85,9 @@ public struct DeviceInformation {
         self.product = product
     }
     
+    /// Update the device with the content of the new device detail
+    ///
+    /// - Parameter deviceDetailInformation: updated device detail information
     public mutating func update(_ deviceDetailInformation: DeviceDetailInformation) {
         self.name = deviceDetailInformation.name
         self.lastApp = deviceDetailInformation.lastApp
@@ -98,10 +101,11 @@ public struct DeviceInformation {
 }
 
 extension DeviceInformation: StringKeyedDictionaryConvertible {
+    
     public init?(with dictionary: [String : Any]) {
-        guard let deviceID = dictionary[DictionaryConstants.id] as? String , !deviceID.isEmpty,
-            let name = dictionary[DictionaryConstants.name] as? String , !name.isEmpty,
-            let productIdString = dictionary[DictionaryConstants.product] as? CustomStringConvertible,
+        guard let deviceID = dictionary[DictionaryConstants.id.rawValue] as? String , !deviceID.isEmpty,
+            let name = dictionary[DictionaryConstants.name.rawValue] as? String , !name.isEmpty,
+            let productIdString = dictionary[DictionaryConstants.product.rawValue] as? CustomStringConvertible,
             let productId = Int("\(productIdString)"),
             let product = Product(rawValue: productId) else {
                 warn("Failed to create a Device using the dictionary \(dictionary);  the required properties were not found")
@@ -109,28 +113,29 @@ extension DeviceInformation: StringKeyedDictionaryConvertible {
         }
         self.init(deviceID: deviceID, name: name, product: product)
         
-        self.lastApp = dictionary[DictionaryConstants.lastApp] as? String
-        self.lastIPAddress = dictionary[DictionaryConstants.lastIPAddress] as? String
-        self.lastHeard = (dictionary[DictionaryConstants.lastHeard] as? String)?.dateWithISO8601String
-        self.connected = dictionary[DictionaryConstants.connected] as? Bool ?? false
-        self.lastICCID = dictionary[DictionaryConstants.lastICCID] as? String
-        self.IMEI = dictionary[DictionaryConstants.imei] as? String
-        self.status = dictionary[DictionaryConstants.status] as? String
+        self.lastApp = dictionary[DictionaryConstants.lastApp.rawValue] as? String
+        self.lastIPAddress = dictionary[DictionaryConstants.lastIPAddress.rawValue] as? String
+        self.lastHeard = (dictionary[DictionaryConstants.lastHeard.rawValue] as? String)?.dateWithISO8601String
+        self.connected = dictionary[DictionaryConstants.connected.rawValue] as? Bool ?? false
+        self.lastICCID = dictionary[DictionaryConstants.lastICCID.rawValue] as? String
+        self.IMEI = dictionary[DictionaryConstants.imei.rawValue] as? String
+        self.status = dictionary[DictionaryConstants.status.rawValue] as? String
     }
     
+    /// The device information as a dictionary using keys compatible with the original web service
     public var dictionary: [String : Any] {
         get {
             var ret = [String : Any]()
-            ret[DictionaryConstants.id] = deviceID
-            ret[DictionaryConstants.name] = name
-            ret[DictionaryConstants.product] = product.rawValue
-            ret[DictionaryConstants.lastApp] = lastApp
-            ret[DictionaryConstants.lastIPAddress] = lastIPAddress
-            ret[DictionaryConstants.lastHeard] = lastHeard?.ISO8601String
-            ret[DictionaryConstants.connected] = connected
-            ret[DictionaryConstants.lastICCID] = lastICCID
-            ret[DictionaryConstants.imei] = IMEI
-            ret[DictionaryConstants.status] = status
+            ret[DictionaryConstants.id.rawValue] = deviceID
+            ret[DictionaryConstants.name.rawValue] = name
+            ret[DictionaryConstants.product.rawValue] = product.rawValue
+            ret[DictionaryConstants.lastApp.rawValue] = lastApp
+            ret[DictionaryConstants.lastIPAddress.rawValue] = lastIPAddress
+            ret[DictionaryConstants.lastHeard.rawValue] = lastHeard?.ISO8601String
+            ret[DictionaryConstants.connected.rawValue] = connected
+            ret[DictionaryConstants.lastICCID.rawValue] = lastICCID
+            ret[DictionaryConstants.imei.rawValue] = IMEI
+            ret[DictionaryConstants.status.rawValue] = status
             return ret
         }
     }
@@ -157,20 +162,20 @@ public func ==(lhs: DeviceInformation, rhs: DeviceInformation) -> Bool {
 /// The detail device information retrieved from /v1/devices/:deviceId
 public struct DeviceDetailInformation {
     
-    fileprivate struct DictionaryConstants {
-        static let id = "id"
-        static let name = "name"
-        static let lastApp = "last_app"
-        static let product = "product_id"
-        static let lastHeard = "last_heard"
-        static let connected = "connected"
-        static let variables = "variables"
-        static let functions = "functions"
-        static let cc3000_patch_version = "cc3000_patch_version"
-        static let requiresDeepUpdate = "requires_deep_update"
-        static let lastICCID = "last_iccid"
-        static let imei = "imei"
-        static let status = "status"
+    fileprivate enum DictionaryConstants: String {
+        case id
+        case name
+        case lastApp = "last_app"
+        case product = "product_id"
+        case lastHeard = "last_heard"
+        case connected
+        case variables
+        case functions
+        case cc3000_patch_version = "cc3000_patch_version"
+        case requiresDeepUpdate = "requires_deep_update"
+        case lastICCID = "last_iccid"
+        case imei
+        case status
     }
     
     /// Device ID
@@ -226,9 +231,9 @@ public struct DeviceDetailInformation {
 extension DeviceDetailInformation: StringKeyedDictionaryConvertible {
     
     public init?(with dictionary: [String : Any]) {
-        guard let deviceID = dictionary[DictionaryConstants.id] as? String , !deviceID.isEmpty,
-            let name = dictionary[DictionaryConstants.name] as? String , !name.isEmpty,
-            let productIdString = dictionary[DictionaryConstants.product] as? CustomStringConvertible,
+        guard let deviceID = dictionary[DictionaryConstants.id.rawValue] as? String , !deviceID.isEmpty,
+            let name = dictionary[DictionaryConstants.name.rawValue] as? String , !name.isEmpty,
+            let productIdString = dictionary[DictionaryConstants.product.rawValue] as? CustomStringConvertible,
             let productId = Int("\(productIdString)"),
             let product = DeviceInformation.Product(rawValue: productId) else {
                 warn("Failed to create a Device using the dictionary \(dictionary);  the required properties were not found")
@@ -237,42 +242,43 @@ extension DeviceDetailInformation: StringKeyedDictionaryConvertible {
         
         self.init(deviceID: deviceID, name: name, product: product)
         
-        self.lastApp = dictionary[DictionaryConstants.lastApp] as? String
+        self.lastApp = dictionary[DictionaryConstants.lastApp.rawValue] as? String
         //self.lastIPAddress = dictionary["last_ip_address"] as? String
-        self.lastHeard = (dictionary[DictionaryConstants.lastHeard] as? String)?.dateWithISO8601String
-        self.connected = dictionary[DictionaryConstants.connected] as? Bool ?? false
+        self.lastHeard = (dictionary[DictionaryConstants.lastHeard.rawValue] as? String)?.dateWithISO8601String
+        self.connected = dictionary[DictionaryConstants.connected.rawValue] as? Bool ?? false
         
-        if let variables = dictionary[DictionaryConstants.variables] as? [String : String] {
+        if let variables = dictionary[DictionaryConstants.variables.rawValue] as? [String : String] {
             self.variables = variables
         }
         
-        if let functions = dictionary[DictionaryConstants.functions] as? [String] {
+        if let functions = dictionary[DictionaryConstants.functions.rawValue] as? [String] {
             self.functions = functions
         }
         
-        self.cc3000_patch_version = dictionary[DictionaryConstants.cc3000_patch_version] as? String
-        self.requiresDeepUpdate = dictionary[DictionaryConstants.requiresDeepUpdate] as? Bool ?? false
-        self.lastICCID = dictionary[DictionaryConstants.lastICCID] as? String
-        self.imei = dictionary[DictionaryConstants.imei] as? String
-        self.status = dictionary[DictionaryConstants.status] as? String
+        self.cc3000_patch_version = dictionary[DictionaryConstants.cc3000_patch_version.rawValue] as? String
+        self.requiresDeepUpdate = dictionary[DictionaryConstants.requiresDeepUpdate.rawValue] as? Bool ?? false
+        self.lastICCID = dictionary[DictionaryConstants.lastICCID.rawValue] as? String
+        self.imei = dictionary[DictionaryConstants.imei.rawValue] as? String
+        self.status = dictionary[DictionaryConstants.status.rawValue] as? String
     }
     
+    /// The device detail information as a dictionary using keys compatible with the original web service
     public var dictionary: [String : Any] {
         get {
             var ret = [String : Any]()
-            ret[DictionaryConstants.id] = deviceID
-            ret[DictionaryConstants.name] = name
-            ret[DictionaryConstants.product] = product.rawValue
-            ret[DictionaryConstants.lastApp] = lastApp
-            ret[DictionaryConstants.lastHeard] = lastHeard?.ISO8601String
-            ret[DictionaryConstants.connected] = connected
-            ret[DictionaryConstants.variables] = variables
-            ret[DictionaryConstants.functions] = functions
-            ret[DictionaryConstants.cc3000_patch_version] = cc3000_patch_version
-            ret[DictionaryConstants.requiresDeepUpdate] = requiresDeepUpdate
-            ret[DictionaryConstants.lastICCID] = lastICCID
-            ret[DictionaryConstants.imei] = imei
-            ret[DictionaryConstants.status] = status
+            ret[DictionaryConstants.id.rawValue] = deviceID
+            ret[DictionaryConstants.name.rawValue] = name
+            ret[DictionaryConstants.product.rawValue] = product.rawValue
+            ret[DictionaryConstants.lastApp.rawValue] = lastApp
+            ret[DictionaryConstants.lastHeard.rawValue] = lastHeard?.ISO8601String
+            ret[DictionaryConstants.connected.rawValue] = connected
+            ret[DictionaryConstants.variables.rawValue] = variables
+            ret[DictionaryConstants.functions.rawValue] = functions
+            ret[DictionaryConstants.cc3000_patch_version.rawValue] = cc3000_patch_version
+            ret[DictionaryConstants.requiresDeepUpdate.rawValue] = requiresDeepUpdate
+            ret[DictionaryConstants.lastICCID.rawValue] = lastICCID
+            ret[DictionaryConstants.imei.rawValue] = imei
+            ret[DictionaryConstants.status.rawValue] = status
             return ret
         }
     }
@@ -280,9 +286,9 @@ extension DeviceDetailInformation: StringKeyedDictionaryConvertible {
 
 public struct ClaimResult {
     
-    struct DictionaryConstants {
-        static let claimCode = "claim_code"
-        static let deviceIDs = "device_ids"
+    enum DictionaryConstants: String {
+        case claimCode = "claim_code"
+        case deviceIDs = "device_ids"
     }
     
     public var claimCode: String
@@ -299,16 +305,17 @@ public func ==(lhs: ClaimResult, rhs: ClaimResult) -> Bool {
 extension ClaimResult: StringKeyedDictionaryConvertible {
     
     public init? (with dictionary: [String : Any]) {
-        guard let claimCode = dictionary[DictionaryConstants.claimCode] as? String,
-            let deviceIDs = dictionary[DictionaryConstants.deviceIDs] as? [String] else {
+        guard let claimCode = dictionary[DictionaryConstants.claimCode.rawValue] as? String,
+            let deviceIDs = dictionary[DictionaryConstants.deviceIDs.rawValue] as? [String] else {
                 return nil
         }
         self.claimCode = claimCode
         self.deviceIDs = deviceIDs
     }
     
+    /// The claim result as a dictionary using keys compatible with the original web service
     public var dictionary: [String : Any] {
-        return [DictionaryConstants.claimCode : claimCode, DictionaryConstants.deviceIDs: deviceIDs]
+        return [DictionaryConstants.claimCode.rawValue : claimCode, DictionaryConstants.deviceIDs.rawValue: deviceIDs]
     }
 }
 
@@ -350,7 +357,7 @@ extension ParticleCloud {
                         
                         let message = data != nil ? String(data: data!, encoding: String.Encoding.utf8) ?? "" : ""
                         
-                        warn("failed to obtain devices with response: \(response) and message body \(message)")
+                        warn("failed to obtain devices with response: \(String(describing: response)) and message body \(String(describing: message))")
                         
                         return completion(.failure(ParticleError.deviceListFailed(ParticleError.httpReponseParseFailed(message))))
                     }
