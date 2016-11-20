@@ -328,7 +328,6 @@ public class EventSource: NSObject {
                 }
             case .pendingDataPayload:
                 _ = scanner.scanCharactersFromSet(.whitespacesAndNewlines)
-/**
                 if scanner.isNext(character: "{"), let json = scanner.scanUpToCharactersFromSet(.newlines) {
                     _ = scanner.scanCharactersFromSet(.whitespacesAndNewlines)
                     
@@ -342,7 +341,6 @@ public class EventSource: NSObject {
                         delegate?.receivedEvent(event, from: self)
                     }
                 }
-*/
                 break
             }
             pendingString = scanner.remainder
