@@ -90,7 +90,7 @@ public struct OAuthToken: CustomStringConvertible, StringKeyedDictionaryConverti
             let refreshToken = dictionary["refresh_token"] as? String , !tokenType.isEmpty
         
         else {
-            warn("failed to reconstitute and OAuth token with the dictionary \(dictionary)")
+            warn("failed to reconstitute an OAuth token with the dictionary \(dictionary)")
             return nil
         }
         
