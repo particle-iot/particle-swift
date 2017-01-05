@@ -150,6 +150,20 @@ public struct OAuthTokenListEntry: CustomStringConvertible {
     }
 }
 
+extension OAuthTokenListEntry: Equatable {
+    
+    public static func ==(lhs: OAuthTokenListEntry, rhs: OAuthTokenListEntry) -> Bool {
+        return lhs.accessToken == rhs.accessToken && lhs.expires == rhs.expires && lhs.client == rhs.client
+    }
+}
+
+//extension OAuthTokenListEntry: Hashable {
+//    
+//    public var hashValue: Int {
+//        return accessToken.hashValue + expires.hashValue + client.hashValue
+//    }
+//}
+
 /// Abstraction for services that provide OAuth based uathentication.  OAuthAutheticable are objects
 /// that can request, process, and use credentials to validate or create OAuth tokens and store them
 /// for subsequent use
