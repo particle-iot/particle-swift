@@ -9,7 +9,7 @@
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Authentication.swift",
-      "line": 212,
+      "line": 226,
       "symbol": "OAuthAuthenticatable.defaultTokenExpiration",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
@@ -247,42 +247,42 @@
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Events.swift",
-      "line": 428,
+      "line": 426,
       "symbol": "EventSource.urlSession(_:task:didCompleteWithError:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Events.swift",
-      "line": 436,
+      "line": 434,
       "symbol": "EventSource.urlSession(_:dataTask:didReceive:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Events.swift",
-      "line": 443,
+      "line": 441,
       "symbol": "EventSource.urlSession(_:dataTask:didReceive:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Events.swift",
-      "line": 461,
+      "line": 459,
       "symbol": "EventSource.Config.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Events.swift",
-      "line": 469,
+      "line": 467,
       "symbol": "EventSource.Config.StreamType.device",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Events.swift",
-      "line": 469,
+      "line": 467,
       "symbol": "EventSource.Config.StreamType.product",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
