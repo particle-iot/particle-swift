@@ -1,6 +1,6 @@
 // This source file is part of the vakoc.com open source project(s)
 //
-// Copyright © 2016 Mark Vakoc. All rights reserved.
+// Copyright © 2016, 2017 Mark Vakoc. All rights reserved.
 // Licensed under Apache License v2.0
 //
 // See http://www.vakoc.com/LICENSE.txt for license information
@@ -28,7 +28,9 @@ public enum ParticleError: Error {
     failedToParseJsonFile,
     deleteWebhookFailed(String,Error),
     httpReponseParseFailed(String?),
-    variableValueFailed(Error)
+    variableValueFailed(Error),
+    compileRequestFailed(String)
+    
 }
 
 // Linux doesn't support variadic lists including strings, reference https://bugs.swift.org/browse/SR-957
@@ -79,7 +81,8 @@ extension ParticleError: CustomStringConvertible {
             return "Failed to parse the HTTP response '\(message ?? "")'"
         case .variableValueFailed(let error):
             return "Failed to obtain variable value with error \(error)"
-            
+        case .compileRequestFailed(let message):
+            return "Failed to compile source files value with response \(message)"
         }
     }
 }
@@ -130,6 +133,8 @@ extension ParticleError: CustomStringConvertible {
             return String.localizedStringWithFormat("Failed to parse the HTTP response '%1@'", message ?? "")
         case .variableValueFailed(let error):
             return String.localizedStringWithFormat("Failed to obtain variable value with error %1@", "\(error)")
+        case .compileRequestFailed(let message):
+            return String.localizedStringWithFormat("Failed to compile source files value with response %1@", "\(message)")
         }
     }
 }

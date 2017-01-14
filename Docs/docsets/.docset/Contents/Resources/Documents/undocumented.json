@@ -218,6 +218,13 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
+      "line": 32,
+      "symbol": "ParticleError.compileRequestFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Events.swift",
       "line": 143,
       "symbol": "EventSource.State.connected",
@@ -284,6 +291,20 @@
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Events.swift",
       "line": 467,
       "symbol": "EventSource.Config.StreamType.product",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Firmware.swift",
+      "line": 57,
+      "symbol": "BuildResult.compileSuccess",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Firmware.swift",
+      "line": 58,
+      "symbol": "BuildResult.compileFailure",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },

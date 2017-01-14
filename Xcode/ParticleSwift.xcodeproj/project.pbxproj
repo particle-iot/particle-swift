@@ -15,6 +15,10 @@
 		4F5304EA1DDCD84E00286CA6 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5304E81DDCD82A00286CA6 /* Events.swift */; };
 		4F5304EB1DDCD85000286CA6 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5304E81DDCD82A00286CA6 /* Events.swift */; };
 		4F5304EC1DDCD85100286CA6 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5304E81DDCD82A00286CA6 /* Events.swift */; };
+		4F8A068A1E2A933C00CA4B7E /* Firmware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8A06891E2A933C00CA4B7E /* Firmware.swift */; };
+		4F8A068B1E2A9CF100CA4B7E /* Firmware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8A06891E2A933C00CA4B7E /* Firmware.swift */; };
+		4F8A068C1E2A9CF200CA4B7E /* Firmware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8A06891E2A933C00CA4B7E /* Firmware.swift */; };
+		4F8A068D1E2A9CF200CA4B7E /* Firmware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8A06891E2A933C00CA4B7E /* Firmware.swift */; };
 		4FA85AA61D0C866C00EC906B /* ParticleSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FA85AA51D0C866C00EC906B /* ParticleSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4FA85AAD1D0C866C00EC906B /* ParticleSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA85AA21D0C866C00EC906B /* ParticleSwift.framework */; };
 		4FA85AB21D0C866C00EC906B /* ParticleSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85AB11D0C866C00EC906B /* ParticleSwiftTests.swift */; };
@@ -87,6 +91,7 @@
 /* Begin PBXFileReference section */
 		4F1110331DD7AA200036E55C /* Webhooks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Webhooks.swift; sourceTree = "<group>"; };
 		4F5304E81DDCD82A00286CA6 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		4F8A06891E2A933C00CA4B7E /* Firmware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firmware.swift; sourceTree = "<group>"; };
 		4FA85AA21D0C866C00EC906B /* ParticleSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParticleSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA85AA51D0C866C00EC906B /* ParticleSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParticleSwift.h; sourceTree = "<group>"; };
 		4FA85AA71D0C866C00EC906B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -225,6 +230,7 @@
 				4FA85B191D0CA14800EC906B /* Device.swift */,
 				4F5304E81DDCD82A00286CA6 /* Events.swift */,
 				4FA85B081D0C9FF900EC906B /* Errors.swift */,
+				4F8A06891E2A933C00CA4B7E /* Firmware.swift */,
 				4FA85B271D0CA15900EC906B /* Foundation+ParticleSwift.swift */,
 				4FA85B171D0CA14800EC906B /* ParticleCloud.swift */,
 				4FFCEE881D43B07200FBECDE /* Logging.swift */,
@@ -587,6 +593,7 @@
 				4FA85B2C1D0CA15900EC906B /* Foundation+ParticleSwift.swift in Sources */,
 				4F5304E91DDCD82A00286CA6 /* Events.swift in Sources */,
 				4FA85B221D0CA14800EC906B /* Device.swift in Sources */,
+				4F8A068A1E2A933C00CA4B7E /* Firmware.swift in Sources */,
 				4FA85B131D0CA07B00EC906B /* Authentication.swift in Sources */,
 				4FFCEE891D43B07200FBECDE /* Logging.swift in Sources */,
 				4F1110341DD7AA200036E55C /* Webhooks.swift in Sources */,
@@ -616,6 +623,7 @@
 				4FA85B141D0CA07B00EC906B /* Authentication.swift in Sources */,
 				4FFCEE8A1D43B07200FBECDE /* Logging.swift in Sources */,
 				4F1110351DD7AA400036E55C /* Webhooks.swift in Sources */,
+				4F8A068B1E2A9CF100CA4B7E /* Firmware.swift in Sources */,
 				4FFCEF111D443C7800FBECDE /* ParticleSwiftInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -641,6 +649,7 @@
 				4FA85B151D0CA07B00EC906B /* Authentication.swift in Sources */,
 				4FFCEE8B1D43B07200FBECDE /* Logging.swift in Sources */,
 				4F1110361DD7AA410036E55C /* Webhooks.swift in Sources */,
+				4F8A068C1E2A9CF200CA4B7E /* Firmware.swift in Sources */,
 				4FFCEF121D443C7800FBECDE /* ParticleSwiftInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -658,6 +667,7 @@
 				4FA85B161D0CA07B00EC906B /* Authentication.swift in Sources */,
 				4FFCEE8C1D43B07200FBECDE /* Logging.swift in Sources */,
 				4F1110371DD7AA410036E55C /* Webhooks.swift in Sources */,
+				4F8A068D1E2A9CF200CA4B7E /* Firmware.swift in Sources */,
 				4FFCEF131D443C7900FBECDE /* ParticleSwiftInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

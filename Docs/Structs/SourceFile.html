@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>UUID Extension Reference</title>
+    <title>SourceFile Struct Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Extension/UUID" class="dashAnchor"></a>
-    <a title="UUID Extension Reference"></a>
+    <a name="//apple_ref/swift/Struct/SourceFile" class="dashAnchor"></a>
+    <a title="SourceFile Struct Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (76% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        UUID Extension Reference
+        SourceFile Struct Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -176,14 +176,15 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>UUID</h1>
+            <h1>SourceFile</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">UUID</span> <span class="p">:</span> <span class="kt">ReferenceConvertible</span><span class="p">,</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">SourceFile</span></code></pre>
 
                 </div>
               </div>
-            
+            <p>Representation of a compilable source file</p>
+
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -191,9 +192,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvE13ParticleSwiftV10Foundation4UUID8allZerosS1_"></a>
-                    <a name="//apple_ref/swift/Variable/allZeros" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvE13ParticleSwiftV10Foundation4UUID8allZerosS1_">allZeros</a>
+                    <a name="/s:FV13ParticleSwift10SourceFilecFT4nameSS8contentsV10Foundation4Data_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(name:contents:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV13ParticleSwift10SourceFilecFT4nameSS8contentsV10Foundation4Data_S0_">init(name:contents:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -201,14 +202,110 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Simple UUID with all zero values</p>
+                        <p>Create a new source file with the specified contents</p>
+
+<ul>
+<li>Parameters:
+
+<ul>
+<li>name: The name of the file.  May include path separators</li>
+<li>contents: The source file content, in utf8</li>
+</ul></li>
+</ul>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">allZeros</span> <span class="o">=</span> <span class="kt">UUID</span><span class="p">(</span><span class="nv">uuidString</span><span class="p">:</span> <span class="s">"00000000-0000-0000-0000-000000000000"</span><span class="p">)</span><span class="o">!</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">contents</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the file.  May include path separators</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>contents</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The source file content, in utf8</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV13ParticleSwift10SourceFile4nameSS"></a>
+                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV13ParticleSwift10SourceFile4nameSS">name</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The name of the source file.  May include relative paths, such as <code>include/header.h</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV13ParticleSwift10SourceFile8contentsV10Foundation4Data"></a>
+                    <a name="//apple_ref/swift/Property/contents" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV13ParticleSwift10SourceFile8contentsV10Foundation4Data">contents</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The contents in the source file, in UTF-8 encoding</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">contents</span><span class="p">:</span> <span class="kt">Data</span></code></pre>
 
                         </div>
                       </div>

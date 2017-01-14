@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>UUID Extension Reference</title>
+    <title>BuildResult Enum Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Extension/UUID" class="dashAnchor"></a>
-    <a title="UUID Extension Reference"></a>
+    <a name="//apple_ref/swift/Enum/BuildResult" class="dashAnchor"></a>
+    <a title="BuildResult Enum Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (76% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        UUID Extension Reference
+        BuildResult Enum Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -176,14 +176,23 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>UUID</h1>
+            <h1>BuildResult</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">UUID</span> <span class="p">:</span> <span class="kt">ReferenceConvertible</span><span class="p">,</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">BuildResult</span></code></pre>
 
                 </div>
               </div>
-            
+            <p>The result of a compilation web service invocation. </p>
+
+<p>A distinction is made between failures.  Any successful invocation of the webservice will result
+in this enum being returned.  The enum values dictate whether a</p>
+
+<ul>
+<li>compileSuccess: A successful compilation.  The associated value is a BinaryInfo structure</li>
+<li>compileFailure: The sources failed to compiled.  Associated values include output, stdout, and errors</li>
+</ul>
+
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -191,9 +200,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvE13ParticleSwiftV10Foundation4UUID8allZerosS1_"></a>
-                    <a name="//apple_ref/swift/Variable/allZeros" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvE13ParticleSwiftV10Foundation4UUID8allZerosS1_">allZeros</a>
+                    <a name="/s:FO13ParticleSwift11BuildResult14compileSuccessFMS0_FVS_10BinaryInfoS0_"></a>
+                    <a name="//apple_ref/swift/Element/compileSuccess" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO13ParticleSwift11BuildResult14compileSuccessFMS0_FVS_10BinaryInfoS0_">compileSuccess</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -201,14 +210,45 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Simple UUID with all zero values</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">allZeros</span> <span class="o">=</span> <span class="kt">UUID</span><span class="p">(</span><span class="nv">uuidString</span><span class="p">:</span> <span class="s">"00000000-0000-0000-0000-000000000000"</span><span class="p">)</span><span class="o">!</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">BuildResult</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO13ParticleSwift11BuildResult14compileFailureFMS0_FT6outputSS6stdoutSS6errorsGSaSS__S0_"></a>
+                    <a name="//apple_ref/swift/Element/compileFailure" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO13ParticleSwift11BuildResult14compileFailureFMS0_FT6outputSS6stdoutSS6errorsGSaSS__S0_">compileFailure</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">BuildResult</span></code></pre>
 
                         </div>
                       </div>

@@ -14,7 +14,7 @@
     <a title="ParticleCloud Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (75% documented)</p>
+        <p><a href="../index.html"> Docs</a> (76% documented)</p>
         <p class="header-right"><a href="https://github.com/vakoc/particle-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -59,6 +59,9 @@
           <li class="nav-group-name">
             <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/BuildResult.html">BuildResult</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Enums/LogLevel.html">LogLevel</a>
               </li>
@@ -128,6 +131,9 @@
             <a href="../Structs.html">Structs</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Structs/BinaryInfo.html">BinaryInfo</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/ClaimResult.html">ClaimResult</a>
               </li>
               <li class="nav-group-task">
@@ -147,6 +153,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/ParticleSwiftInfo.html">ParticleSwiftInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SourceFile.html">SourceFile</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Webhook.html">Webhook</a>
@@ -1205,6 +1214,125 @@ is used</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:FC13ParticleSwift13ParticleCloud7compileFTGSaVS_10SourceFile_3forSS7productOVS_17DeviceInformation7Product9targetingGSqSS_10completionFGOS_6ResultOS_11BuildResult_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/compile(_:for:product:targeting:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13ParticleSwift13ParticleCloud7compileFTGSaVS_10SourceFile_3forSS7productOVS_17DeviceInformation7Product9targetingGSqSS_10completionFGOS_6ResultOS_11BuildResult_T__T_">compile(_:for:product:targeting:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Compile the specified source files for a given device and product.</p>
+
+<p>Note the completion callback result indicates only whether the web service invocation was successful.
+On successful web service invocation the returned BuildResult must be evaluted to determine whether 
+the compilation was successful</p>
+
+<ul>
+<li>Parameters:
+
+<ul>
+<li>files: The fiels to compile</li>
+<li>deviceID: The identifier of the device to target</li>
+<li>product: The product to build for</li>
+<li>build_target_version: The firmware version to compile against. nil defaults to latest</li>
+<li>completion: the callback for the asynchronous operation</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">compile</span><span class="p">(</span><span class="n">_</span> <span class="nv">files</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/SourceFile.html">SourceFile</a></span><span class="p">],</span> <span class="k">for</span> <span class="nv">deviceID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">product</span><span class="p">:</span> <span class="kt"><a href="../Structs/DeviceInformation.html">DeviceInformation</a></span><span class="o">.</span><span class="kt">Product</span><span class="p">,</span> <span class="n">targeting</span> <span class="nv">build_target_version</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/Result.html">Result</a></span><span class="o">&lt;</span><span class="kt"><a href="../Enums/BuildResult.html">BuildResult</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>files</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The fiels to compile</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>deviceID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The identifier of the device to target</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>product</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The product to build for</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>build</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>_target_version: The firmware version to compile against. nil defaults to latest</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the callback for the asynchronous operation</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:vPs23CustomStringConvertible11descriptionSS"></a>
                     <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
                     <a class="token" href="#/s:vPs23CustomStringConvertible11descriptionSS">description</a>
@@ -1526,7 +1654,7 @@ if not successful</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external">Mark Vakoc</a>. All rights reserved. (Last updated: 2017-01-05)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external">Mark Vakoc</a>. All rights reserved. (Last updated: 2017-01-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

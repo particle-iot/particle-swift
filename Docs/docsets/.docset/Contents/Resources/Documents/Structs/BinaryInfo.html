@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>UUID Extension Reference</title>
+    <title>BinaryInfo Struct Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Extension/UUID" class="dashAnchor"></a>
-    <a title="UUID Extension Reference"></a>
+    <a name="//apple_ref/swift/Struct/BinaryInfo" class="dashAnchor"></a>
+    <a title="BinaryInfo Struct Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (76% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        UUID Extension Reference
+        BinaryInfo Struct Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -176,14 +176,15 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>UUID</h1>
+            <h1>BinaryInfo</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">UUID</span> <span class="p">:</span> <span class="kt">ReferenceConvertible</span><span class="p">,</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">BinaryInfo</span></code></pre>
 
                 </div>
               </div>
-            
+            <p>Detail of a binary produced by a successfull compilation</p>
+
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -191,9 +192,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvE13ParticleSwiftV10Foundation4UUID8allZerosS1_"></a>
-                    <a name="//apple_ref/swift/Variable/allZeros" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvE13ParticleSwiftV10Foundation4UUID8allZerosS1_">allZeros</a>
+                    <a name="/s:vV13ParticleSwift10BinaryInfo8binaryIdSS"></a>
+                    <a name="//apple_ref/swift/Property/binaryId" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV13ParticleSwift10BinaryInfo8binaryIdSS">binaryId</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -201,14 +202,95 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Simple UUID with all zero values</p>
+                        <p>The unique identifier of the binary</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">allZeros</span> <span class="o">=</span> <span class="kt">UUID</span><span class="p">(</span><span class="nv">uuidString</span><span class="p">:</span> <span class="s">"00000000-0000-0000-0000-000000000000"</span><span class="p">)</span><span class="o">!</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">binaryId</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV13ParticleSwift10BinaryInfo9binaryUrlSS"></a>
+                    <a name="//apple_ref/swift/Property/binaryUrl" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV13ParticleSwift10BinaryInfo9binaryUrlSS">binaryUrl</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The url used to access the binary</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">binaryUrl</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV13ParticleSwift10BinaryInfo7expiresV10Foundation4Date"></a>
+                    <a name="//apple_ref/swift/Property/expires" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV13ParticleSwift10BinaryInfo7expiresV10Foundation4Date">expires</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The expiration date for the binary</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">expires</span><span class="p">:</span> <span class="kt">Date</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV13ParticleSwift10BinaryInfo8sizeInfoSS"></a>
+                    <a name="//apple_ref/swift/Property/sizeInfo" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV13ParticleSwift10BinaryInfo8sizeInfoSS">sizeInfo</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Information about the size of the binary</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">sizeInfo</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
