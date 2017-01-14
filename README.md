@@ -169,7 +169,7 @@ Roadmap
 APIs should be relatively stable but are subject to change.  Additional Particle Cloud functionality is being added
 in the following general order
 
-  * Firmware
+  * Firmware (In Progress)
 
 Once complete additional functionality will be added.
 
