@@ -131,7 +131,7 @@ public class EventSource: NSObject {
     internal var pendingString = ""
     
     /// The serial queue used to process incoming data streams
-    lazy var queue: DispatchQueue = { DispatchQueue(label: "com.vakoc.EventSource", qos: .background, attributes: []) }()
+    lazy var queue: DispatchQueue = { DispatchQueue(label: "com.speckcode.EventSource", qos: .background, attributes: []) }()
     
     /// The state of an event source
     ///
