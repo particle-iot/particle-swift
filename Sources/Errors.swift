@@ -29,7 +29,8 @@ public enum ParticleError: Error {
     deleteWebhookFailed(String,Error),
     httpReponseParseFailed(String?),
     variableValueFailed(Error),
-    compileRequestFailed(String)
+    compileRequestFailed(String),
+    librariesRequestFailed(String)
     
 }
 
@@ -83,6 +84,8 @@ extension ParticleError: CustomStringConvertible {
             return "Failed to obtain variable value with error \(error)"
         case .compileRequestFailed(let message):
             return "Failed to compile source files value with response \(message)"
+        case .librariesRequestFailed(let error):
+            return "Failed to obtain the available libraries with error \(error)"
         }
     }
 }
@@ -135,6 +138,8 @@ extension ParticleError: CustomStringConvertible {
             return String.localizedStringWithFormat("Failed to obtain variable value with error %1@", "\(error)")
         case .compileRequestFailed(let message):
             return String.localizedStringWithFormat("Failed to compile source files value with response %1@", "\(message)")
+        case .librariesRequestFailed(let error):
+            return String.localizedStringWithFormat("Failed to obtain the available libraries with error %1@", String(describing: error))
         }
     }
 }
