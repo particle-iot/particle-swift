@@ -31,7 +31,8 @@ public enum ParticleError: Error {
     variableValueFailed(Error),
     compileRequestFailed(String),
     librariesRequestFailed(String),
-    librariesUrlMalformed(String)
+    librariesUrlMalformed(String),
+    libraryVersionsRequestFailed(String)
 }
 
 // Linux doesn't support variadic lists including strings, reference https://bugs.swift.org/browse/SR-957
@@ -88,6 +89,8 @@ extension ParticleError: CustomStringConvertible {
             return "Failed to obtain the available libraries with error \(error)"
         case .librariesUrlMalformed(let string):
             return "Unable to construct a valid url for the libraries api using \(string)"
+        case .libraryVersionsRequestFailed(let string):
+            return "Unable to obtain library versions with error \(string)"
         }
     }
 }
@@ -144,7 +147,8 @@ extension ParticleError: CustomStringConvertible {
             return String.localizedStringWithFormat("Failed to obtain the available libraries with error %1@", String(describing: error))
         case .librariesUrlMalformed(let string):
             return String.localizedStringWithFormat("Unable to construct a valid url for the libraries api using %1@", string)
-
+        case .libraryVersionsRequestFailed(let string):
+            return String.localizedStringWithFormat("Unable to obtain library versions with error %1@", String(describing: string))
         }
     }
 }

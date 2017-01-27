@@ -239,6 +239,13 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/mvakoc/Documents/particle-swift/Sources/Errors.swift",
+      "line": 35,
+      "symbol": "ParticleError.libraryVersionsRequestFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Events.swift",
       "line": 143,
       "symbol": "EventSource.State.connected",
@@ -324,105 +331,105 @@
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Libraries.swift",
-      "line": 54,
+      "line": 55,
       "symbol": "Library.Scope.all",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Libraries.swift",
-      "line": 55,
+      "line": 56,
       "symbol": "Library.Scope.official",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Libraries.swift",
-      "line": 56,
+      "line": 57,
       "symbol": "Library.Scope.public",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Libraries.swift",
-      "line": 57,
+      "line": 58,
       "symbol": "Library.Scope.mine",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Libraries.swift",
-      "line": 58,
+      "line": 59,
       "symbol": "Library.Scope.private",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Libraries.swift",
-      "line": 72,
+      "line": 73,
       "symbol": "Library.Sort.name",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Libraries.swift",
-      "line": 73,
+      "line": 74,
       "symbol": "Library.Sort.installs",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Libraries.swift",
-      "line": 74,
+      "line": 75,
       "symbol": "Library.Sort.popularity",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Libraries.swift",
-      "line": 75,
+      "line": 76,
       "symbol": "Library.Sort.published",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Libraries.swift",
-      "line": 76,
+      "line": 77,
       "symbol": "Library.Sort.updated",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Libraries.swift",
-      "line": 77,
+      "line": 78,
       "symbol": "Library.Sort.created",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Libraries.swift",
-      "line": 78,
+      "line": 79,
       "symbol": "Library.Sort.official",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Libraries.swift",
-      "line": 79,
+      "line": 80,
       "symbol": "Library.Sort.verified",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Libraries.swift",
-      "line": 87,
+      "line": 88,
       "symbol": "Library.SortOrder.ascending",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mvakoc/Documents/particle-swift/Sources/Libraries.swift",
-      "line": 88,
+      "line": 89,
       "symbol": "Library.SortOrder.descending",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"

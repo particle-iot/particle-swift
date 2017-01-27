@@ -5,6 +5,7 @@
 //
 // See http://www.vakoc.com/LICENSE.txt for license information
 
+// TODO:  upload a library version and make a library version public
 
 import Foundation
 
@@ -103,7 +104,7 @@ extension ParticleCloud {
     ///   - sortOrder: The sort order used in results
     ///   - excluding: Which subsets of libraries to avoid listing, separated by comma
     ///   - architectures: Architectures to list, separated by comma. Nil means all architectures.
-    ///   - completion: <#completion description#>
+    ///   - completion: completion handler containing the results of the request
     public func libraries(of scope: Library.Scope = .all, matching filter: String? = nil, page: Int = 1, limit: Int = 10, sortedBy: Library.Sort = .popularity, sortOrder: Library.SortOrder = .ascending, excluding: [Library.Scope] = [], architectures: String? = nil, completion: @escaping (Result<[Library]>) -> Void ) {
         
         self.authenticate(false) { result in
@@ -148,7 +149,7 @@ extension ParticleCloud {
                     trace("requesting libraries", request: request, data: data, response: response, error: error)
                     
                     if let error = error {
-                        return completion(.failure(ParticleError.createWebhookFailed(error)))
+                        return completion(.failure(ParticleError.librariesRequestFailed(String(describing: error))))
                     }
                     
                     if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any], let j = json, let resultData = j["data"] as? [[String : Any]] {
@@ -160,6 +161,60 @@ extension ParticleCloud {
                         let message = data != nil ? String(data: data!, encoding: String.Encoding.utf8) ?? "" : ""
                         warn("failed to obtain libraries with response: \(String(describing: response)) and message body \(message)")
                         return completion(.failure(ParticleError.librariesRequestFailed(message)))
+                    }
+                }
+                task.resume()
+            }
+        }
+    }
+    
+    /// Obtain a list of firmware library versions.
+    ///
+    /// - Parameters:
+    ///   - named: The name (id) of the library
+    ///   - scope: Which subset of library versions to list.
+    ///   - completion: completion handler containing the results of the request
+    public func libraryVersions(named name: String, of scope: Library.Scope = .all, completion: @escaping (Result<[Library]>) -> Void ) {
+        
+        self.authenticate(false) { result in
+            switch result {
+                
+            case .failure(let error):
+                return completion(.failure(error))
+                
+            case .success(let accessToken):
+                
+                let url = self.baseURL.appendingPathComponent("v1/libraries/\(name)/versions")
+                var urlComps = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                
+                var queryItems = [URLQueryItem]()
+                queryItems.append(URLQueryItem(name: "scope", value: scope.rawValue))
+                urlComps?.queryItems = queryItems
+                
+                guard let finalUrl = urlComps?.url else {
+                    return completion(.failure(ParticleError.libraryVersionsRequestFailed(String(describing: urlComps))))
+                }
+
+                var request = URLRequest(url: finalUrl)
+                
+                request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+                
+                let task = self.urlSession.dataTask(with: request) { (data, response, error) in
+                    
+                    trace("requesting library versions", request: request, data: data, response: response, error: error)
+                    
+                    if let error = error {
+                        return completion(.failure(ParticleError.libraryVersionsRequestFailed(String(describing: error))))
+                    }
+                    
+                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any], let j = json, let resultData = j["data"] as? [[String : Any]] {
+                        var results: [Library] = []
+                        results = resultData.flatMap { return Library(dictionary: $0) }
+                        completion(.success(results))
+                    } else {
+                        let message = data != nil ? String(data: data!, encoding: String.Encoding.utf8) ?? "" : ""
+                        warn("failed to obtain library versions with response: \(String(describing: response)) and message body \(message)")
+                        return completion(.failure(ParticleError.libraryVersionsRequestFailed(message)))
                     }
                 }
                 task.resume()
