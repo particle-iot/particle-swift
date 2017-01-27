@@ -14,7 +14,7 @@
     <a title="ParticleCloud Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (76% documented)</p>
+        <p><a href="../index.html"> Docs</a> (72% documented)</p>
         <p class="header-right"><a href="https://github.com/vakoc/particle-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -144,6 +144,18 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/DeviceInformation/Product.html">– Product</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Library.html">Library</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Library/Scope.html">– Scope</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Library/Sort.html">– Sort</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Library/SortOrder.html">– SortOrder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/OAuthToken.html">OAuthToken</a>
@@ -1333,6 +1345,177 @@ the compilation was successful</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:FC13ParticleSwift13ParticleCloud9librariesFT2ofOVS_7Library5Scope8matchingGSqSS_4pageSi5limitSi8sortedByOS1_4Sort9sortOrderOS1_9SortOrder9excludingGSaS2__13architecturesGSqSS_10completionFGOS_6ResultGSaS1___T__T_"></a>
+                    <a name="//apple_ref/swift/Method/libraries(of:matching:page:limit:sortedBy:sortOrder:excluding:architectures:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC13ParticleSwift13ParticleCloud9librariesFT2ofOVS_7Library5Scope8matchingGSqSS_4pageSi5limitSi8sortedByOS1_4Sort9sortOrderOS1_9SortOrder9excludingGSaS2__13architecturesGSqSS_10completionFGOS_6ResultGSaS1___T__T_">libraries(of:matching:page:limit:sortedBy:sortOrder:excluding:architectures:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Obtain a list of firmware libraries.  This includes retrieving private libraries visible only to the user</p>
+
+<ul>
+<li>Parameters:
+
+<ul>
+<li>scope: Which subset of libraries to list.</li>
+<li>matching: Search for libraries with this partial name</li>
+<li>page: Page number (first page is # 1)</li>
+<li>limit: Items per page (max 100)</li>
+<li>sortedBy:  The criteria used to sort results</li>
+<li>sortOrder: The sort order used in results</li>
+<li>excluding: Which subsets of libraries to avoid listing, separated by comma</li>
+<li>architectures: Architectures to list, separated by comma. Nil means all architectures.</li>
+<li>completion: &lt;#completion description#&gt;</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">libraries</span><span class="p">(</span><span class="n">of</span> <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Structs/Library.html">Library</a></span><span class="o">.</span><span class="kt">Scope</span> <span class="o">=</span> <span class="o">.</span><span class="n">all</span><span class="p">,</span> <span class="n">matching</span> <span class="nv">filter</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">page</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">limit</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="nv">sortedBy</span><span class="p">:</span> <span class="kt"><a href="../Structs/Library.html">Library</a></span><span class="o">.</span><span class="kt">Sort</span> <span class="o">=</span> <span class="o">.</span><span class="n">popularity</span><span class="p">,</span> <span class="nv">sortOrder</span><span class="p">:</span> <span class="kt"><a href="../Structs/Library.html">Library</a></span><span class="o">.</span><span class="kt">SortOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">ascending</span><span class="p">,</span> <span class="nv">excluding</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Library.html">Library</a></span><span class="o">.</span><span class="kt">Scope</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="nv">architectures</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/Result.html">Result</a></span><span class="o">&lt;</span><span class="p">[</span><span class="kt"><a href="../Structs/Library.html">Library</a></span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>scope</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Which subset of libraries to list.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>matching</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Search for libraries with this partial name</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>page</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Page number (first page is # 1)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>limit</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Items per page (max 100)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sortedBy</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The criteria used to sort results</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sortOrder</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The sort order used in results</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>excluding</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Which subsets of libraries to avoid listing, separated by comma</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>architectures</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Architectures to list, separated by comma. Nil means all architectures.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>&lt;#completion description#&gt;</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:vPs23CustomStringConvertible11descriptionSS"></a>
                     <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
                     <a class="token" href="#/s:vPs23CustomStringConvertible11descriptionSS">description</a>
@@ -1654,7 +1837,7 @@ if not successful</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external">Mark Vakoc</a>. All rights reserved. (Last updated: 2017-01-14)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external">Mark Vakoc</a>. All rights reserved. (Last updated: 2017-01-26)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

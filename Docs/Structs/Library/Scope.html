@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Event Struct Reference</title>
+    <title>Scope Enum Reference</title>
     <link rel="stylesheet" type="text/css" href="../../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Struct/Event" class="dashAnchor"></a>
-    <a title="Event Struct Reference"></a>
+    <a name="//apple_ref/swift/Enum/Scope" class="dashAnchor"></a>
+    <a title="Scope Enum Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../../index.html"> Docs</a> (72% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../../index.html"> Reference</a>
         <img id="carat" src="../../img/carat.png" />
-        Event Struct Reference
+        Scope Enum Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -188,14 +188,22 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Event</h1>
+            <h1>Scope</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Event</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Scope</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                 </div>
               </div>
-            <p>Represents an event received from an EventSource (Particle Cloud)</p>
+            <p>Which subset of libraries to list.</p>
+
+<ul>
+<li>all: to retrieve public libraries and any private libraries belonging to the user</li>
+<li>official: to retrieve official public libraries</li>
+<li><code>public</code>:  to retrieve public libraries</li>
+<li>mine: to retrieve only public libraries belonging to the current user</li>
+<li><code>private</code>: to retrieve only private libraries (belonging to the current user).</li>
+</ul>
 
           </section>
           <section class="section task-group-section">
@@ -204,9 +212,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vVC13ParticleSwift11EventSource5Event4nameSS"></a>
-                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vVC13ParticleSwift11EventSource5Event4nameSS">name</a>
+                    <a name="/s:FOV13ParticleSwift7Library5Scope3allFMS1_S1_"></a>
+                    <a name="//apple_ref/swift/Element/all" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FOV13ParticleSwift7Library5Scope3allFMS1_S1_">all</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -214,26 +222,30 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The name of the event</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Scope</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vVC13ParticleSwift11EventSource5Event9publishedV10Foundation4Date"></a>
-                    <a name="//apple_ref/swift/Property/published" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vVC13ParticleSwift11EventSource5Event9publishedV10Foundation4Date">published</a>
+                    <a name="/s:FOV13ParticleSwift7Library5Scope8officialFMS1_S1_"></a>
+                    <a name="//apple_ref/swift/Element/official" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FOV13ParticleSwift7Library5Scope8officialFMS1_S1_">official</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -241,26 +253,30 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>the date the event was published</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">published</span><span class="p">:</span> <span class="kt">Date</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Scope</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vVC13ParticleSwift11EventSource5Event3ttlSi"></a>
-                    <a name="//apple_ref/swift/Property/ttl" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vVC13ParticleSwift11EventSource5Event3ttlSi">ttl</a>
+                    <a name="/s:FOV13ParticleSwift7Library5Scope6publicFMS1_S1_"></a>
+                    <a name="//apple_ref/swift/Element/public" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FOV13ParticleSwift7Library5Scope6publicFMS1_S1_">public</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -268,26 +284,30 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>ttl</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">ttl</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Scope</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vVC13ParticleSwift11EventSource5Event6coreidSS"></a>
-                    <a name="//apple_ref/swift/Property/coreid" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vVC13ParticleSwift11EventSource5Event6coreidSS">coreid</a>
+                    <a name="/s:FOV13ParticleSwift7Library5Scope4mineFMS1_S1_"></a>
+                    <a name="//apple_ref/swift/Element/mine" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FOV13ParticleSwift7Library5Scope4mineFMS1_S1_">mine</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -295,26 +315,30 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The identifier of the core</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">coreid</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Scope</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vVC13ParticleSwift11EventSource5Event4dataGSqSS_"></a>
-                    <a name="//apple_ref/swift/Property/data" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vVC13ParticleSwift11EventSource5Event4dataGSqSS_">data</a>
+                    <a name="/s:FOV13ParticleSwift7Library5Scope7privateFMS1_S1_"></a>
+                    <a name="//apple_ref/swift/Element/private" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FOV13ParticleSwift7Library5Scope7privateFMS1_S1_">private</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -322,41 +346,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Data associated with the event</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vVC13ParticleSwift11EventSource5Event18jsonRepresentationGVs10DictionarySSP__"></a>
-                    <a name="//apple_ref/swift/Property/jsonRepresentation" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vVC13ParticleSwift11EventSource5Event18jsonRepresentationGVs10DictionarySSP__">jsonRepresentation</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>JSON representation of the event</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">jsonRepresentation</span><span class="p">:</span> <span class="kt">Dictionary</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Scope</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>

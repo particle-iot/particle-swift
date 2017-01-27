@@ -15,6 +15,9 @@
 		4F5304EA1DDCD84E00286CA6 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5304E81DDCD82A00286CA6 /* Events.swift */; };
 		4F5304EB1DDCD85000286CA6 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5304E81DDCD82A00286CA6 /* Events.swift */; };
 		4F5304EC1DDCD85100286CA6 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5304E81DDCD82A00286CA6 /* Events.swift */; };
+		4F760FE31E3AF556006C927F /* Libraries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FF8C11E36BC27006BCB01 /* Libraries.swift */; };
+		4F760FE41E3AF557006C927F /* Libraries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FF8C11E36BC27006BCB01 /* Libraries.swift */; };
+		4F760FE51E3AF558006C927F /* Libraries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FF8C11E36BC27006BCB01 /* Libraries.swift */; };
 		4F8A068A1E2A933C00CA4B7E /* Firmware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8A06891E2A933C00CA4B7E /* Firmware.swift */; };
 		4F8A068B1E2A9CF100CA4B7E /* Firmware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8A06891E2A933C00CA4B7E /* Firmware.swift */; };
 		4F8A068C1E2A9CF200CA4B7E /* Firmware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8A06891E2A933C00CA4B7E /* Firmware.swift */; };
@@ -625,6 +628,7 @@
 				4F5304EA1DDCD84E00286CA6 /* Events.swift in Sources */,
 				4FA85B231D0CA14800EC906B /* Device.swift in Sources */,
 				4FA85B141D0CA07B00EC906B /* Authentication.swift in Sources */,
+				4F760FE31E3AF556006C927F /* Libraries.swift in Sources */,
 				4FFCEE8A1D43B07200FBECDE /* Logging.swift in Sources */,
 				4F1110351DD7AA400036E55C /* Webhooks.swift in Sources */,
 				4F8A068B1E2A9CF100CA4B7E /* Firmware.swift in Sources */,
@@ -651,6 +655,7 @@
 				4F5304EC1DDCD85100286CA6 /* Events.swift in Sources */,
 				4FA85B241D0CA14800EC906B /* Device.swift in Sources */,
 				4FA85B151D0CA07B00EC906B /* Authentication.swift in Sources */,
+				4F760FE41E3AF557006C927F /* Libraries.swift in Sources */,
 				4FFCEE8B1D43B07200FBECDE /* Logging.swift in Sources */,
 				4F1110361DD7AA410036E55C /* Webhooks.swift in Sources */,
 				4F8A068C1E2A9CF200CA4B7E /* Firmware.swift in Sources */,
@@ -669,6 +674,7 @@
 				4F5304EB1DDCD85000286CA6 /* Events.swift in Sources */,
 				4FA85B251D0CA14800EC906B /* Device.swift in Sources */,
 				4FA85B161D0CA07B00EC906B /* Authentication.swift in Sources */,
+				4F760FE51E3AF558006C927F /* Libraries.swift in Sources */,
 				4FFCEE8C1D43B07200FBECDE /* Logging.swift in Sources */,
 				4F1110371DD7AA410036E55C /* Webhooks.swift in Sources */,
 				4F8A068D1E2A9CF200CA4B7E /* Firmware.swift in Sources */,

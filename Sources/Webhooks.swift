@@ -156,7 +156,7 @@ public struct Webhook {
         /// The webhook response
         public var response: String
 
-        /// The time of hte logged evenet
+        /// The time of the logged evenet
         public var time: Date
         
         /// The log type
