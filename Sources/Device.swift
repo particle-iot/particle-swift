@@ -17,7 +17,9 @@ public struct DeviceInformation {
         /// Particle Photon
         photon = 6,
         /// Particle Electron
-        electron = 10
+        electron = 10,
+        /// Raspberry Pi
+        pi = 31
         
         
         public var description: String {
@@ -28,6 +30,8 @@ public struct DeviceInformation {
                 return "Photon"
             case .electron:
                 return "Electron"
+            case .pi:
+                return "Raspberry Pi"
             }
         }
     }
