@@ -57,7 +57,6 @@
 		4FA85B2D1D0CA15900EC906B /* Foundation+ParticleSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B271D0CA15900EC906B /* Foundation+ParticleSwift.swift */; };
 		4FA85B2E1D0CA15900EC906B /* Foundation+ParticleSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B271D0CA15900EC906B /* Foundation+ParticleSwift.swift */; };
 		4FA85B2F1D0CA15900EC906B /* Foundation+ParticleSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85B271D0CA15900EC906B /* Foundation+ParticleSwift.swift */; };
-		4FD53D4D1E21E7E000CD6FB1 /* ProjectNewFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD53D4C1E21E7E000CD6FB1 /* ProjectNewFileViewController.swift */; };
 		4FFCEE891D43B07200FBECDE /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCEE881D43B07200FBECDE /* Logging.swift */; };
 		4FFCEE8A1D43B07200FBECDE /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCEE881D43B07200FBECDE /* Logging.swift */; };
 		4FFCEE8B1D43B07200FBECDE /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCEE881D43B07200FBECDE /* Logging.swift */; };
@@ -124,7 +123,6 @@
 		4FA85B171D0CA14800EC906B /* ParticleCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleCloud.swift; sourceTree = "<group>"; };
 		4FA85B191D0CA14800EC906B /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		4FA85B271D0CA15900EC906B /* Foundation+ParticleSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Foundation+ParticleSwift.swift"; sourceTree = "<group>"; };
-		4FD53D4C1E21E7E000CD6FB1 /* ProjectNewFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectNewFileViewController.swift; sourceTree = "<group>"; };
 		4FFCEE881D43B07200FBECDE /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		4FFCEF0F1D443C6E00FBECDE /* ParticleSwiftInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleSwiftInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -242,7 +240,6 @@
 				4FFCEE881D43B07200FBECDE /* Logging.swift */,
 				4FFCEF0F1D443C6E00FBECDE /* ParticleSwiftInfo.swift */,
 				4F1110331DD7AA200036E55C /* Webhooks.swift */,
-				4FD53D4C1E21E7E000CD6FB1 /* ProjectNewFileViewController.swift */,
 			);
 			name = Sources;
 			path = ../Sources;
@@ -605,7 +602,6 @@
 				4FFCEE891D43B07200FBECDE /* Logging.swift in Sources */,
 				4F1110341DD7AA200036E55C /* Webhooks.swift in Sources */,
 				4FFCEF101D443C6E00FBECDE /* ParticleSwiftInfo.swift in Sources */,
-				4FD53D4D1E21E7E000CD6FB1 /* ProjectNewFileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
