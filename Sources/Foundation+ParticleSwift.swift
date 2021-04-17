@@ -59,7 +59,7 @@ extension String {
         guard let lastRange = self.range(of: "/", options: [.backwards]) else {
             return self
         }
-        return self.substring(with: lastRange.upperBound..<self.endIndex)
+        return String(self[lastRange.upperBound..<self.endIndex])
     }
 }
 
@@ -67,8 +67,8 @@ extension Dictionary where Key: ExpressibleByStringLiteral, Value: ExpressibleBy
     
     /// The dictionary as a properly encoded url query
     var URLEncodedParameters: String? {
-        
-        let ret =  self.flatMap ( { (key, value) -> String? in
+
+        let ret =  self.compactMap ( { (key, value) -> String? in
             guard let a = "\(key)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
                 let b = "\(value)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
                     return nil
@@ -145,7 +145,7 @@ extension Scanner {
     
     /// The remaining portion of the scanner's string
     var remainder: String {
-        return self.string.substring(from: self.string.index(self.string.startIndex, offsetBy: self.scanLocation))
+        return String(self.string[self.string.index(self.string.startIndex, offsetBy: self.scanLocation)...])
     }
 
     /// Check the next character from the scanner's location
@@ -153,9 +153,9 @@ extension Scanner {
     /// - returns: true if the next character matches the supplied value, false otherwise
     func isNext(character: Character) -> Bool {
         let scanLocation = self.scanLocation
-        if self.string.index(self.string.characters.startIndex, offsetBy: scanLocation + 1) < self.string.characters.endIndex {
-            return self.string.characters[self.string.index(self.string.characters.startIndex, offsetBy: scanLocation + 1)] == character
-            }
+        if self.string.index(self.string.startIndex, offsetBy: scanLocation + 1) < self.string.endIndex {
+            return self.string[self.string.index(self.string.startIndex, offsetBy: scanLocation + 1)] == character
+        }
         return false
     }
 }

@@ -392,11 +392,10 @@ public class EventSource: NSObject {
                     scanner.scanCharacters(from: .whitespacesAndNewlines, into: nil)
                     
                     parseState = .pendingEventTag
-                    guard let json = json as? String else { break }
+                    guard let json = json as String? else { break }
                     let data = json.data(using: .utf8)
-                    if let nextEvent = nextEvent as? String, let data = data, let parsedJson = try? JSONSerialization.jsonObject(with: data, options: []) as? Dictionary<String,Any>, var j = parsedJson, let event = Event(name: nextEvent, dictionary: j) {
+                    if let nextEvent = nextEvent as String?, let data = data, let j = try? JSONSerialization.jsonObject(with: data, options: []) as? Dictionary<String,Any>, let event = Event(name: nextEvent, dictionary: j) {
                         trace("Received event \(nextEvent) with payload \(j)")
-                        j["name"] = nextEvent
                         NotificationCenter.default.post(name: .ParticleEvent, object: self, userInfo: [EventSource.ParticleEventKey : event])
                         delegate?.receivedEvent(event, from: self)
                     }

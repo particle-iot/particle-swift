@@ -130,7 +130,7 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.createWebhookFailed(error)))
                     }
                     
-                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any], let j = json {
+                    if let data = data, let j = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] {
                         
                         if j.bool(for: "ok") == true {
                             trace("Successfully invoked compilation of \(files.count) file(s) with result \(j)")
