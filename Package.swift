@@ -1,7 +1,13 @@
+// swift-tools-version:5.3
 import PackageDescription
 
 let package = Package(
     name: "ParticleSwift",
-	dependencies: [
+    products: [
+        .library(name: "ParticleSwift", targets: ["ParticleSwift"])
+    ],
+	dependencies: [],
+    targets: [
+        .target(name: "ParticleSwift", path: "Sources")
     ]
 )

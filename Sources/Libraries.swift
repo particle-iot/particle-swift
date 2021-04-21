@@ -117,7 +117,7 @@ extension ParticleCloud {
                 
                 var url = self.baseURL.appendingPathComponent("v1/libraries")
                 if filter != nil, !filter!.isEmpty {
-                    url = url.appendingPathComponent("/\(filter!.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed))")
+                    url = url.appendingPathComponent("/\(filter!.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)")
                 }
                 
                 var urlComps = URLComponents(url: url, resolvingAgainstBaseURL: false)
@@ -152,9 +152,9 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.librariesRequestFailed(String(describing: error))))
                     }
                     
-                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any], let j = json, let resultData = j["data"] as? [[String : Any]] {
+                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any], let resultData = json["data"] as? [[String : Any]] {
                         var results: [Library] = []
-                        results = resultData.flatMap { return Library(dictionary: $0) }
+                        results = resultData.compactMap { return Library(dictionary: $0) }
                         completion(.success(results))
                     } else {
                         
@@ -207,9 +207,9 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.libraryVersionsRequestFailed(String(describing: error))))
                     }
                     
-                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any], let j = json, let resultData = j["data"] as? [[String : Any]] {
+                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any], let resultData = json["data"] as? [[String : Any]] {
                         var results: [Library] = []
-                        results = resultData.flatMap { return Library(dictionary: $0) }
+                        results = resultData.compactMap { return Library(dictionary: $0) }
                         completion(.success(results))
                     } else {
                         let message = data != nil ? String(data: data!, encoding: String.Encoding.utf8) ?? "" : ""

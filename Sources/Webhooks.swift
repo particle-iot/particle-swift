@@ -265,12 +265,12 @@ public struct Webhook {
         
         // the following are returned only from the GetWebhook command
         if let counters = dictionary["counters"] as? [Dictionary<String,Any>] {
-            self.counters = counters.flatMap { Counter($0) }
+            self.counters = counters.compactMap { Counter($0) }
         }
         
         // the following are returned only from the GetWebhook command
         if let logs = dictionary["logs"] as? [Dictionary<String,Any>] {
-            self.logs = logs.flatMap { Log($0) }
+            self.logs = logs.compactMap { Log($0) }
         }
         
     }
@@ -365,7 +365,7 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.createWebhookFailed(error)))
                     }
                     
-                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any], let j = json, let id = j["id"] as? String, j.bool(for: "ok") == true {
+                    if let data = data, let j = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any], let id = j["id"] as? String, j.bool(for: "ok") == true {
                         
                         var newWebhook = webhook
                         newWebhook.configure(with: j)
@@ -454,7 +454,7 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.webhookListFailed(error)))
                     }
                     
-                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any], let j = json, let j2 = j["webhook"] as? Dictionary<String,Any>, let webhook = Webhook(with: j2) {
+                    if let data = data, let j = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any], let j2 = j["webhook"] as? Dictionary<String,Any>, let webhook = Webhook(with: j2) {
                         return completion(.success(webhook))
                     } else {
                         
@@ -495,8 +495,8 @@ extension ParticleCloud {
                         return completion(.failure(ParticleError.webhookListFailed(error)))
                     }
                     
-                    if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String : Any]],  let j = json {
-                        return completion(.success(j.flatMap({ return Webhook(with: $0)})))
+                    if let data = data, let j = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String : Any]] {
+                        return completion(.success(j.compactMap { Webhook(with: $0)}))
                     } else {
                         
                         let message = data != nil ? String(data: data!, encoding: String.Encoding.utf8) ?? "" : ""

@@ -113,7 +113,7 @@ func log( _ message: @autoclosure() -> String, level: LogLevel = .debug, functio
  */
 @inline(__always)
 func error( _ message: @autoclosure() -> String, function: String = #function, file: String = #file, line: Int = #line, callstack: Bool = false) -> Void   {
-    return log(message, level: .error, function: function, file: file, line: line, callstack: callstack)
+    return log(message(), level: .error, function: function, file: file, line: line, callstack: callstack)
 }
 
 /**
@@ -128,7 +128,7 @@ func error( _ message: @autoclosure() -> String, function: String = #function, f
  */
 @inline(__always)
 func warn( _ message: @autoclosure() -> String, function: String = #function, file: String = #file, line: Int = #line, callstack: Bool = false) -> Void   {
-    return log(message, level: .warning, function: function, file: file, line: line, callstack: callstack)
+    return log(message(), level: .warning, function: function, file: file, line: line, callstack: callstack)
 }
 
 /**
@@ -143,7 +143,7 @@ func warn( _ message: @autoclosure() -> String, function: String = #function, fi
  */
 @inline(__always)
 func debug( _ message: @autoclosure() -> String, function: String = #function, file: String = #file, line: Int = #line, callstack: Bool = false) -> Void  {
-    return log(message, level: .debug, function: function, file: file, line: line, callstack: callstack)
+    return log(message(), level: .debug, function: function, file: file, line: line, callstack: callstack)
 }
 
 /**
@@ -158,7 +158,7 @@ func debug( _ message: @autoclosure() -> String, function: String = #function, f
  */
 @inline(__always)
 func info( _ message: @autoclosure() -> String, function: String = #function, file: String = #file, line: Int = #line, callstack: Bool = false) -> Void  {
-    return log(message, level: .info, function: function, file: file, line: line, callstack: callstack)
+    return log(message(), level: .info, function: function, file: file, line: line, callstack: callstack)
 }
 
 /**
@@ -173,7 +173,7 @@ func info( _ message: @autoclosure() -> String, function: String = #function, fi
  */
 @inline(__always)
 func trace( _ message: @autoclosure() -> String, function: String = #function, file: String = #file, line: Int = #line, callstack: Bool = false) -> Void  {
-    return log(message, level: .trace, function: function, file: file, line: line, callstack: callstack)
+    return log(message(), level: .trace, function: function, file: file, line: line, callstack: callstack)
 }
 
 /**
